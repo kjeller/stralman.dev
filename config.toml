@@ -1,0 +1,49 @@
+baseURL = "https://stralman.dev"
+title = "stralman.dev"
+languageCode = "en-us"
+theme = "devise"
+relativeURLs = true
+enableEmoji = true
+googleAnalytics = ""
+enableRobotsTXT = true
+copyright = "&copy; 2022, Karl Strålman"
+
+# Main menu items
+[menu]
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    title = "About"
+    url = "/about/"
+    weight = -110
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    title = "Posts"
+    url = "/post/"
+    weight = -100
+  [[menu.main]]
+    identifier = "categories"
+    name = "Categories"
+    title = "Categories"
+    url = "/categories/"
+    weight = -90
+
+# Configuration Features
+[params]
+  description = "Your meta description"
+  header_title = "Kalle Strålman ☢️"
+  header_subtitle = "A tech hobbyist's guide to the galaxy."
+  home_image = "/images/kapten_kjellC.png"
+  recent_posts = 5                           # Max amount of recent posts to show
+  mainSections = ["posts", "post", "blog"]   # Main sections to include in recent posts
+  [params.style]                             # CSS style overrides
+    backgroundColor = "#2b2a33"
+    fontColor = "#fbfbfe"
+    homeImageBorderColor = "#42414d"
+  [[params.social]]
+    fa_icon = "fab fa-github fa-1x"
+    href = "https://github.com/kjeller"
+  [[params.social]]
+    fa_icon = "fab fa-linkedin-in fa-1x"
+    href = "https://www.linkedin.com/in/karl-str%C3%A5lman-422b6b173/"
