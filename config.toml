@@ -31,7 +31,7 @@ copyright = "&copy; 2022, Karl Strålman"
 
 # Configuration Features
 [params]
-  description = "Your meta description"
+  description = "A tech hobbyist's guide to the galaxy."
   header_title = "Kalle Strålman ☢️"
   header_subtitle = "A tech hobbyist's guide to the galaxy."
   home_image = "/images/kapten_kjellC.png"
