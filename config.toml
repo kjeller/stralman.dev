@@ -1,4 +1,4 @@
-baseURL = "https://stralman.dev"
+baseURL = "https://stralman.dev/"
 title = "stralman.dev"
 languageCode = "en-us"
 theme = "devise"
@@ -47,3 +47,6 @@ copyright = "&copy; 2022, Karl Strålman"
   [[params.social]]
     fa_icon = "fab fa-linkedin-in fa-1x"
     href = "https://www.linkedin.com/in/karl-str%C3%A5lman-422b6b173/"
+  [[params.social]]
+    fa_icon = "fas fa-rss fa-1x"
+    href = "https://www.stralman.dev/posts/index.html/"
