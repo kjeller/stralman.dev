@@ -206,3 +206,14 @@ WantedBy=default.target
 `systemctl --user enable rclone@dropbox-remote`
 
 Now your remote should mount for every reboot.
+
+# Checking out VFS cache modes
+*Edit: Jan 8, 2022*
+
+The default VFS cache mode `Environment=RCLONE_MOUNT_VFS_CACHE_MODE="off"` or `--vfs-cache-mode off` which it evaluates to prevent my password manager from opening my database file from the remote mount directory for both read and write. I get the following error log from doing this: `WriteFileHandle: Can't open for write without O_TRUNC`.
+
+Changing the cache mode from `--vfs-cache-mode off` to `--vfs-cache-mode writes` should support all normal file operations (Source [here](https://rclone.org/commands/rclone_mount/#file-caching)).
+
+1. Add a line for the env override for your remote: `echo "RCLONE_MOUNT_VFS_CACHE_MODE=\"writes\"" >> ~/.config/rclone/<REMOTE NAME>.env`
+2. Restart service: `systemctl --user restart rclone@<REMOTE NAME>`
+3. Check that it was restarted correctly with correct cache mode: `systemctl --user status rclone@<REMOTE NAME>`
