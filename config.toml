@@ -35,6 +35,7 @@ copyright = "&copy; 2022, Karl Strålman"
   header_title = "Kalle Strålman ☢️"
   header_subtitle = "A tech hobbyist's guide to the galaxy."
   home_image = "/images/kapten_kjellC.png"
+  enable_toc = true
   recent_posts = 5                           # Max amount of recent posts to show
   mainSections = ["posts", "post", "blog"]   # Main sections to include in recent posts
   [params.style]                             # CSS style overrides
