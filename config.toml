@@ -8,6 +8,10 @@ googleAnalytics = ""
 enableRobotsTXT = true
 copyright = "&copy; 2022, Karl Strålman"
 
+[markup]
+  [markup.highlight]
+    noClasses=false
+
 # Main menu items
 [menu]
   [[menu.main]]
