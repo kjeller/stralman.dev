@@ -202,8 +202,13 @@ WantedBy=default.target
 - Set the env variable *MOUNT_DIR* to whatever mounting directory you want. This directory must exist in the filesystem. For example I want dropbox-remote to moount in /mnt so I set `MOUNT_DIR=/mnt/dropbox-remote`. Then create that folder e.g. `sudo mkdir /mnt/dropbox-remote && sudo chown $USER /mnt/dropbox-remote`
 
 4. Start the templated systemd user service for a specific remote.
-`systemctl --user enable rclone@<REMOTE NAME>` e.g. for my dropbox this was:
+
+`systemctl --user enable rclone@<REMOTE NAME>`
+`systemctl --user start rclone@<REMOTE NAME>`
+
+e.g. for my dropbox this was:
 `systemctl --user enable rclone@dropbox-remote`
+`systemctl --user start rclone@dropbox-remote`
 
 Now your remote should mount for every reboot.
 
