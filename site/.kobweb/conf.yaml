@@ -1,0 +1,14 @@
+site:
+  title: "Karl Strålman"
+
+server:
+  files:
+    dev:
+      contentRoot: "build/processedResources/js/main/public"
+      script: "build/dist/js/developmentExecutable/stralman.js"
+      api: "build/libs/stralman.jar"
+    prod:
+      script: "build/dist/js/productionExecutable/stralman.js"
+      siteRoot: ".kobweb/site"
+
+  port: 8080
