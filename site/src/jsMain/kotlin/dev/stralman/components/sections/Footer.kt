@@ -24,6 +24,7 @@ import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.dom.Span
 import dev.stralman.toSitePalette
+import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.LineStyle
 import org.jetbrains.compose.web.css.px
 
@@ -73,7 +74,15 @@ fun Footer(modifier: Modifier = Modifier) {
             Row(
                 horizontalArrangement = Arrangement.Center
             ) {
-                SpanText("© 2023, Karl Strålman", CopyrightStyle.toModifier())
+                SpanText(
+                    "© 2023, Karl Strålman",
+                    CopyrightStyle
+                        .toModifier()
+                        .then(
+                            modifier
+                                .color(Color("#6c757d"))
+                        )
+                )
             }
         }
     }
