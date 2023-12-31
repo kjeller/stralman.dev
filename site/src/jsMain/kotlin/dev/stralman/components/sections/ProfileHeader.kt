@@ -15,6 +15,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.size
 import com.varabyte.kobweb.compose.ui.modifiers.textDecorationLine
 import com.varabyte.kobweb.compose.ui.modifiers.width
 import com.varabyte.kobweb.compose.ui.toAttrs
+import com.varabyte.kobweb.navigation.Anchor
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.toModifier
 import dev.stralman.HeadlineTextStyle
@@ -42,7 +43,7 @@ fun ProfileHeader(
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier.padding(50.px)
         ) {
-            A(
+            Anchor(
                 href = profileImageHref
             ) {
                 RoundBorderImage(
