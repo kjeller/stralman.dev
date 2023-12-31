@@ -66,7 +66,7 @@ fun BlogPostList(
                     P(
                         BlogPostEntry.toModifier().then(
                             modifier.fontSize(0.7.cssRem)
-                                .color(Color.black)
+                                .color(Color("#2b2a33"))
                                 .borderRadius(0.25.cssRem)
                                 .padding(3.px)
                                 .backgroundColor(Color.white)
@@ -74,7 +74,11 @@ fun BlogPostList(
                                 .margin(right = 15.px)
                         ).toAttrs()
                     ) {
-                        Text("${getShortMonth(it.date.month)} ${it.date.dayOfMonth} ${it.date.year}")
+                        Text(
+                            "${getShortMonth(it.date.month)} ${
+                                it.date.dayOfMonth.toString().padStart(2, '0')
+                            } ${it.date.year}"
+                        )
                     }
                     Column {
                         Link(
