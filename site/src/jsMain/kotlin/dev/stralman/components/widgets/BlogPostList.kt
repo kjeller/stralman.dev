@@ -9,8 +9,6 @@ import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.fontSize
 import com.varabyte.kobweb.compose.ui.modifiers.justifyContent
-import com.varabyte.kobweb.compose.ui.modifiers.lineHeight
-import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.compose.ui.modifiers.textAlign
 import com.varabyte.kobweb.compose.ui.modifiers.width
@@ -24,19 +22,10 @@ import dev.stralman.PTextStyle
 import dev.stralman.articles.markdownEntries
 import dev.stralman.util.getShortMonth
 import org.jetbrains.compose.web.css.JustifyContent
-import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
 
-val BlogPostTextStyle by ComponentStyle.base {
-    Modifier
-        .width(50.px)
-        .padding(right = 10.px)
-        .fontSize(1.cssRem)
-        .margin(0.px)
-        .lineHeight(1.2)
-}
 
 @Composable
 fun BlogPostList(
@@ -45,21 +34,24 @@ fun BlogPostList(
     Column {
         markdownEntries.forEach {
             Row(
-                horizontalArrangement = Arrangement.End
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
+
                 P(
-                    BlogPostTextStyle.toModifier().then(
-                        modifier.width(100.px).justifyContent(
-                            JustifyContent.Right
-                        )
-                    ).toAttrs()
+                    // TODO cleanup & create own style for this
+                    PTextStyle.toModifier().then(
+                        modifier.width(150.px).justifyContent(JustifyContent.Right)
+                            .padding(right = 15.px)
+                            .textAlign(TextAlign.Right)
+                    )
+                        .toAttrs()
                 ) {
                     Text("${getShortMonth(it.date.month)} ${it.date.dayOfMonth} ${it.date.year}")
                 }
                 Link(
                     text = it.title,
                     path = it.path,
-                    modifier = BlogPostTextStyle.toModifier().then(modifier.width(400.px))
+                    //modifier = BlogPostTextStyle.toModifier().then(modifier)
                 )
             }
         }
