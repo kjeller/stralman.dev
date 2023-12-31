@@ -3,7 +3,9 @@ package dev.stralman.components.sections
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.css.WhiteSpace
+import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
+import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
@@ -16,39 +18,63 @@ import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.components.style.vars.color.ColorVar
 import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import com.varabyte.kobweb.silk.theme.colors.palette.border
+import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.dom.Span
 import dev.stralman.toSitePalette
+import org.jetbrains.compose.web.css.LineStyle
+import org.jetbrains.compose.web.css.px
 
 val FooterStyle by ComponentStyle.base {
     Modifier
-        .backgroundColor(colorMode.toSitePalette().nearBackground)
-        .padding(topBottom = 1.5.cssRem, leftRight = 10.percent)
+        .margin(top = 2.cssRem)
+        .borderTop(1.px, LineStyle.Solid, colorMode.toPalette().border)
+        .padding(topBottom = 1.cssRem, leftRight = 4.cssRem)
+        .fontSize(0.8.cssRem)
+        .fontFamily("monospace")
 }
+
+val CopyrightStyle = ComponentStyle.base("bs-copyright") {
+    Modifier.opacity(0.6).fontSize(0.8.cssRem)
+}
+
 
 @Composable
 fun Footer(modifier: Modifier = Modifier) {
     Box(FooterStyle.toModifier().then(modifier), contentAlignment = Alignment.Center) {
         Span(Modifier.textAlign(TextAlign.Center).toAttrs()) {
             val sitePalette = ColorMode.current.toSitePalette()
-            SpanText("Built with ")
-            Link(
-                "https://github.com/varabyte/kobweb",
-                "Kobweb",
-                Modifier.setVariable(ColorVar, sitePalette.brand.primary),
-                variant = UncoloredLinkVariant
-            )
-            SpanText(", template designed by ")
+            Row {
+                Span(
+                    Modifier.whiteSpace(WhiteSpace.PreWrap).textAlign(TextAlign.Center).toAttrs()
+                ) {
+                    SpanText("Powered by ")
+                    Link(
+                        "https://github.com/varabyte/kobweb",
+                        "Kobweb",
+                        Modifier.setVariable(ColorVar, sitePalette.brand.primary),
+                        variant = UncoloredLinkVariant
+                    )
+                    SpanText(", site source ")
 
-            // Huge thanks to UI Rocket (https://ui-rocket.com) for putting this great template design together for us!
-            // If you like what you see here and want help building your own site, consider checking out their services.
-            Link(
-                "https://ui-rocket.com",
-                "UI Rocket",
-                Modifier.setVariable(ColorVar, sitePalette.brand.accent).whiteSpace(WhiteSpace.NoWrap),
-                variant = UncoloredLinkVariant
-            )
+                    Link(
+                        "https://github.com/kjeller/stralman.dev",
+                        "here",
+                        Modifier
+                            .setVariable(ColorVar, sitePalette.brand.primary)
+                            .whiteSpace(WhiteSpace.NoWrap)
+                            .fontFamily("monospace"),
+                        variant = UncoloredLinkVariant
+                    )
+                }
+            }
+            Row(
+                horizontalArrangement = Arrangement.Center
+            ) {
+                SpanText("© 2023, Karl Strålman", CopyrightStyle.toModifier())
+            }
         }
     }
 }

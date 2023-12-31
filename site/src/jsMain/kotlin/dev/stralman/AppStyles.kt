@@ -10,12 +10,14 @@ import com.varabyte.kobweb.silk.components.layout.HorizontalDividerStyle
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.addVariantBase
 import com.varabyte.kobweb.silk.components.style.base
+import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.init.InitSilk
 import com.varabyte.kobweb.silk.init.InitSilkContext
 import com.varabyte.kobweb.silk.init.registerStyleBase
 import com.varabyte.kobweb.silk.theme.colors.palette.color
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import com.varabyte.kobweb.silk.theme.modifyComponentStyleBase
+import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
@@ -40,8 +42,15 @@ fun initSiteStyles(ctx: InitSilkContext) {
 
 val HeadlineTextStyle by ComponentStyle.base {
     Modifier
-        .fontSize(3.cssRem)
+        .fontSize(2.cssRem)
         .textAlign(TextAlign.Start)
+        .margin(bottom = 5.px)
+        .lineHeight(1.2) //1.5x doesn't look as good on very large text
+}
+val PTextStyle by ComponentStyle.base {
+    Modifier
+        .fontSize(1.cssRem)
+        .margin(0.px)
         .lineHeight(1.2) //1.5x doesn't look as good on very large text
 }
 
