@@ -102,7 +102,8 @@ val generateMarkdownEntriesTask = task("generateMarkdownEntries") {
                                 .file
                                 .path
                                 .substringAfterLast("posts")
-                                .substringBefore("\\index.md")
+                                .substringBefore("\\index.md") // Windows
+                                .substringBefore("/index.md") // Unix
                                 .substringBefore(".md")
                                 .lowercase()
                                 .invariantSeparatorsPath
