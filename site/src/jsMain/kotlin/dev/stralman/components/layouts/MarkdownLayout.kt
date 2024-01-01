@@ -99,7 +99,6 @@ val MarkdownStyle by ComponentStyle {
             .display(DisplayStyle.Block)
             .fillMaxWidth()
             .backgroundColor(Color("#373641"))
-            //.border(1.px, LineStyle.Solid, colorMode.toPalette().color)
             .borderRadius(0.25.cssRem)
             .padding(0.5.cssRem)
             .fontSize(1.cssRem)
@@ -139,10 +138,7 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
             val author = ctx.markdown!!.frontMatter.getValue("author").single()
             Column {
                 P {
-                    Text("$date")
-                }
-                P {
-                    Text("$author")
+                    Text(date)
                 }
             }
             content()

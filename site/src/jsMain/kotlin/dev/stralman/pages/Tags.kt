@@ -8,7 +8,6 @@ import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.silk.components.navigation.Link
 import dev.stralman.articles.markdownEntries
 import dev.stralman.components.layouts.PageLayout
-import org.jetbrains.compose.web.dom.Text
 
 @Page
 @Composable

@@ -34,13 +34,14 @@ software download OTA domains).
 Here I am, back at it again!
 
 **TV info dump:**
-| Type | Description |
-|:---------------:|:-----------------------------:|
-| Model | 55UK6300PLB |
+
+|     Type      |         Description         |
+|:-------------:|:---------------------------:|
+|     Model     |         55UK6300PLB         |
 | webOS Version | 4.4.0-12 (goldilocks-gorce) |
-| Chip type | LM18A (Mstar)               |
-| S/W version | 05.40.26.01 |
-| NVM EEPROM IC | FT24C256A |
+|   Chip type   |        LM18A (Mstar)        |
+|  S/W version  |         05.40.26.01         |
+| NVM EEPROM IC |          FT24C256A          |
 
 ## Modifying debugstatus in NVM
 
