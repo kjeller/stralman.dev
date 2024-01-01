@@ -4,9 +4,8 @@ title: "Hacking my LG webOS TV (again)"
 date: 2023-05-27
 author: Karl Strålman
 tags:
-
-- "webosbrew"
-- "hacking"
+  - "webosbrew"
+  - "hacking"
 
 ---
 

@@ -1,10 +1,7 @@
 package dev.stralman.components.widgets
 
 import androidx.compose.runtime.Composable
-import com.varabyte.kobweb.compose.dom.svg.Svg
-import com.varabyte.kobweb.compose.dom.svg.SvgId
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.modifiers.color
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.style.toModifier
 import dev.stralman.PTextStyle

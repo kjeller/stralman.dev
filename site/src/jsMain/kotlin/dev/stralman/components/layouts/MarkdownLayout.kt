@@ -26,6 +26,9 @@ import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import dev.stralman.toSitePalette
 import kotlinx.browser.document
+import org.jetbrains.compose.web.css.Color
+import org.jetbrains.compose.web.css.FlexWrap
+import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
 
 @InitSilk
@@ -41,22 +44,22 @@ val MarkdownStyle by ComponentStyle {
 
     cssRule(" h1") {
         Modifier
-            .fontSize(3.cssRem)
-            .fontWeight(400)
-            .margin(bottom = 2.5.cssRem)
+            .fontSize(2.cssRem)
+            .fontWeight(300)
+            .margin(bottom = 1.5.cssRem)
             .lineHeight(1.2) //1.5x doesn't look as good on very large text
     }
 
     cssRule(" h2") {
         Modifier
-            .fontSize(3.cssRem)
+            .fontSize(2.cssRem)
             .fontWeight(300)
-            .margin(topBottom = 2.cssRem)
+            .margin(topBottom = 1.cssRem)
     }
 
     cssRule(" h3") {
         Modifier
-            .fontSize(2.4.cssRem)
+            .fontSize(1.4.cssRem)
             .fontWeight(300)
             .margin(topBottom = 1.5.cssRem)
     }
@@ -95,8 +98,8 @@ val MarkdownStyle by ComponentStyle {
         Modifier
             .display(DisplayStyle.Block)
             .fillMaxWidth()
-            .backgroundColor(colorMode.toSitePalette().nearBackground)
-            .border(1.px, LineStyle.Solid, colorMode.toPalette().color)
+            .backgroundColor(Color("#373641"))
+            //.border(1.px, LineStyle.Solid, colorMode.toPalette().color)
             .borderRadius(0.25.cssRem)
             .padding(0.5.cssRem)
             .fontSize(1.cssRem)
@@ -133,7 +136,15 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
                 .maxWidth(40.cssRem)
         ) {
             val date = ctx.markdown!!.frontMatter.getValue("date").single()
-            Text("$date")
+            val author = ctx.markdown!!.frontMatter.getValue("author").single()
+            Column {
+                P {
+                    Text("$date")
+                }
+                P {
+                    Text("$author")
+                }
+            }
             content()
         }
     }

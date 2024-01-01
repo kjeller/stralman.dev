@@ -4,8 +4,7 @@ title: "Analog camera despair: OM-10 needs repair"
 date: 2022-08-23
 author: Karl Strålman
 tags:
-
-- "analog_cameras"
+  - "analog_cameras"
 
 ---
 
