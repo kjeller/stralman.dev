@@ -1,6 +1,8 @@
 package dev.stralman.components.layouts
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.css.OverflowWrap
@@ -11,6 +13,10 @@ import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.init.InitSilk
+import com.varabyte.kobweb.silk.init.InitSilkContext
+import com.varabyte.kobweb.silk.init.registerStyleBase
+import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import com.varabyte.kobweb.silk.theme.colors.palette.color
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import com.varabyte.kobwebx.markdown.markdown
@@ -19,7 +25,14 @@ import org.jetbrains.compose.web.css.LineStyle
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import dev.stralman.toSitePalette
+import kotlinx.browser.document
 import org.jetbrains.compose.web.dom.Text
+
+@InitSilk
+fun initHighlightJs(ctx: InitSilkContext) {
+    // Tweaks to make output from highlight.js look softer / better
+    ctx.stylesheet.registerStyleBase("code.hljs") { Modifier.borderRadius(8.px) }
+}
 
 val MarkdownStyle by ComponentStyle {
     // The following rules apply to all descendant elements, indicated by the leading space.
@@ -93,13 +106,32 @@ val MarkdownStyle by ComponentStyle {
 
 @Composable
 fun MarkdownLayout(content: @Composable () -> Unit) {
+    val ctx = rememberPageContext()
+    LaunchedEffect(ctx.route) {
+        // See kobweb config in build.gradle.kts which sets up highlight.js
+        js("hljs.highlightAll()")
+    }
     PageLayout {
+        val colorMode by ColorMode.currentState
+        LaunchedEffect(colorMode) {
+            var styleElement = document.querySelector("""link[title="hljs-style"]""")
+            if (styleElement == null) {
+                styleElement = document.createElement("link").apply {
+                    setAttribute("type", "text/css")
+                    setAttribute("rel", "stylesheet")
+                    setAttribute("title", "hljs-style")
+                }.also { document.head!!.appendChild(it) }
+            }
+            styleElement.setAttribute(
+                "href",
+                "/highlight.js/styles/a11y-${colorMode.name.lowercase()}.min.css"
+            )
+        }
         Column(
             MarkdownStyle
                 .toModifier()
                 .maxWidth(40.cssRem)
         ) {
-            val ctx = rememberPageContext()
             val date = ctx.markdown!!.frontMatter.getValue("date").single()
             Text("$date")
             content()

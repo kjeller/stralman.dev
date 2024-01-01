@@ -1,6 +1,7 @@
 import com.varabyte.kobweb.common.path.invariantSeparatorsPath
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
 import com.varabyte.kobwebx.gradle.markdown.yamlStringToKotlinString
+import kotlinx.html.script
 import org.commonmark.ext.front.matter.YamlFrontMatterBlock
 import org.commonmark.ext.front.matter.YamlFrontMatterVisitor
 import org.commonmark.node.AbstractVisitor
@@ -19,7 +20,28 @@ version = "1.0-SNAPSHOT"
 kobweb {
     app {
         index {
-            description.set("Powered by Kobweb")
+            description.set("A tech hobbyist's guide to the galaxy.")
+            head.add {
+                script {
+                    // Needed by components/layouts/BlogLayout.kt
+                    src = "/highlight.js/highlight.min.js"
+                }
+            }
+        }
+    }
+    markdown {
+        handlers {
+            val BS_WGT = "dev.stralman.components.widgets"
+
+            code.set { code ->
+                "$BS_WGT.code.CodeBlock(\"\"\"${code.literal.escapeTripleQuotedText()}\"\"\", lang = ${
+                    code.info.takeIf { it.isNotBlank() }?.let { "\"$it\"" }
+                })"
+            }
+
+            inlineCode.set { code ->
+                "$BS_WGT.code.InlineCode(\"\"\"${code.literal.escapeTripleQuotedText()}\"\"\")"
+            }
         }
     }
 }

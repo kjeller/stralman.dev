@@ -4,8 +4,10 @@ title: "Hacking my LG webOS TV (again)"
 date: 2023-05-27
 author: Karl Strålman
 tags:
-  - "webosbrew"
-  - "hacking"
+
+- "webosbrew"
+- "hacking"
+
 ---
 
 ## Introduction
@@ -48,7 +50,8 @@ to write to NVM. The NVM is what LG calls the EEPROM that stores configuration d
 developer settings e.g. toggle logging, toggle UART serial, baud rates etc. Debugstatus is the "
 flag" that determines whether to enable debug mode for a developer or perpetrator (me) to access
 these
-settings. [This page explains more in-depth on what NVM is and how to read and write to on older LG models](https://gist.github.com/throwaway96/827ff726981cc2cbc46a22a2ad7337a1#nvm).
+settings. [This page explains more in-depth on what NVM is and how to read and write to on older LG models](https://gist.github.com/throwaway96/827ff726981cc2cbc46a22a2ad7337a1#nvm)
+.
 I put some hours into researching how to do it, what software and tools I need and even went as far
 as looking at the LG source code.
 
@@ -158,7 +161,7 @@ In `gpl_lm18a_MR_boot/boot/MstarCustomer/cmd/cmd_lg/cmd_nvm.c` we can see the sy
 funny characters from the source code are not me). I have marked the line where we see debugstatus
 is initialised to release level.
 
-```cpp {linenos=table,hl_lines=["32"]}
+```cpp
 const SYS_DB_T gSysNvmDB =
 {
     0x20170707,
@@ -208,7 +211,7 @@ debugstatus are defined
 The struct declaration for SYS_DB_T is located
 in `gpl_lm18a_MR_boot/boot/MstarCustomer/include/cmnio_type.h`.
 
-```cpp {linenos=table,hl_lines=["32"]}
+```cpp
 /**
   *  System DB ¸ðµâÀ» À§ÇÑ ½ÇÁ¦ »ç¿ë type Á¤ÀÇ
   * (from os/common_linux/dil/include/dil_nvm.h)
