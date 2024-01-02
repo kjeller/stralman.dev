@@ -20,7 +20,6 @@ import com.varabyte.kobweb.silk.components.style.toModifier
 import dev.stralman.HeadlineTextStyle
 import dev.stralman.PTextStyle
 import dev.stralman.components.widgets.image.RoundBorderImage
-import dev.stralman.components.widgets.image.AnchorImage
 import dev.stralman.data.Profile
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.px
@@ -87,7 +86,11 @@ fun ProfileHeader(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     profile.socialLinkList.forEach {
-                        AnchorImage(it)
+                        Anchor(
+                            href = it.url
+                        ) {
+                            it.faIcon()
+                        }
                     }
                 }
             }

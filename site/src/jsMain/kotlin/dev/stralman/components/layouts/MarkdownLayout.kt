@@ -10,6 +10,10 @@ import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.core.rememberPageContext
+import com.varabyte.kobweb.silk.components.icons.fa.FaGithub
+import com.varabyte.kobweb.silk.components.icons.fa.FaIcon
+import com.varabyte.kobweb.silk.components.icons.fa.FaLinkedin
+import com.varabyte.kobweb.silk.components.icons.fa.FaRss
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.init.InitSilk
@@ -133,7 +137,7 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
             val author = ctx.markdown!!.frontMatter.getValue("author").single()
             val updated = ctx.markdown!!.frontMatter["updated"]?.singleOrNull()
             Column {
-                BadgeText("Added: $date")
+                BadgeText("$date")
                 if (updated != null) {
                     BadgeText("Updated: $updated")
                 }

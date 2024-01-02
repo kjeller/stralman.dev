@@ -6,21 +6,27 @@ import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.ColumnScope
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
+import com.varabyte.kobweb.compose.ui.modifiers.color
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.gridRow
 import com.varabyte.kobweb.compose.ui.modifiers.gridTemplateRows
 import com.varabyte.kobweb.compose.ui.modifiers.maxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.minHeight
+import com.varabyte.kobweb.silk.components.icons.fa.FaGithub
+import com.varabyte.kobweb.silk.components.icons.fa.FaLinkedin
+import com.varabyte.kobweb.silk.components.icons.fa.FaRss
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
+import com.varabyte.kobweb.silk.components.style.hover
 import com.varabyte.kobweb.silk.components.style.toModifier
 import dev.stralman.components.sections.Footer
 import dev.stralman.components.sections.ProfileHeader
+import dev.stralman.data.FaIconLink
 import dev.stralman.data.Profile
 import dev.stralman.data.RouteLink
-import dev.stralman.data.SocialLink
 import kotlinx.browser.document
+import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.fr
 import org.jetbrains.compose.web.css.percent
@@ -30,6 +36,17 @@ val PageContentStyle by ComponentStyle {
         Modifier.fillMaxSize()
     }
     Breakpoint.MD { Modifier.maxWidth(40.cssRem) }
+}
+
+val FaIconStyle by ComponentStyle {
+    base {
+        Modifier
+            .color(Color("#6c757d"))
+    }
+    hover {
+        Modifier
+            .color(Color("#ffffff"))
+    }
 }
 
 @Composable
@@ -52,24 +69,15 @@ fun PageLayout(content: @Composable ColumnScope.() -> Unit) {
             )
         ),
         socialLinkList = listOf(
-            SocialLink(
-                "github",
-                "https://github.com/kjeller",
-                "Github",
-                "/svg/fa-github.svg",
-            ),
-            SocialLink(
-                "linkedin",
-                "https://www.linkedin.com/in/karl-str%C3%A5lman-422b6b173/",
-                "Linkedin",
-                "/svg/fa-linkedin.svg",
-            ),
-            SocialLink(
-                "rss",
-                "https://www.stralman.dev/post/index.xml/",
-                "RSS",
-                "/svg/fa-rss.svg",
-            )
+            FaIconLink(
+                "https://github.com/kjeller"
+            ) { FaGithub(FaIconStyle.toModifier()) },
+            FaIconLink(
+                "https://www.linkedin.com/in/karl-str%C3%A5lman-422b6b173/"
+            ) { FaLinkedin(FaIconStyle.toModifier()) },
+            FaIconLink(
+                "https://www.stralman.dev/post/index.xml/"
+            ) { FaRss(FaIconStyle.toModifier()) }
         )
     )
 

@@ -78,10 +78,6 @@ fun Footer(modifier: Modifier = Modifier) {
                     "© 2023, Karl Strålman",
                     CopyrightStyle
                         .toModifier()
-                        .then(
-                            modifier
-                                .color(Color("#6c757d"))
-                        )
                 )
             }
         }

@@ -1,5 +1,7 @@
 package dev.stralman.data
 
+import androidx.compose.runtime.Composable
+
 data class Profile(
     val name: String,
     val shortDescription: String,
@@ -7,7 +9,7 @@ data class Profile(
     val imageResource: String,
     val imageBorderColor: String,
     val linkList: List<RouteLink> = emptyList(),
-    val socialLinkList: List<SocialLink> = emptyList(),
+    val socialLinkList: List<FaIconLink> = emptyList(),
 )
 
 data class RouteLink(
@@ -15,9 +17,7 @@ data class RouteLink(
     val url: String,
 )
 
-data class SocialLink(
-    val id: String,
+data class FaIconLink(
     val url: String,
-    val title: String,
-    val iconSvg: String
+    val faIcon: @Composable () -> Unit,
 )
