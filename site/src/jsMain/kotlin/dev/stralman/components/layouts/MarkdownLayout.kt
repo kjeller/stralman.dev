@@ -7,7 +7,6 @@ import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.css.OverflowWrap
 import com.varabyte.kobweb.compose.foundation.layout.Column
-import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.core.rememberPageContext
@@ -20,16 +19,12 @@ import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import com.varabyte.kobweb.silk.theme.colors.palette.color
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import com.varabyte.kobwebx.markdown.markdown
+import dev.stralman.components.widgets.badge.BadgeText
 import org.jetbrains.compose.web.css.DisplayStyle
-import org.jetbrains.compose.web.css.LineStyle
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
-import dev.stralman.toSitePalette
 import kotlinx.browser.document
 import org.jetbrains.compose.web.css.Color
-import org.jetbrains.compose.web.css.FlexWrap
-import org.jetbrains.compose.web.dom.P
-import org.jetbrains.compose.web.dom.Text
 
 @InitSilk
 fun initHighlightJs(ctx: InitSilkContext) {
@@ -136,9 +131,11 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
         ) {
             val date = ctx.markdown!!.frontMatter.getValue("date").single()
             val author = ctx.markdown!!.frontMatter.getValue("author").single()
+            val updated = ctx.markdown!!.frontMatter["updated"]?.singleOrNull()
             Column {
-                P {
-                    Text(date)
+                BadgeText("Added: $date")
+                if (updated != null) {
+                    BadgeText("Updated: $updated")
                 }
             }
             content()

@@ -1,22 +1,22 @@
-package dev.stralman.components.widgets
+package dev.stralman.components.widgets.image
 
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.toAttrs
+import com.varabyte.kobweb.navigation.Anchor
 import com.varabyte.kobweb.silk.components.style.toModifier
 import dev.stralman.PTextStyle
 import dev.stralman.data.SocialLink
 import org.jetbrains.compose.web.attributes.ATarget
 import org.jetbrains.compose.web.attributes.target
-import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.Img
 
 @Composable
-fun SocialLinkIcon(
+fun AnchorImage(
     link: SocialLink,
     modifier: Modifier = Modifier
 ) {
-    A(
+    Anchor(
         attrs = {
             target(ATarget.Blank)
         },

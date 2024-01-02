@@ -1,4 +1,4 @@
-package dev.stralman.components.widgets
+package dev.stralman.components.widgets.image
 
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.css.ObjectFit

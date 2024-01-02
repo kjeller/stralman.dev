@@ -8,7 +8,6 @@ import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.color
-import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.compose.ui.modifiers.size
@@ -20,12 +19,11 @@ import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.toModifier
 import dev.stralman.HeadlineTextStyle
 import dev.stralman.PTextStyle
-import dev.stralman.components.widgets.RoundBorderImage
-import dev.stralman.components.widgets.SocialLinkIcon
+import dev.stralman.components.widgets.image.RoundBorderImage
+import dev.stralman.components.widgets.image.AnchorImage
 import dev.stralman.data.Profile
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.px
-import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.H1
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
@@ -89,7 +87,7 @@ fun ProfileHeader(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     profile.socialLinkList.forEach {
-                        SocialLinkIcon(it)
+                        AnchorImage(it)
                     }
                 }
             }

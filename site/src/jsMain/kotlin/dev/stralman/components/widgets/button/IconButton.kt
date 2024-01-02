@@ -1,4 +1,4 @@
-package dev.stralman.components.widgets
+package dev.stralman.components.widgets.button
 
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.ui.Modifier
@@ -13,7 +13,10 @@ import dev.stralman.UncoloredButtonVariant
 fun IconButton(onClick: () -> Unit, content: @Composable () -> Unit) {
     Button(
         onClick = { onClick() },
-        Modifier.setVariable(ButtonVars.FontSize, 1.em), // Make button icon size relative to parent container font size
+        Modifier.setVariable(
+            ButtonVars.FontSize,
+            1.em
+        ), // Make button icon size relative to parent container font size
         variant = CircleButtonVariant.then(UncoloredButtonVariant)
     ) {
         content()
