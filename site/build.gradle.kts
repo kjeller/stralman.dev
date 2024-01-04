@@ -1,18 +1,30 @@
 import com.varabyte.kobweb.common.path.invariantSeparatorsPath
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
 import com.varabyte.kobwebx.gradle.markdown.yamlStringToKotlinString
+import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.atStartOfDayIn
+import kotlinx.datetime.toInstant
+import kotlinx.datetime.toLocalDate
+import kotlinx.datetime.toLocalDateTime
 import kotlinx.html.script
 import org.commonmark.ext.front.matter.YamlFrontMatterBlock
 import org.commonmark.ext.front.matter.YamlFrontMatterVisitor
 import org.commonmark.node.AbstractVisitor
 import org.commonmark.node.CustomBlock
-import java.util.Date
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.kobweb.application)
     alias(libs.plugins.kobwebx.markdown)
+}
+
+buildscript {
+    dependencies {
+        classpath("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
+    }
 }
 
 group = "dev.stralman"
@@ -97,6 +109,34 @@ fun getUrlFromFilePath(file: File) =
         .lowercase()
         .invariantSeparatorsPath
 
+// Hack to convert LocalDateTime to a RFC1123 / RFC822 compatible string
+// Switch to official supported lib format / parse when merged in kotlinx-datetime
+// Open issue here: https://github.com/Kotlin/kotlinx-datetime/pull/251
+fun localDateTimeToRfc1123String(date: LocalDateTime): String {
+    val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+    val months = listOf(
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+    )
+    val gmtTz = TimeZone.of("GMT")
+    val date = date.toInstant(TimeZone.currentSystemDefault()).toLocalDateTime(gmtTz)
+    return "${days[date.dayOfWeek.value - 1]}, ${
+        date.dayOfMonth.toString().padStart(2, '0')
+    } ${months[date.month.value - 1]} ${date.year} ${
+        date.hour.toString().padStart(2, '0')
+    }:${date.minute.toString().padStart(2, '0')}:${date.second.toString().padStart(2, '2')} GMT"
+}
+
 val markdownResourceDir = layout.projectDirectory.dir("src/jsMain/resources/markdown/posts")
 val fmk = FrontMatterKeys()
 val parser = kobweb.markdown.features.createParser()
@@ -167,7 +207,7 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
         title = "stralman.dev",
         baseUrl = "https://stralman.dev",
         author = "Karl Strålman",
-        description = "TODO",
+        description = kobweb.app.index.description.toString(),
         language = "en-us",
     )
     inputs.dir(markdownResourceDir)
@@ -177,8 +217,8 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
         .withPropertyName("rssEntrydata")
 
     doLast {
-        //SimpleDateFormat df = new SimpleDateFormat ("MM-dd-yyyy_hh-mm")
-        val buildDate = Date()
+        val buildDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+
         genDir.file("index.xml").asFile.apply {
             parentFile.mkdirs()
             writeText(buildString {
@@ -191,8 +231,8 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
                     |   <description>${rssData.description}</description>
                     |   <generator>Kobweb -- kobweb.varabyte.com</generator>
                     |   <language>${rssData.language}</language>
-                    |   <copyright>© 2023, ${rssData.author}</copyright>
-                    |   <lastBuildDate>${buildDate}</lastBuildDate>
+                    |   <copyright>© ${buildDate.year}, ${rssData.author}</copyright>
+                    |   <lastBuildDate>${localDateTimeToRfc1123String(buildDate)}</lastBuildDate>
                     |   <atom:link href="${rssData.baseUrl}/index.xml" rel="self" type="application/rss+xml"/>
                     """.trimMargin()
                 )
@@ -203,8 +243,27 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
                         |   <title>${it.title}</title>
                         |   <link>${url}</link>
                         |   <guid>${url}</guid>
-                        |   <pubDate>${it.date}</pubDate>
-                        |   <description>TODO</description>
+                        |   <pubDate>${
+                            // TODO try to parse LocalDateTime first, second LocalDate since time is not included in LocalDate
+                            localDateTimeToRfc1123String(
+                                it.date!!
+                                    .toLocalDate()
+                                    .atStartOfDayIn(TimeZone.UTC)
+                                    .toLocalDateTime(
+                                        TimeZone.currentSystemDefault()
+                                    )
+                            )
+                        }</pubDate>
+                        |   <description>${
+                            it.file
+                                .readText()
+                                .substringAfter("---")
+                                .substringAfter("---")
+                                .filter { it != '#' }
+                                .split(Regex("(?<=[.!?])\\s+"))
+                                .take(3)
+                                .joinToString(". ")
+                        }</description>
                         |</item>
                         """.trimMargin()
                     )
@@ -229,8 +288,6 @@ val copyMarkdownResourcesTask = task("copyMarkdownResources") {
         .withPathSensitivity(PathSensitivity.RELATIVE)
     outputs.dir(genDir)
         .withPropertyName("markdownResources")
-
-    println("HEPOAKSKAPOSDPASDPOKSAd")
 
     doLast {
         markdownEntries.forEach {
