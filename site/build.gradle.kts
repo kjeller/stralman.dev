@@ -207,7 +207,7 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
         title = "stralman.dev",
         baseUrl = "https://stralman.dev",
         author = "Karl Strålman",
-        description = kobweb.app.index.description.toString(),
+        description = kobweb.app.index.description.get(),
         language = "en-us",
     )
     inputs.dir(markdownResourceDir)
