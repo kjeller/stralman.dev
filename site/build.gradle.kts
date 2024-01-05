@@ -2,9 +2,9 @@ import com.varabyte.kobweb.common.path.invariantSeparatorsPath
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
 import com.varabyte.kobwebx.gradle.markdown.yamlStringToKotlinString
 import kotlinx.datetime.Clock
+import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.atStartOfDayIn
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDate
 import kotlinx.datetime.toLocalDateTime
@@ -109,33 +109,45 @@ fun getUrlFromFilePath(file: File) =
         .lowercase()
         .invariantSeparatorsPath
 
+val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+val months = listOf(
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+)
+
 // Hack to convert LocalDateTime to a RFC1123 / RFC822 compatible string
 // Switch to official supported lib format / parse when merged in kotlinx-datetime
 // Open issue here: https://github.com/Kotlin/kotlinx-datetime/pull/251
-fun localDateTimeToRfc1123String(date: LocalDateTime): String {
-    val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
-    val months = listOf(
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec"
-    )
-    val gmtTz = TimeZone.of("GMT")
-    val date = date.toInstant(TimeZone.currentSystemDefault()).toLocalDateTime(gmtTz)
+fun localDateTimeToRfc1123String(
+    date: LocalDateTime,
+    timeZone: String = "GMT",
+): String {
+    val date =
+        date.toInstant(TimeZone.currentSystemDefault()).toLocalDateTime(TimeZone.of(timeZone))
     return "${days[date.dayOfWeek.value - 1]}, ${
         date.dayOfMonth.toString().padStart(2, '0')
     } ${months[date.month.value - 1]} ${date.year} ${
         date.hour.toString().padStart(2, '0')
-    }:${date.minute.toString().padStart(2, '0')}:${date.second.toString().padStart(2, '2')} GMT"
+    }:${date.minute.toString().padStart(2, '0')}:${
+        date.second.toString().padStart(2, '2')
+    } $timeZone"
 }
+
+// Hack to convert localdate
+fun localDateToRfc1123String(date: LocalDate): String =
+    "${days[date.dayOfWeek.value - 1]}, ${
+        date.dayOfMonth.toString().padStart(2, '0')
+    } ${months[date.month.value - 1]} ${date.year} 00:00:00 +0000"
 
 val markdownResourceDir = layout.projectDirectory.dir("src/jsMain/resources/markdown/posts")
 val fmk = FrontMatterKeys()
@@ -238,30 +250,36 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
                 )
                 markdownEntries.forEach {
                     val url = "${rssData.baseUrl}/posts${getUrlFromFilePath(it.file)}"
+                    var fmCount = 0
                     appendLine(
                         """<item>
                         |   <title>${it.title}</title>
                         |   <link>${url}</link>
                         |   <guid>${url}</guid>
                         |   <pubDate>${
-                            // TODO try to parse LocalDateTime first, second LocalDate since time is not included in LocalDate
-                            localDateTimeToRfc1123String(
-                                it.date!!
-                                    .toLocalDate()
-                                    .atStartOfDayIn(TimeZone.UTC)
-                                    .toLocalDateTime(
-                                        TimeZone.currentSystemDefault()
-                                    )
+                            localDateToRfc1123String(
+                                it.date!!.toLocalDate()
                             )
                         }</pubDate>
                         |   <description>${
                             it.file
-                                .readText()
-                                .substringAfter("---")
-                                .substringAfter("---")
-                                .filter { it != '#' }
+                                .readLines()
+                                .asSequence()
+                                .dropWhile { line ->
+                                    if (line == "---") {
+                                        fmCount++
+                                    }
+                                    fmCount < 2
+                                }
+                                .drop(1)
+                                .filter { line ->
+                                    line.isNotEmpty() &&
+                                            line.isNotBlank() &&
+                                            line.first() != '#'
+                                }
+                                .joinToString(". ")
                                 .split(Regex("(?<=[.!?])\\s+"))
-                                .take(3)
+                                .take(5)
                                 .joinToString(". ")
                         }</description>
                         |</item>
