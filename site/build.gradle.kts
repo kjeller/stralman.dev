@@ -168,7 +168,29 @@ val markdownEntries: List<MarkdownData> =
         )
     }
 
+val copyMarkdownResourcesTask = task("copyMarkdownResources") {
+    val group = "dev/stralman"
+    val genDir = layout.buildDirectory.dir("processedResources/js/main/public").get()
+
+    inputs.dir(markdownResourceDir)
+        .withPropertyName("markdownEntries")
+        .withPathSensitivity(PathSensitivity.RELATIVE)
+    outputs.dir(genDir)
+        .withPropertyName("markdownResources")
+
+    doLast {
+        markdownEntries.forEach {
+            println("Copying ${it.file.parentFile} to $genDir")
+            copy {
+                from("${it.file.parentFile}")
+                into("$genDir")
+                exclude("*.md")
+            }
+        }
+    }
+}
 val generateMarkdownEntriesTask = task("generateMarkdownEntries") {
+    dependsOn(copyMarkdownResourcesTask.name)
     val group = "dev/stralman"
     val genDir = layout.buildDirectory.dir("generated/$group/src/jsMain/kotlin").get()
 
@@ -297,26 +319,6 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
         }
     }
 }
-val copyMarkdownResourcesTask = task("copyMarkdownResources") {
-    val group = "dev/stralman"
-    val genDir = layout.buildDirectory.dir("processedResources/js/main/public").get()
-
-    inputs.dir(markdownResourceDir)
-        .withPropertyName("markdownEntries")
-        .withPathSensitivity(PathSensitivity.RELATIVE)
-    outputs.dir(genDir)
-        .withPropertyName("markdownResources")
-
-    doLast {
-        markdownEntries.forEach {
-            copy {
-                from("${it.file.parentFile}")
-                into("$genDir")
-                exclude("*.md")
-            }
-        }
-    }
-}
 
 kotlin {
     // This example is frontend only. However, for a fullstack app, you can uncomment the includeServer parameter
@@ -342,7 +344,6 @@ kotlin {
 
             kotlin.srcDir(generateMarkdownEntriesTask)
             resources.srcDir(generateRssFromMarkdownEntriesTask)
-            copyMarkdownResourcesTask
         }
 
         // Uncomment the following if you pass `includeServer = true` into the `configAsKobwebApplication` call.

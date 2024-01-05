@@ -28,7 +28,7 @@ When the shutter button is depressed and then released, the film lever is stuck 
 advance which also affects
 the shutter button since it no longer can be depressed (very sad).
 
-![Image alt](images/learn-film-camera-parts.jpg)
+![Image alt](/images/learn-film-camera-parts.jpg)
 
 Sidenote: Now ignore that I bought this broken camera way before the previously mentioned bachelor
 party and

@@ -314,7 +314,7 @@ This is the screen panel controller keyboard that came with the kit that I bough
 my screen panel (you can find the link in the [supplies section](#supplies)). As you can see it is
 not very aesthetically pleasing.
 
-![old_panel_kb.jpg](images/old_panel_kb_cropped.jpg)
+![old_panel_kb.jpg](/images/old_panel_kb_cropped.jpg)
 
 The mirror is not fully complete before I replace that *ugly* keyboard with something **A)**
 aesthetically pleasing **B)** smaller and **C)** with mechanical switches.
@@ -323,7 +323,7 @@ For starters, I had to trace the keyboard to see what pin each PCB switch is con
 the RGB led. I used the diode tester function on my voltmeter and bleeped my way through all the
 traces, pin, test pads and whatnot which resulted in this basic schematic (thanks EasyEDA, I promise
 I will learn Kicad one of these days):
-![old_panel_schematic.png](images/old_panel_schematic.png)
+![old_panel_schematic.png](/images/old_panel_schematic.png)
 
 There's not much to reflect on here. The order in which the PCB switches appear does not in any way
 correspond to what order in which they are connected to the header pins. That doesn't matter much
@@ -340,7 +340,7 @@ around:
 - Keycaps from an old Coolermaster keyboard with "support" for RGB switches.
 
 Then I worked my brain for a while and MS Paint spawned this design for me:
-![new_panel_schematic.png](images/new_panel_schematic.png)
+![new_panel_schematic.png](/images/new_panel_schematic.png)
 
 I forgot that I could have used draw.io which was my faithful servant when I studied.. anyways since
 MS Paint forgot to include a legend for the image:
@@ -362,7 +362,7 @@ LEDs instead.
 
 Ignoring any thoughts of unnecessary feature creep I can safely say that I am happy with the
 results. (The green cable is not sticking out in the final version)
-![new_panel_kb.png](images/new_panel_kb_cropped.png)
+![new_panel_kb.png](/images/new_panel_kb_cropped.png)
 
 ## Integrating everything
 
@@ -388,13 +388,13 @@ The RPI is connected to:
 - HDMI output to the LCD panel controller
 
 All this can be seen in the following image:
-![mirror_back_small.png](images/mirror_back_cropped.png)
+![mirror_back_small.png](/images/mirror_back_cropped.png)
 
 ...and finally the mirror on the wall!
 
-![mirror_front.jpg](images/mirror_front_cropped.jpg)
+![mirror_front.jpg](/images/mirror_front_cropped.jpg)
 
-![mirror_front_closeup.jpg](images/mirror_cropped-min.jpg)
+![mirror_front_closeup.jpg](/images/mirror_cropped-min.jpg)
 
 ## Reflections and future improvements
 

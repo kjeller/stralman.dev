@@ -72,14 +72,14 @@ Short overview of what I want to achieve:
 5. Connect serial monitor to UART edge connector, verify that I have a root shell
 6. [Activate persistant root mode](https://gist.github.com/throwaway96/827ff726981cc2cbc46a22a2ad7337a1#root-shell)
 7. Install homebrew channel and verify persistant root status
-   ![Mstar_lm18a_board-min.jpg](images/Mstar_lm18a_board-min.jpg)
+   ![Mstar_lm18a_board-min.jpg](/images/Mstar_lm18a_board-min.jpg)
 
 #### Dump contents of NVM EEPROM
 
 To modify NVM I need a device capable of writing to an EEPROM. I recently bought a universal
 programmer tool that luckily supports read/write to the FT24C256A, which is my device's EEPROM.
 
-![t48_programmer.webp](images/t48_programmer.webp)
+![t48_programmer.webp](/images/t48_programmer.webp)
 
 *Look at all the lens flare such an amazing universal programmer!*
 
@@ -262,7 +262,7 @@ By using RootMyTV (sliding the slider) I got root access and homebrew channel in
 I could verify root status "ok" in homebrew channel. The next step is to make sure I have remote
 access as well.
 
-![rootmytv_v2.png](images/rootmytv_v2.png)
+![rootmytv_v2.png](/images/rootmytv_v2.png)
 
 To use my SSH pubkey authentication when connecting to the TV I had to enable telnet and manually
 add my key first.
