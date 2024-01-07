@@ -1,12 +1,9 @@
 import com.varabyte.kobweb.common.path.invariantSeparatorsPath
-import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
 import com.varabyte.kobwebx.gradle.markdown.yamlStringToKotlinString
-import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
-import kotlinx.datetime.toLocalDate
 import kotlinx.datetime.toLocalDateTime
 import kotlinx.html.script
 import org.commonmark.ext.front.matter.YamlFrontMatterBlock
@@ -157,7 +154,8 @@ val markdownEntries: List<MarkdownData> =
         )
     }
 
-val copyMarkdownResourcesTask = task("copyMarkdownResources") {
+// This works when running normally but is not included when runnin kobweb export --static
+/*val copyMarkdownResourcesTask = task("copyMarkdownResources") {
     val group = "dev/stralman"
     val genDir = layout.buildDirectory.dir("processedResources/js/main/public").get()
 
@@ -177,9 +175,9 @@ val copyMarkdownResourcesTask = task("copyMarkdownResources") {
             }
         }
     }
-}
+}*/
 val generateMarkdownEntriesTask = task("generateMarkdownEntries") {
-    dependsOn(copyMarkdownResourcesTask.name)
+    //dependsOn(copyMarkdownResourcesTask.name)
     val group = "dev/stralman"
     val genDir = layout.buildDirectory.dir("generated/$group/src/jsMain/kotlin").get()
 
