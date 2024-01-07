@@ -196,14 +196,14 @@ val generateMarkdownEntriesTask = task("generateMarkdownEntries") {
             writeText(buildString {
                 appendLine(
                     """
-					|// This file is generated. Modify the build script if you need to change it.
-					|
-					|package dev.stralman.articles
-					|
-					|import dev.stralman.data.MarkdownEntry
+                    |// This file is generated. Modify the build script if you need to change it.
+                    |
+                    |package dev.stralman.articles
+                    |
+                    |import dev.stralman.data.MarkdownEntry
                     |import kotlinx.datetime.toLocalDate
-					|
-					|val markdownEntries = listOf${if (markdownEntries.isEmpty()) "<MarkdownEntry>" else ""}(
+                    |
+                    |val markdownEntries = listOf${if (markdownEntries.isEmpty()) "<MarkdownEntry>" else ""}(
                     """.trimMargin()
                 )
                 markdownEntries.sortedByDescending { it.date }.forEach { entry ->
