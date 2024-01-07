@@ -46,7 +46,7 @@ in a state where nothing neither the shutter button nor the film advance lever c
 without manual intervening (my finger).
 
 Here's a video in slow motion showing the shutter button trigger mechanism:
-{{< youtube EoTwFuM8sA8 >}}
+[Link](https://www.youtube.com/watch?v=EoTwFuM8sA8)
 
 By bending the "trigger kicker" inwards I allowed it to reach the retraction lever and the camera
 functions once again!
