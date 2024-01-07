@@ -82,7 +82,6 @@ fun BlogPostList(
                                         .width(400.px)
                                         .textAlign(TextAlign.Left)
                                         .color(Color("#6c757d"))
-                                    //.padding(left = 150.px)
                                 )
                                 .toAttrs()
                         ) {

@@ -5,10 +5,20 @@ import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.css.WhiteSpace
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
+import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.compose.ui.modifiers.borderTop
+import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
+import com.varabyte.kobweb.compose.ui.modifiers.fontFamily
+import com.varabyte.kobweb.compose.ui.modifiers.fontSize
+import com.varabyte.kobweb.compose.ui.modifiers.margin
+import com.varabyte.kobweb.compose.ui.modifiers.opacity
+import com.varabyte.kobweb.compose.ui.modifiers.padding
+import com.varabyte.kobweb.compose.ui.modifiers.setVariable
+import com.varabyte.kobweb.compose.ui.modifiers.textAlign
+import com.varabyte.kobweb.compose.ui.modifiers.whiteSpace
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.navigation.UncoloredLinkVariant
@@ -20,13 +30,11 @@ import com.varabyte.kobweb.silk.components.text.SpanText
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import com.varabyte.kobweb.silk.theme.colors.palette.border
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
-import org.jetbrains.compose.web.css.cssRem
-import org.jetbrains.compose.web.css.percent
-import org.jetbrains.compose.web.dom.Span
 import dev.stralman.toSitePalette
-import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.LineStyle
+import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.dom.Span
 
 val FooterStyle by ComponentStyle.base {
     Modifier
@@ -47,26 +55,40 @@ fun Footer(modifier: Modifier = Modifier) {
     Box(FooterStyle.toModifier().then(modifier), contentAlignment = Alignment.Center) {
         Span(Modifier.textAlign(TextAlign.Center).toAttrs()) {
             val sitePalette = ColorMode.current.toSitePalette()
-            Row {
-                Span(
-                    Modifier.whiteSpace(WhiteSpace.PreWrap).textAlign(TextAlign.Center).toAttrs()
+            Column {
+                Row {
+                    Span(
+                        Modifier.whiteSpace(WhiteSpace.PreWrap).textAlign(TextAlign.Center)
+                            .toAttrs()
+                    ) {
+                        SpanText("Powered by ")
+                        Link(
+                            "https://github.com/varabyte/kobweb",
+                            "Kobweb",
+                            Modifier.setVariable(ColorVar, sitePalette.brand.primary),
+                            variant = UncoloredLinkVariant
+                        )
+                        SpanText(", site source ")
+                        Link(
+                            "https://github.com/kjeller/stralman.dev",
+                            "here",
+                            Modifier
+                                .setVariable(ColorVar, sitePalette.brand.primary)
+                                .whiteSpace(WhiteSpace.NoWrap)
+                                .fontFamily("monospace"),
+                            variant = UncoloredLinkVariant
+                        )
+                    }
+                }
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    modifier = Modifier.fontSize(0.7.cssRem).fillMaxWidth()
                 ) {
-                    SpanText("Powered by ")
+                    SpanText("Inspired by Hugo theme ")
                     Link(
-                        "https://github.com/varabyte/kobweb",
-                        "Kobweb",
+                        "https://github.com/austingebauer/devise",
+                        " Devise",
                         Modifier.setVariable(ColorVar, sitePalette.brand.primary),
-                        variant = UncoloredLinkVariant
-                    )
-                    SpanText(", site source ")
-
-                    Link(
-                        "https://github.com/kjeller/stralman.dev",
-                        "here",
-                        Modifier
-                            .setVariable(ColorVar, sitePalette.brand.primary)
-                            .whiteSpace(WhiteSpace.NoWrap)
-                            .fontFamily("monospace"),
                         variant = UncoloredLinkVariant
                     )
                 }

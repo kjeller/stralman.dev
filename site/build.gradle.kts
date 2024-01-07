@@ -111,18 +111,7 @@ fun getUrlFromFilePath(file: File) =
 
 val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 val months = listOf(
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
 )
 
 // Hack to convert LocalDateTime to a RFC1123 / RFC822 compatible string
