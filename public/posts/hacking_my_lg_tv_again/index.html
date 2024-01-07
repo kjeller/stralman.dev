@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Karl Strålman</title>
+  <meta content="A tech hobbyist's guide to the galaxy." name="description">
+  <link href="/favicon.ico" rel="icon">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <script src="/highlight.js/highlight.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" title="hljs-style" href="/highlight.js/styles/a11y-dark.min.css">
+ </head>
+ <body>
+  <div id="root" style="width: 100%; height: 100%;" class="silk-colors_dark">
+   <style>html, body { padding: 0px; margin: 0px; }* { box-sizing: border-box; }</style>
+   <style>.kobweb-box { display: grid; grid-template-columns: minmax(0px, 1fr); grid-template-rows: minmax(0px, 1fr); }.kobweb-box > * { grid-area: 1 / 1; }.kobweb-box.kobweb-align-top-start { place-items: start; }.kobweb-box.kobweb-align-top-center { place-items: start center; }.kobweb-box.kobweb-align-top-end { place-items: start end; }.kobweb-box.kobweb-align-center-start { place-items: center start; }.kobweb-box.kobweb-align-center { place-items: center; }.kobweb-box.kobweb-align-center-end { place-items: center end; }.kobweb-box.kobweb-align-bottom-start { place-items: end start; }.kobweb-box.kobweb-align-bottom-center { place-items: end center; }.kobweb-box.kobweb-align-bottom-end { place-items: end; }.kobweb-box > .kobweb-align-top-start-self { place-self: start; }.kobweb-box > .kobweb-align-top-center-self { place-self: start center; }.kobweb-box > .kobweb-align-top-end-self { place-self: start end; }.kobweb-box > .kobweb-align-center-start-self { place-self: center start; }.kobweb-box > .kobweb-align-center-self { place-self: center; }.kobweb-box > .kobweb-align-center-end-self { place-self: center end; }.kobweb-box > .kobweb-align-bottom-start-self { place-self: end start; }.kobweb-box > .kobweb-align-bottom-center-self { place-self: end center; }.kobweb-box > .kobweb-align-bottom-end-self { place-self: end; }.kobweb-col { display: flex; flex-direction: column; }.kobweb-col.kobweb-arrange-top { justify-content: flex-start; }.kobweb-col.kobweb-arrange-center { justify-content: center; }.kobweb-col.kobweb-arrange-bottom { justify-content: flex-end; }.kobweb-col.kobweb-arrange-space-evenly { justify-content: space-evenly; }.kobweb-col.kobweb-arrange-space-between { justify-content: space-between; }.kobweb-col.kobweb-arrange-space-around { justify-content: space-around; }.kobweb-col.kobweb-align-start { align-items: flex-start; }.kobweb-col.kobweb-align-center-horiz { align-items: center; }.kobweb-col.kobweb-align-end { align-items: flex-end; }.kobweb-col > .kobweb-align-start-self { align-self: flex-start; }.kobweb-col > .kobweb-align-center-horiz-self { align-self: center; }.kobweb-col > .kobweb-align-end-self { align-self: flex-end; }.kobweb-row { display: flex; flex-direction: row; }.kobweb-row.kobweb-arrange-start { justify-content: flex-start; }.kobweb-row.kobweb-arrange-center { justify-content: center; }.kobweb-row.kobweb-arrange-end { justify-content: flex-end; }.kobweb-row.kobweb-arrange-space-evenly { justify-content: space-evenly; }.kobweb-row.kobweb-arrange-space-between { justify-content: space-between; }.kobweb-row.kobweb-arrange-space-around { justify-content: space-around; }.kobweb-row.kobweb-align-top { align-items: flex-start; }.kobweb-row.kobweb-align-center-vert { align-items: center; }.kobweb-row.kobweb-align-bottom { align-items: flex-end; }.kobweb-row > .kobweb-align-top-self { align-self: flex-start; }.kobweb-row > .kobweb-align-center-vert-self { align-self: center; }.kobweb-row > .kobweb-align-bottom-self { align-self: flex-end; }.kobweb-spacer { flex-grow: 1; }</style>
+   <style>body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; font-size: 18px; line-height: 1.5; }code.hljs { border-radius: 8px; }@keyframes silk-checkbox-enabled {   0% { opacity: 0; }  100% { opacity: 1; }}.silk-colors_light { --silk-background-color: rgb(250, 250, 250); --silk-color: rgb(0, 0, 0); --silk-border-color: rgba(0, 0, 0, 0.2); --silk-focus-outline-color: rgba(33, 150, 243, 0.4980392156862745); --silk-placeholder-color: rgb(158, 158, 158); --silk-button-background-default-color: rgb(204, 204, 204); --silk-button-background-hover-color: rgb(163, 163, 163); --silk-button-background-pressed-color: rgb(122, 122, 122); --silk-checkbox-icon-background-color: rgb(33, 150, 243); --silk-checkbox-icon-background-hover-color: rgb(30, 136, 229); --silk-checkbox-icon-color: rgb(255, 255, 255); --silk-input-border-hover-color: rgb(158, 158, 158); --silk-input-border-invalid-color: rgb(183, 28, 28); --silk-input-filled-color: rgb(238, 238, 238); --silk-input-filled-hover-color: rgb(214, 214, 214); --silk-input-filled-focus-color: rgba(0, 0, 0, 0); --silk-overlay-background-color: rgba(0, 0, 0, 0.4980392156862745); --silk-switch-thumb-color: rgb(255, 255, 255); --silk-tab-color: rgb(0, 0, 0); --silk-tab-background-color: rgb(255, 255, 255); --silk-tab-disabled-background-color: rgb(255, 255, 255); --silk-tab-hover-background-color: rgb(211, 211, 211); --silk-tab-pressed-background-color: rgb(245, 245, 245); --silk-tooltip-background-color: rgb(0, 0, 0); --silk-tooltip-color: rgb(255, 255, 255); --silk-link-default-color: rgb(0, 0, 255); --silk-link-visited-color: rgb(128, 0, 128); }.silk-colors_dark { --silk-background-color: rgb(43, 42, 51); --silk-color: rgb(255, 255, 255); --silk-border-color: rgba(255, 255, 255, 0.2); --silk-focus-outline-color: rgba(33, 150, 243, 0.4980392156862745); --silk-placeholder-color: rgb(158, 158, 158); --silk-button-background-default-color: rgb(51, 51, 51); --silk-button-background-hover-color: rgb(92, 92, 92); --silk-button-background-pressed-color: rgb(133, 133, 133); --silk-checkbox-icon-background-color: rgb(144, 202, 249); --silk-checkbox-icon-background-hover-color: rgb(100, 181, 246); --silk-checkbox-icon-color: rgb(0, 0, 0); --silk-input-border-hover-color: rgb(117, 117, 117); --silk-input-border-invalid-color: rgb(229, 115, 115); --silk-input-filled-color: rgb(33, 33, 33); --silk-input-filled-hover-color: rgb(56, 56, 56); --silk-input-filled-focus-color: rgba(0, 0, 0, 0); --silk-overlay-background-color: rgba(255, 255, 255, 0.4980392156862745); --silk-switch-thumb-color: rgb(255, 255, 255); --silk-tab-color: rgb(255, 255, 255); --silk-tab-background-color: rgb(0, 0, 0); --silk-tab-disabled-background-color: rgb(0, 0, 0); --silk-tab-hover-background-color: rgb(47, 79, 79); --silk-tab-pressed-background-color: rgb(169, 169, 169); --silk-tooltip-background-color: rgb(255, 255, 255); --silk-tooltip-color: rgb(0, 0, 0); --silk-link-default-color: rgb(0, 255, 255); --silk-link-visited-color: rgb(238, 130, 238); }.silk-disabled { opacity: 0.5; cursor: not-allowed; }.silk-smooth-color { transition: background-color var(--silk-smooth-color-transition-duration, var(--silk-transition-duration-normal, 200ms)); }.silk-button { color: var(--silk-button-color, var(--silk-color)); background-color: var(--silk-button-background-default-color); line-height: 1.2; height: var(--silk-button-height); min-width: var(--silk-button-height); font-size: var(--silk-button-font-size); font-weight: 600; white-space: nowrap; padding: 0px var(--silk-button-padding-horizontal); vertical-align: middle; border-radius: 0.375rem; border-width: 0px; user-select: none; transition: background-color var(--silk-button-color-transition-duration, var(--silk-transition-duration-normal, 200ms)); }.silk-button:hover:not([aria-disabled="true"]) { background-color: var(--silk-button-background-hover-color); cursor: pointer; }.silk-button:focus-visible:not([aria-disabled="true"]) { outline: rgba(0, 0, 0, 0) solid 2px; box-shadow: 0px 0px 0 0.1875rem var(--silk-button-background-focus-color, var(--silk-focus-outline-color)); }.silk-button:active:not([aria-disabled="true"]) { background-color: var(--silk-button-background-pressed-color); }.silk-checkbox { gap: var(--silk-checkbox-spacing, 0.5rem); user-select: none; font-size: var(--silk-checkbox-font-size); cursor: pointer; }.silk-checkbox-icon-container { font-size: var(--silk-checkbox-icon-size); width: var(--silk-checkbox-size); height: var(--silk-checkbox-size); border: var(--silk-checkbox-border-width, 0.125rem) solid var(--silk-checkbox-border-color, var(--silk-border-color)); border-radius: var(--silk-checkbox-border-radius, 0.125rem); transition: background-color var(--silk-checkbox-transition-duration, var(--silk-transition-duration-very-fast, 100ms)), border-color var(--silk-checkbox-transition-duration, var(--silk-transition-duration-very-fast, 100ms)); }.silk-checkbox-icon { width: var(--silk-checkbox-size); height: var(--silk-checkbox-size); color: var(--silk-checkbox-icon-color); }.silk-overlay { background-color: var(--silk-overlay-background-color); }.silk-popup { transition: opacity var(--silk-popup-transition-duration, var(--silk-transition-duration-fast, 150ms)); }.silk-simple-grid { display: grid; }@media (min-width: 0px) {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-zero), 1fr); }}@media (min-width: 30rem) {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-sm), 1fr); }}@media (min-width: 48rem) {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-md), 1fr); }}@media (min-width: 62rem) {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-lg), 1fr); }}@media (min-width: 80rem) {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-xl), 1fr); }}.silk-surface { background-color: var(--silk-surface-background-color, var(--silk-background-color)); color: var(--silk-surface-color, var(--silk-color)); }.silk-horizontal-divider { border-top: 1px solid var(--silk-divider-color, var(--silk-border-color)); width: 100%; }.silk-vertical-divider { border-left: 1px solid var(--silk-divider-color, var(--silk-border-color)); height: var(--silk-divider-length, 90%); }.silk-switch-track { position: relative; width: var(--silk-switch-track-width); min-width: var(--silk-switch-track-width); height: var(--silk-switch-track-height); min-height: var(--silk-switch-track-height); padding: var(--silk-switch-track-padding); border-radius: var(--silk-switch-border-radius, 9999px); background-color: var(--silk-switch-track-background-color); transition: background-color var(--silk-switch-transition-duration, var(--silk-transition-duration-fast, 150ms)); box-sizing: content-box; }.silk-switch-track:hover:not([aria-disabled="true"]) { cursor: pointer; }.silk-switch-thumb { width: var(--silk-switch-track-height); height: var(--silk-switch-track-height); border-radius: var(--silk-switch-border-radius, 9999px); background-color: var(--silk-switch-thumb-color); translate: var(--silk-switch-thumb-offset); transition: translate var(--silk-switch-transition-duration, var(--silk-transition-duration-fast, 150ms)); }.silk-tabs-tab-row { width: 100%; border-bottom: var(--silk-tab-border-thickness, 2px) solid var(--silk-tab-border-color, var(--silk-border-color)); }.silk-tabs-tab { cursor: pointer; transition: background-color var(--silk-tab-color-transition-duration, var(--silk-transition-duration-normal, 200ms)), color var(--silk-tab-color-transition-duration, var(--silk-transition-duration-normal, 200ms)), border-color var(--silk-tab-color-transition-duration, var(--silk-transition-duration-normal, 200ms)); background-color: var(--silk-tab-background-color); color: var(--silk-tab-color); user-select: none; padding: 0.5rem; margin: 0px 0px calc(-1 * var(--silk-tab-border-thickness, 2px)); border-bottom: var(--silk-tab-border-thickness, 2px) solid var(--silk-tab-border-color, var(--silk-border-color)); }.silk-tabs-tab[aria-disabled="true"] { background-color: var(--silk-tab-disabled-background-color); cursor: not-allowed; }.silk-tabs-tab:hover:not([aria-disabled="true"]) { background-color: var(--silk-tab-hover-background-color); }.silk-tabs-tab:active:not([aria-disabled="true"]) { background-color: var(--silk-tab-pressed-background-color); }.silk-tabs-panel { padding: 1rem; width: 100%; flex-grow: 1; overflow-y: auto; }.silk-input { appearance: none; color: var(--silk-color); height: var(--silk-input-height); font-size: var(--silk-input-font-size); background-color: rgba(0, 0, 0, 0); outline: rgba(0, 0, 0, 0) solid 0px; border: 0px solid rgba(0, 0, 0, 0); transition: border-color var(--silk-input-color-transition-duration, var(--silk-transition-duration-normal, 200ms)), box-shadow var(--silk-input-color-transition-duration, var(--silk-transition-duration-normal, 200ms)), background-color var(--silk-input-color-transition-duration, var(--silk-transition-duration-normal, 200ms)); }.silk-input::placeholder { opacity: var(--silk-input-placeholder-opacity, var(--silk-placeholder-opacity, 1)); color: var(--silk-input-placeholder-color, var(--silk-placeholder-color)); }.silk-input-group { outline: rgba(0, 0, 0, 0) solid 0px; border: 0px solid rgba(0, 0, 0, 0); border-radius: var(--silk-input-border-radius); font-size: var(--silk-input-font-size); }.silk-tooltip-arrow { position: absolute; border-width: 5px; border-style: solid; }.silk-tooltip { position: relative; background-color: var(--silk-tooltip-background-color); color: var(--silk-tooltip-color); border-radius: 6px; }.tooltip-text { padding: 5px; }.silk-link { text-decoration-line: none; }.silk-link:link { color: var(--silk-link-default-color); }.silk-link:visited { color: var(--silk-link-visited-color); }.silk-link:hover { text-decoration-line: underline; }.silk-toc { list-style-type: none; text-align: start; padding: 0rem; }.headline-text { font-size: 2rem; text-align: start; margin: 0px 0px 5px; line-height: 1.2; }.p-text { font-size: 1rem; margin: 0px; line-height: 1.2; }.subheadline-text_light { font-size: 1rem; text-align: start; color: rgba(0, 0, 0, 0.8); }.subheadline-text_dark { font-size: 1rem; text-align: start; color: rgba(255, 255, 255, 0.8); }.markdown h1 { font-size: 2rem; font-weight: 300; margin: 0px 0px 1.5rem; line-height: 1.2; }.markdown h2 { font-size: 2rem; font-weight: 300; margin: 1rem 0px; }.markdown h3 { font-size: 1.4rem; font-weight: 300; margin: 1.5rem 0px; }.markdown h4 { font-size: 1.2rem; font-weight: bolder; margin: 1rem 0px 0.5rem; }.markdown p { margin: 0px 0px 0.8rem; }.markdown ul { width: 100%; overflow-wrap: break-word; }.markdown li, ol, ul { margin: 0px 0px 0.25rem; }.markdown_light code { color: rgba(0, 0, 0, 0.8); font-weight: bolder; }.markdown_dark code { color: rgba(255, 255, 255, 0.8); font-weight: bolder; }.markdown pre { margin: 0.5rem 0px 2rem; width: 100%; }.markdown pre > code { display: block; width: 100%; background-color: rgb(55, 54, 65); border-radius: 0.25rem; padding: 0.5rem; font-size: 1rem; overflow-x: auto; }.markdown img { display: block; width: 100%; border-radius: 0.25rem; padding: 0.5rem; font-size: 1rem; }.page-content { width: 100%; height: 100%; }@media (min-width: 48rem) {  .page-content { max-width: 40rem; }}.fa-icon { color: rgb(108, 117, 125); }.fa-icon:hover { color: rgb(255, 255, 255); }.footer_light { margin: 2rem 0px 0px; border-top: 1px solid rgba(0, 0, 0, 0.2); padding: 1rem 4rem; font-size: 0.8rem; font-family: monospace; }.footer_dark { margin: 2rem 0px 0px; border-top: 1px solid rgba(255, 255, 255, 0.2); padding: 1rem 4rem; font-size: 0.8rem; font-family: monospace; }.bs-copyright { opacity: 0.6; font-size: 0.8rem; }.bs-code-block { max-width: 90vw; width: 100%; }@media (min-width: 48rem) {  .bs-code-block { max-width: 100%; }}.bs-code_light { color: rgb(51, 51, 51); overflow-wrap: break-word; }.bs-code_dark { color: rgb(204, 204, 204); overflow-wrap: break-word; }.round-border-image { clip-path: circle(50% at 50% 50%); align-content: center; object-fit: cover; border: 5px solid rgb(66, 65, 77); border-radius: 50%; }.round-border-image:hover { border: 5px solid rgb(108, 117, 125); }.blog-post-entry { font-size: 1rem; margin: 0px; line-height: 1.2; width: 100%; padding: 0px 15px 0px 0px; text-align: right; }@media not all and (min-width: 0px) {  .silk-display-if-at-least-zero { display: none !important; }}@media not all and (min-width: 30rem) {  .silk-display-if-at-least-sm { display: none !important; }}@media not all and (min-width: 48rem) {  .silk-display-if-at-least-md { display: none !important; }}@media not all and (min-width: 62rem) {  .silk-display-if-at-least-lg { display: none !important; }}@media not all and (min-width: 80rem) {  .silk-display-if-at-least-xl { display: none !important; }}@media (min-width: 0px) {  .silk-display-until-zero { display: none !important; }}@media (min-width: 30rem) {  .silk-display-until-sm { display: none !important; }}@media (min-width: 48rem) {  .silk-display-until-md { display: none !important; }}@media (min-width: 62rem) {  .silk-display-until-lg { display: none !important; }}@media (min-width: 80rem) {  .silk-display-until-xl { display: none !important; }}.silk-input.silk-input-checkbox { border: 0px; width: 1px; height: 1px; margin: -1px; padding: 0px; clip-path: inset(50%); overflow: hidden; white-space: nowrap; position: absolute; }.silk-input.silk-input-checkbox:focus-visible + * { box-shadow: 0px 0px 0 var(--silk-checkbox-focus-outline-spread, 0.1875rem) var(--silk-checkbox-focus-outline-color, var(--silk-focus-outline-color)); }.silk-input.silk-input-checkbox:not([aria-disabled]):hover + * { --silk-checkbox-icon-background-color: var(--silk-checkbox-icon-background-hover-color); }.silk-checkbox-icon-container.silk-checkbox-icon-container-checked { background-color: var(--silk-checkbox-icon-background-color); border-color: var(--silk-checkbox-icon-background-color); }.silk-checkbox-icon-container.silk-checkbox-icon-container-unchecked { background-color: var(--silk-checkbox-unchecked-background-color); }.silk-input.silk-input-switch { border: 0px; width: 1px; height: 1px; margin: -1px; padding: 0px; clip-path: inset(50%); overflow: hidden; white-space: nowrap; position: absolute; }.silk-input.silk-input-switch:focus-visible + * { box-shadow: 0px 0px 0 0.1875rem var(--silk-switch-focus-color, var(--silk-focus-outline-color)); }.silk-input.silk-input-outlined { padding-inline: var(--silk-input-padding) var(--silk-input-padding); border-radius: var(--silk-input-border-radius); border: 1px solid var(--silk-input-border-color, var(--silk-border-color)); }.silk-input.silk-input-outlined[aria-invalid="true"] { border: 1px solid var(--silk-input-border-invalid-color); box-shadow: 0px 0px 0 1px var(--silk-input-border-invalid-color); }.silk-input.silk-input-outlined:hover:not(:disabled) { border-color: var(--silk-input-border-hover-color); }.silk-input.silk-input-outlined:focus-visible:not(:disabled) { border: 1px solid var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); box-shadow: 0px 0px 0 1px var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); }.silk-input.silk-input-filled { padding-inline: var(--silk-input-padding) var(--silk-input-padding); background-color: var(--silk-input-filled-color); border-radius: var(--silk-input-border-radius); border: 1px solid rgba(0, 0, 0, 0); }.silk-input.silk-input-filled:hover:not(:disabled) { background-color: var(--silk-input-filled-hover-color); }.silk-input.silk-input-filled[aria-invalid="true"] { border-color: var(--silk-input-border-invalid-color); box-shadow: 0px 0px 0 1px var(--silk-input-border-invalid-color); }.silk-input.silk-input-filled:focus-visible:not(:disabled) { background-color: var(--silk-input-filled-focus-color); border-color: var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); box-shadow: 0px 0px 0 1px var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); }.silk-input.silk-input-flushed { border-bottom: 1px solid var(--silk-input-border-color, var(--silk-border-color)); }.silk-input.silk-input-flushed[aria-invalid="true"] { border-color: var(--silk-input-border-invalid-color); box-shadow: 0px 1px var(--silk-input-border-invalid-color); }.silk-input.silk-input-flushed:hover:not(:disabled) { border-color: var(--silk-input-border-hover-color); }.silk-input.silk-input-flushed:focus-visible:not(:disabled) { border-color: var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); box-shadow: 0px 1px var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); }.silk-tooltip-arrow.silk-tooltip-arrow-top-left { margin: -9px 0px 0px 9px; top: 0px; border-color: transparent transparent var(--silk-tooltip-background-color) transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-top { margin: -9px 0px 0px -5px; left: 50%; top: 0px; border-color: transparent transparent var(--silk-tooltip-background-color) transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-top-right { margin: -9px 9px 0px 0px; right: 0px; top: 0px; border-color: transparent transparent var(--silk-tooltip-background-color) transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-left-top { margin: 9px 0px 0px -9px; left: 0px; top: 0px; border-color: transparent var(--silk-tooltip-background-color) transparent transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-left { margin: -5px 0px 0px -9px; left: 0px; top: 50%; border-color: transparent var(--silk-tooltip-background-color) transparent transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-left-bottom { margin: 0px 0px 9px -9px; left: 0px; bottom: 0px; border-color: transparent var(--silk-tooltip-background-color) transparent transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-right-top { margin: 9px -9px 0px 0px; right: 0px; top: 0px; border-color: transparent transparent transparent var(--silk-tooltip-background-color); }.silk-tooltip-arrow.silk-tooltip-arrow-right { margin: -5px -9px 0px 0px; right: 0px; top: 50%; border-color: transparent transparent transparent var(--silk-tooltip-background-color); }.silk-tooltip-arrow.silk-tooltip-arrow-right-bottom { margin: 0px -9px 9px 0px; right: 0px; bottom: 0px; border-color: transparent transparent transparent var(--silk-tooltip-background-color); }.silk-tooltip-arrow.silk-tooltip-arrow-bottom-left { margin: 0px 0px -9px 9px; left: 0px; bottom: 0px; border-color: var(--silk-tooltip-background-color) transparent transparent transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-bottom { margin: 0px 0px -9px -5px; left: 50%; bottom: 0px; border-color: var(--silk-tooltip-background-color) transparent transparent transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-bottom-right { margin: 0px 9px -9px 0px; right: 0px; bottom: 0px; border-color: var(--silk-tooltip-background-color) transparent transparent transparent; }.silk-image.silk-image-fit-width { width: 100%; object-fit: scale-down; }.silk-link.silk-link-uncolored:link { color: var(--silk-color); }.silk-link.silk-link-uncolored:visited { color: var(--silk-color); }.silk-link.silk-link-undecorated:hover { text-decoration-line: none; }.silk-link.silk-link-always-underlined { text-decoration-line: underline; }.silk-toc.silk-toc-bordered { border-radius: 5px; border: 1px solid var(--silk-toc-border-color, var(--silk-border-color)); padding: 1rem; }.silk-button.silk-button-circle { padding: 0px; border-radius: 50%; }.silk-button.silk-button-uncolored { --silk-button-background-default-color: rgba(0, 0, 0, 0); }</style>
+   <div class="silk-surface silk-smooth-color kobweb-box kobweb-align-top-start" style="min-height: 100vh; scroll-behavior: smooth;">
+    <div class="kobweb-box kobweb-align-center" style="width: 100%; min-height: 100%; grid-template-rows: 1fr min-content;">
+     <div class="kobweb-col kobweb-arrange-top kobweb-align-center-horiz" style="width: 100%; height: 100%; grid-row: 1 / 2;">
+      <div class="kobweb-col kobweb-arrange-top kobweb-align-center-horiz">
+       <div class="kobweb-row kobweb-arrange-start kobweb-align-center-vert" style="padding: 50px;">
+        <a href="/"><img class="silk-image round-border-image" style="width: 120px; height: 120px;" src="/profile.png" alt=""></a>
+        <div class="kobweb-col kobweb-arrange-top kobweb-align-start" style="margin: 0px; padding: 20px;">
+         <h1 class="headline-text">Kalle Strålman ☢️</h1>
+         <p class="p-text" style="color: rgb(108, 117, 125);">A tech hobbyist's guide to the galaxy.</p>
+         <div class="kobweb-row kobweb-arrange-start kobweb-align-top" style="padding: 20px 0px 15px;">
+          <a class="silk-link p-text" style="padding: 0px 20px 0px 0px; text-decoration-line: underline;" href="/about/">About</a><a class="silk-link p-text" style="padding: 0px 20px 0px 0px; text-decoration-line: underline;" href="/tags/">Tags</a>
+         </div>
+         <div class="kobweb-row kobweb-arrange-space-between kobweb-align-top" style="width: 100px;">
+          <a href="https://github.com/kjeller"><span class="fa-icon fab fa-github"></span></a><a href="https://www.linkedin.com/in/karl-str%C3%A5lman-422b6b173/"><span class="fa-icon fab fa-linkedin"></span></a><a href="index.xml/"><span class="fa-icon fas fa-rss"></span></a>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="page-content kobweb-col kobweb-arrange-top kobweb-align-center-horiz">
+       <div class="markdown markdown_dark kobweb-col kobweb-arrange-top kobweb-align-start" style="max-width: 40rem;">
+        <div class="kobweb-col kobweb-arrange-top kobweb-align-start">
+         <span style="margin: 0px 15px 0px 0px; border-radius: 0.25rem; padding: 2px; background-color: white;">
+          <p style="font-size: 0.7rem; color: rgb(43, 42, 51); font-weight: bold; width: 80px; margin: 0px; padding: 0px; text-align: center;">2023-05-27</p></span>
+        </div>
+        <h2 id="introduction">Introduction</h2>
+        <p>I have an LG smart TV at home which I bought around 2018 that has survived 3-4 apartment moves ( which in itself feels like an achievement). Though it still receives webOS updates fairly often, there is some support from third-party apps that have started to drop. For example, HBO Max stopped supporting my TV around 2021 which I thought was ridiculous, you expect a popular third-party app to be supported for longer than 3 years from when you bought your fancy new TV .. right? If HBO Max can drop support, what if other platforms like Netflix or Amazon also does it? Do I need to replace my dumb living room monitor with another device or do I extend its life with a chrome cast?</p>
+        <p>Anyways, I instead started to look into how to cram out even more capabilities from my TV. This led me to RootMyTV (V1), a straightforward way of rooting webOS LG TVs without having to use any external device at all. Root access together with <a class="silk-link" href="https://repo.webosbrew.org/"></a>, an unofficial webOS application store, unlocked more potential from my TV. I also started looking into making webosbrew apps myself but never really finished anything that I want to make public <em>yet</em>. Since then I have been on/off active in the openlgtv community.</p>
+        <p>Recently I looked into gaining root access <em>again</em>. I say again because my girlfriend accidentally updated the TV to a newer webOS version that patched the previous vulnerability that I used to gain root access. (I consider it my fault since I should have been more cautious and blockd all LG software download OTA domains).</p>
+        <p>Here I am, back at it again!</p>
+        <p><b>TV info dump:</b></p>
+        <table>
+         <thead>
+          <tr>
+           <th style="text-align: center;">Type</th>
+           <th style="text-align: center;">Description</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr>
+           <td style="text-align: center;">Model</td>
+           <td style="text-align: center;">55UK6300PLB</td>
+          </tr>
+          <tr>
+           <td style="text-align: center;">webOS Version</td>
+           <td style="text-align: center;">4.4.0-12 (goldilocks-gorce)</td>
+          </tr>
+          <tr>
+           <td style="text-align: center;">Chip type</td>
+           <td style="text-align: center;">LM18A (Mstar)</td>
+          </tr>
+          <tr>
+           <td style="text-align: center;">S/W version</td>
+           <td style="text-align: center;">05.40.26.01</td>
+          </tr>
+          <tr>
+           <td style="text-align: center;">NVM EEPROM IC</td>
+           <td style="text-align: center;">FT24C256A</td>
+          </tr>
+         </tbody>
+        </table>
+        <h2 id="modifying-debugstatus-in-nvm">Modifying debugstatus in NVM</h2>
+        <p>Before you read this do know that I took a huge detour on this root adventure when looking into how to write to NVM. The NVM is what LG calls the EEPROM that stores configuration data used for developer settings e.g. toggle logging, toggle UART serial, baud rates etc. Debugstatus is the " flag" that determines whether to enable debug mode for a developer or perpetrator (me) to access these settings. <a class="silk-link" href="https://gist.github.com/throwaway96/827ff726981cc2cbc46a22a2ad7337a1#nvm">This page explains more in-depth on what NVM is and how to read and write to on older LG models</a> . I put some hours into researching how to do it, what software and tools I need and even went as far as looking at the LG source code.</p>
+        <p>...Ultimately, the RootMyTV-way worked without me even noticing it so even though this section might be interesting for people like me who get excited over embedded stuff, there isn't a payoff here. <a class="silk-link" href="#rootmytv">Skip to here</a> if you want to see the results of what gave me root access and what I did after gaining root access.</p>
+        <h3 id="the-goal">The Goal</h3>
+        <p>Short overview of what I want to achieve:</p>
+        <ol>
+         <li>Dump contents of NVM EEPROM</li>
+         <li>Verify that it matches the structure GPL structure i.e. find what address debugstatus is written to</li>
+         <li>Write to EEPROM override debugstatus RELEASE --&gt; DEBUG</li>
+         <li>Enable UART in developer settings</li>
+         <li>Connect serial monitor to UART edge connector, verify that I have a root shell</li>
+         <li><a class="silk-link" href="https://gist.github.com/throwaway96/827ff726981cc2cbc46a22a2ad7337a1#root-shell">Activate persistant root mode</a></li>
+         <li>Install homebrew channel and verify persistant root status <img class="silk-image" src="/images/Mstar_lm18a_board-min.jpg" alt="Mstar_lm18a_board-min.jpg"></li>
+        </ol>
+        <h4 id="dump-contents-of-nvm-eeprom">Dump contents of NVM EEPROM</h4>
+        <p>To modify NVM I need a device capable of writing to an EEPROM. I recently bought a universal programmer tool that luckily supports read/write to the FT24C256A, which is my device's EEPROM.</p>
+        <p><img class="silk-image" src="/images/t48_programmer.webp" alt="t48_programmer.webp"></p>
+        <p><em>Look at all the lens flare such an amazing universal programmer!</em></p>
+        <p>The T48 universal programmer 3G is not yet supported by minipro, an open-source program for controlling the MiniPRO TL866xx series of chip programmers which has a great CLI interface that I originally wanted to use (there is an open issue on supporting the T48 <a class="silk-link" href="https://gitlab.com/DavidGriffith/minipro/-/issues/270">here</a>). Instead, I have to rely on the program that came with it, <em>xgrpo.</em></p>
+        <h5 id="running-xgpro-exe-on-wine-ubuntu">Running xgpro.exe on wine Ubuntu</h5>
+        <ol>
+         <li>Installation instructions for ubuntu: <a class="silk-link" href="https://wiki.winehq.org/Ubuntu">https://wiki.winehq.org/Ubuntu</a>, at the time of writing I had to run these commands:</li>
+        </ol>
+        <pre class="bs-code-block"><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-comment"># Yes we need 32 bit architecture to run xgpro...</span>
+sudo dpkg --add-architecture i386
+
+<span class="hljs-comment"># Download and add the repository key</span>
+sudo <span class="hljs-built_in">mkdir</span> -pm755 /etc/apt/keyrings
+sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+
+<span class="hljs-comment"># Check Ubuntu version</span>
+lsb_release -sr
+
+<span class="hljs-comment"># I have 22.04 so I download that source</span>
+sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
+
+sudo apt update
+
+sudo apt install --install-recommends winehq-stable
+sudo apt install --install-recommends winehq-devel
+</code></pre>
+        <ol>
+         <li>Add an alias for running wine in either 32bit architecture (default 64bit)</li>
+        </ol>
+        <pre class="bs-code-block"><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">alias</span> wine32=<span class="hljs-string">"WINEARCH=win32 WINEPREFIX='/home/<span class="hljs-variable">$USER</span>/.wine32' wine"</span>
+</code></pre>
+        <ol>
+         <li>XGecu Xgpro software is annoying to download from the Chinese supplier's webpage. But I found and used [Kreeblah<a class="silk-link" href="https://github.com/Kreeblah/XGecu_Software/tree/master/Xgpro">'s github mirror</a> where many release versions (if not all) are uploaded.</li>
+        </ol>
+        <ul>
+         <li>Install Xgpro in Wine:</li>
+        </ul>
+        <p><code class="bs-code bs-code_dark">wine32 ~/Downloads/xgproV1255_setup/XgproV1255_Setup.exe</code></p>
+        <ul>
+         <li>Run installed binary:</li>
+        </ul>
+        <p><code class="bs-code bs-code_dark">wine32 /home/$USER/.wine/drive_c/xgpro/Xgpro.exe</code></p>
+        <ul>
+         <li>My suggestion is that you add an alias for running this binary:</li>
+        </ul>
+        <p><code class="bs-code bs-code_dark">alias xgpro="wine32 ~/.wine/drive_c/xgpro/Xgpro.exe"</code></p>
+        <p>Now you should be able to write and read to ICs that are supported by your EEPROM programmer.</p>
+        <h4 id="total-failure">Total failure?</h4>
+        <p>My first few attempts to read did not go very well. I couldn't get my SOIC8 clip adapter for my T48 to get a good connection to the EEPROM and every read got me different results. I want to be sure that my reading is stable enough to produce the same results every time before I even attempt to write. <b>The ethernet <b>port was <b>conveniently</b> placed directly</b> next to the EEPROM so that my SOIC8 clip was perfectly out of reach.</b> If I want a good connection I would either need to get a smaller SOIC clip or solder on wires directly to the chip.</p>
+        <h4 id="verify-gpl-structure-digging-into-the-source">Verify GPL structure / Digging into the source</h4>
+        <p>Before adding more risk of bricking my device I want to verify that it is even possible with my firmware version + chip type combination. I decided to first consult the source code before attempting any soldering or buying additional clips.</p>
+        <p>LG source code is available on <a class="silk-link" href="https://opensource.lge.com/">https://opensource.lge.com/</a> for download. Code snippets that I downloaded from there are slightly modified below to be more easily read e.g. fixing their mixing of spaces and tabs.</p>
+        <p>In <code class="bs-code bs-code_dark">gpl_lm18a_MR_boot/boot/MstarCustomer/cmd/cmd_lg/cmd_nvm.c</code> we can see the system database (The funny characters from the source code are not me). I have marked the line where we see debugstatus is initialised to release level.</p>
+        <pre class="bs-code-block"><code class="language-cpp hljs" data-highlighted="yes"><span class="hljs-type">const</span> SYS_DB_T gSysNvmDB =
+{
+    <span class="hljs-number">0x20170707</span>,
+    DEFAULT_PRINT_MASK,
+    <span class="hljs-number">0</span>,        <span class="hljs-comment">/* PDP panel use time */</span>
+    <span class="hljs-number">0</span>,        <span class="hljs-comment">/* FRC auto download or not */</span>
+    {<span class="hljs-number">50</span>, <span class="hljs-number">570</span>, <span class="hljs-number">33</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>}, <span class="hljs-comment">/* panel powerseq */</span>
+    { <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">80</span>,  <span class="hljs-number">5</span>, <span class="hljs-number">99</span>, <span class="hljs-number">99</span>,  <span class="hljs-number">5</span>, <span class="hljs-number">35</span>, <span class="hljs-number">96</span>, <span class="hljs-number">120</span>, <span class="hljs-number">100</span>, <span class="hljs-number">22</span>, <span class="hljs-number">200</span>,  <span class="hljs-number">0x0C</span> }, <span class="hljs-comment">/* panel pwm */</span>
+<span class="hljs-meta">#<span class="hljs-keyword">if</span> 0 <span class="hljs-comment">//(SYS_ATSC)</span></span>
+    <span class="hljs-number">0</span>,      <span class="hljs-comment">/*system type 0:atsc, 1: dvb*/</span>
+<span class="hljs-meta">#<span class="hljs-keyword">else</span></span>
+    <span class="hljs-number">1</span>,      <span class="hljs-comment">/*system type 0:atsc, 1: dvb*/</span>
+<span class="hljs-meta">#<span class="hljs-keyword">endif</span></span>
+    <span class="hljs-number">1</span>,      <span class="hljs-comment">/**COLOR_DEPTH_T */</span>
+    <span class="hljs-number">1</span>,      <span class="hljs-comment">/**LVDS_PIXEL_T */</span>
+    <span class="hljs-number">0</span>,        <span class="hljs-comment">/*Vcom Pgamma value checksum */</span>
+    <span class="hljs-number">0xFF</span>,
+    <span class="hljs-number">0xFF</span>,   <span class="hljs-comment">/* SoftwareUpdate Mode */</span>
+    <span class="hljs-number">0xFF</span>,   <span class="hljs-comment">/* Make Hibernation Mode */</span>
+    <span class="hljs-number">0xFF</span>,     <span class="hljs-comment">/* Snap Shot Support or not */</span>
+    <span class="hljs-number">1</span>,        <span class="hljs-comment">/* ADC Mode [L9] Internal */</span>
+    <span class="hljs-number">0xFFFFFFFF</span>, <span class="hljs-comment">/* SWU Mode Magic Key */</span>
+    <span class="hljs-number">0</span>,    <span class="hljs-comment">/* sound out mode  */</span>
+    <span class="hljs-number">0xFFFFFFFF</span>,    <span class="hljs-comment">/* zram */</span>
+    <span class="hljs-number">0</span>,            <span class="hljs-comment">/* eMMCUsage */</span>
+    <span class="hljs-number">0</span>,            <span class="hljs-comment">/* bDPortEnable */</span>
+    <span class="hljs-number">0xff</span>,        <span class="hljs-comment">/* Secureboot full verify flag */</span>
+    <span class="hljs-number">0</span>,            <span class="hljs-comment">/* PWM Mode */</span>
+    <span class="hljs-number">0</span>,            <span class="hljs-comment">/* timeDifference */</span>
+    <span class="hljs-number">0</span>,            <span class="hljs-comment">/* LKCDEnable */</span>
+    <span class="hljs-number">0x43</span>,        <span class="hljs-comment">/* criu support or not */</span>
+    {<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, RELEASE_LEVEL, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>},
+    <span class="hljs-number">0xFF</span>,        <span class="hljs-comment">/* Instant boot support or not */</span>
+    <span class="hljs-number">0</span>,        <span class="hljs-comment">/* Snapshot boot ART support or not */</span>
+};
+</code></pre>
+        <p>...and in <code class="bs-code bs-code_dark">gpl_lm18a_MR_boot/boot/MstarCustomer/include/lg_modeldef.h</code> the three different levels of debugstatus are defined</p>
+        <pre class="bs-code-block"><code class="language-cpp hljs" data-highlighted="yes"><span class="hljs-meta">#<span class="hljs-keyword">define</span> DEBUG_LEVEL    3</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> EVENT_LEVEL    4</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> RELEASE_LEVEL  5</span>
+</code></pre>
+        <p>The struct declaration for SYS_DB_T is located in <code class="bs-code bs-code_dark">gpl_lm18a_MR_boot/boot/MstarCustomer/include/cmnio_type.h</code>.</p>
+        <pre class="bs-code-block"><code class="language-cpp hljs" data-highlighted="yes"><span class="hljs-comment">/**
+  *  System DB ¸ðµâÀ» À§ÇÑ ½ÇÁ¦ »ç¿ë type Á¤ÀÇ
+  * (from os/common_linux/dil/include/dil_nvm.h)
+*/</span>
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">struct</span>
+{
+    UINT32               validMark;
+    OSA_PRINT_MASK_T     printMask;
+    UINT32               sys_utt;            <span class="hljs-comment">/* PDP panel use time */</span>
+    UINT8                frcDownloadMode;    <span class="hljs-comment">/* FRC auto download or not */</span>
+    PANEL_POWER_SEQ_T    panelpowerseq;        <span class="hljs-comment">/* For panel power sequence timing */</span>
+    PANEL_PWM_T          panelpwm;            <span class="hljs-comment">/* For panel pwm */</span>
+    UINT8                systemtype;         <span class="hljs-comment">/*system type 0:atsc, 1: dvb*/</span>
+    UINT8                ColorDepth;            <span class="hljs-comment">/**COLOR_DEPTH_T */</span>
+    UINT8                LVDSPixel;            <span class="hljs-comment">/**LVDS_PIXEL_T */</span>
+    UINT8                vcomPgammaChecksum;    <span class="hljs-comment">/*Vcom Pgamma value checksum */</span>
+    UINT8                nDebugStatus;        <span class="hljs-comment">/* to apply encypted debugStatus feature (nEncyptedDebugStatus[32]), this param will be used no more. but it will be leaved for compatibility */</span>
+    UINT8                swuMode;            <span class="hljs-comment">/* swu mode */</span>
+    UINT8                make_hib;            <span class="hljs-comment">/* for snapshot boot (make building) */</span>
+    UINT8                snapshot_onoff;        <span class="hljs-comment">/* for snapshot support or not*/</span>
+    UINT32               adcMode;            <span class="hljs-comment">/* for adc Mode ÇöÀç ADC ¼³Á¤ °ªÀ» ÀúÀå  */</span>
+    UINT32               swum_magic;            <span class="hljs-comment">/* swu mode magic */</span>
+    UINT8                soundout_mode;        <span class="hljs-comment">/* soundout mode save 0:tv speaker, 1:external speaker 2:optical sound bar, 3:headphone,4:lineout,5;bluetooth soundbar */</span>
+    UINT32                zram;                <span class="hljs-comment">/* zram */</span>
+    UINT8                eMMCUsage;            <span class="hljs-comment">/* for eMMC Usage */</span>
+    UINT8                bDPortEnable;
+    UINT8                fullVerify;            <span class="hljs-comment">/* Secureboot full verify flag */</span>
+    UINT8                pwm_mode;            <span class="hljs-comment">/* PWM mode */</span>
+    <span class="hljs-type">int</span>                  timeDifference;
+    UINT8                bLKCDEnable;        <span class="hljs-comment">/* LKCD enable */</span>
+    UINT8                bCRIUEnable;        <span class="hljs-comment">/* for criu support or not*/</span>
+    UINT8                nEncryptedDebugStatus[<span class="hljs-number">32</span>]; <span class="hljs-comment">/* do not refer to this param by "typeof". this should be use internally in dil layer only */</span>
+    UINT8                instant_onoff;        <span class="hljs-comment">/* for instant boot */</span>
+    UINT8                snapshot_art;        <span class="hljs-comment">/* for snapshot boot art*/</span>
+
+} SYS_DB_T;
+
+</code></pre>
+        <p>The reason why <code class="bs-code bs-code_dark">nEncryptedDebugStatus</code> is 32 bytes of zero paddings among 1 byte debugstatus is that it is encrypted/decrypted before write/read. The encryption is AES-128 which I think uses a factory flashed device key stored in eMMC conveniently out of reach for me. This is part of the Mstar secure boot: <code class="bs-code bs-code_dark">gpl_lm18a_MR_boot/boot/MstarApp/src/secure/MsSecureBoot.c</code> which I will not go into detail.</p>
+        <h2 id="rootmytv-v2">RootMyTV v2</h2>
+        <p>By using RootMyTV (sliding the slider) I got root access and homebrew channel installed. I could verify root status "ok" in homebrew channel. The next step is to make sure I have remote access as well.</p>
+        <p><img class="silk-image" src="/images/rootmytv_v2.png" alt="rootmytv_v2.png"></p>
+        <p>To use my SSH pubkey authentication when connecting to the TV I had to enable telnet and manually add my key first.</p>
+        <pre class="bs-code-block"><code class="nohighlight"># After rebooting the TV I could run these commands
+$ telnet webostv
+$ mkdir -p /home/root/.ssh
+$ chmod 700 /home/root/.ssh
+$ echo '&lt;ssh pubkey from ~/.ssh/id_rsa.pub&gt;' &gt; /home/root/.ssh/authorized_keys
+$ chmod 600 /home/root/.ssh/authorized_keys
+# Disable telnet and reboot TV again
+$ ssh webostv
+
+NEVER EVER OVERWRITE SYSTEM PARTITIONS LIKE KERNEL, ROOTFS, TVSERVICE.
+Your TV will be bricked, guaranteed! See https://rootmy.tv/warning for more info.
+root@webostv:~# 
+
+</code></pre>
+        <p>My SSH config file (~/.ssh/config) contains this configuration:</p>
+        <pre class="bs-code-block"><code class="nohighlight">host webostv
+  HostName webostv
+  User root
+</code></pre>
+        <p>Where webostv hostname is configured in my router</p>
+        <h3 id="blocking-lg-sw-ota-domains">Blocking LG SW OTA domains</h3>
+        <p>I have root again, great! Time to be more cautious this time and block all those ~~pesky~~ LG domains that could remove my root access - <em>again</em>. After rooting I blocked domains on my OpenWRT router to prevent webos updates. I compiled the list of domains from openlgtv discord to be used by simple-adblock running on OpenWRT. The domain list can be found <a class="silk-link" href="https://gist.githubusercontent.com/kjeller/5c1f6aea1c5e6d5a70091a78b0eda6f2/raw/bda9a569c37bb794225f5af41c4f7c65ac598dab/hosts.txt">here</a> and can be configured in simple-adblock in <em>/etc/config/simple-adblock</em>:</p>
+        <pre class="bs-code-block"><code class="language-bash hljs" data-highlighted="yes">config simple-adblock <span class="hljs-string">'config'</span>
+	option config_update_enabled <span class="hljs-string">'0'</span>
+	option config_update_url <span class="hljs-string">'https://cdn.jsdelivr.net/gh/openwrt/packages/net/simple-adblock/files/simple-adblock.conf.update'</span>
+	option dns <span class="hljs-string">'dnsmasq.servers'</span>
+	option dns_instance <span class="hljs-string">'0'</span>
+	option verbosity <span class="hljs-string">'2'</span>
+	option force_dns <span class="hljs-string">'1'</span>
+	option led <span class="hljs-string">'none'</span>
+	option boot_delay <span class="hljs-string">'120'</span>
+	option download_timeout <span class="hljs-string">'10'</span>
+	option curl_retry <span class="hljs-string">'3'</span>
+	option parallel_downloads <span class="hljs-string">'1'</span>
+	option debug <span class="hljs-string">'0'</span>
+	option compressed_cache <span class="hljs-string">'0'</span>
+	list blocked_hosts_url <span class="hljs-string">'https://gist.githubusercontent.com/kjeller/5c1f6aea1c5e6d5a70091a78b0eda6f2/raw/bda9a569c37bb794225f5af41c4f7c65ac598dab/hosts.txt'</span>
+	option enabled <span class="hljs-string">'1'</span>
+</code></pre>
+        <h2 id="final-words">Final words</h2>
+        <p>Huge thanks to the people over at openlgtv for providing all the necessary information. Even though I failed with the "write to NVM strategy" I feel like I got some more insight into how my system works. I would like to explore more devices using hands-on techniques like this and this was a nice introduction to that. It is also a reminder to revisit options that were previously known to fail. I feel like I tried RootMyTv v2 multiple times unsuccessfully before I decided to crack open my TV. But lookie lookie it was an oversight from me.</p>
+       </div>
+      </div>
+     </div>
+     <div class="footer footer_dark kobweb-box kobweb-align-center" style="grid-row: 2 / 3;">
+      <span style="text-align: center;">
+       <div class="kobweb-col kobweb-arrange-top kobweb-align-start">
+        <div class="kobweb-row kobweb-arrange-start kobweb-align-top">
+         <span style="white-space: pre-wrap; text-align: center;"><span class="silk-span-text" style="white-space: pre-wrap;">Powered by </span><a class="silk-link silk-link-uncolored" style="--silk-color: rgb(60, 131, 239);" href="https://github.com/varabyte/kobweb">Kobweb</a><span class="silk-span-text" style="white-space: pre-wrap;">, site source </span><a class="silk-link silk-link-uncolored" style="--silk-color: rgb(60, 131, 239); white-space: nowrap; font-family: monospace;" href="https://github.com/kjeller/stralman.dev">here</a></span>
+        </div>
+        <div class="kobweb-row kobweb-arrange-center kobweb-align-top" style="font-size: 0.7rem; width: 100%;">
+         <span class="silk-span-text" style="white-space: pre-wrap;">Inspired by Hugo theme </span><a class="silk-link silk-link-uncolored" style="--silk-color: rgb(60, 131, 239);" href="https://github.com/austingebauer/devise"> Devise</a>
+        </div>
+       </div>
+       <div class="kobweb-row kobweb-arrange-center kobweb-align-top">
+        <span class="silk-span-text bs-copyright">© 2023, Karl Strålman</span>
+       </div></span>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script src="/stralman.js"></script>
+ </body>
+</html>

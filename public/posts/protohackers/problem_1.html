@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Karl Strålman</title>
+  <meta content="A tech hobbyist's guide to the galaxy." name="description">
+  <link href="/favicon.ico" rel="icon">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <script src="/highlight.js/highlight.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" title="hljs-style" href="/highlight.js/styles/a11y-dark.min.css">
+ </head>
+ <body>
+  <div id="root" style="width: 100%; height: 100%;" class="silk-colors_dark">
+   <style>html, body { padding: 0px; margin: 0px; }* { box-sizing: border-box; }</style>
+   <style>.kobweb-box { display: grid; grid-template-columns: minmax(0px, 1fr); grid-template-rows: minmax(0px, 1fr); }.kobweb-box > * { grid-area: 1 / 1; }.kobweb-box.kobweb-align-top-start { place-items: start; }.kobweb-box.kobweb-align-top-center { place-items: start center; }.kobweb-box.kobweb-align-top-end { place-items: start end; }.kobweb-box.kobweb-align-center-start { place-items: center start; }.kobweb-box.kobweb-align-center { place-items: center; }.kobweb-box.kobweb-align-center-end { place-items: center end; }.kobweb-box.kobweb-align-bottom-start { place-items: end start; }.kobweb-box.kobweb-align-bottom-center { place-items: end center; }.kobweb-box.kobweb-align-bottom-end { place-items: end; }.kobweb-box > .kobweb-align-top-start-self { place-self: start; }.kobweb-box > .kobweb-align-top-center-self { place-self: start center; }.kobweb-box > .kobweb-align-top-end-self { place-self: start end; }.kobweb-box > .kobweb-align-center-start-self { place-self: center start; }.kobweb-box > .kobweb-align-center-self { place-self: center; }.kobweb-box > .kobweb-align-center-end-self { place-self: center end; }.kobweb-box > .kobweb-align-bottom-start-self { place-self: end start; }.kobweb-box > .kobweb-align-bottom-center-self { place-self: end center; }.kobweb-box > .kobweb-align-bottom-end-self { place-self: end; }.kobweb-col { display: flex; flex-direction: column; }.kobweb-col.kobweb-arrange-top { justify-content: flex-start; }.kobweb-col.kobweb-arrange-center { justify-content: center; }.kobweb-col.kobweb-arrange-bottom { justify-content: flex-end; }.kobweb-col.kobweb-arrange-space-evenly { justify-content: space-evenly; }.kobweb-col.kobweb-arrange-space-between { justify-content: space-between; }.kobweb-col.kobweb-arrange-space-around { justify-content: space-around; }.kobweb-col.kobweb-align-start { align-items: flex-start; }.kobweb-col.kobweb-align-center-horiz { align-items: center; }.kobweb-col.kobweb-align-end { align-items: flex-end; }.kobweb-col > .kobweb-align-start-self { align-self: flex-start; }.kobweb-col > .kobweb-align-center-horiz-self { align-self: center; }.kobweb-col > .kobweb-align-end-self { align-self: flex-end; }.kobweb-row { display: flex; flex-direction: row; }.kobweb-row.kobweb-arrange-start { justify-content: flex-start; }.kobweb-row.kobweb-arrange-center { justify-content: center; }.kobweb-row.kobweb-arrange-end { justify-content: flex-end; }.kobweb-row.kobweb-arrange-space-evenly { justify-content: space-evenly; }.kobweb-row.kobweb-arrange-space-between { justify-content: space-between; }.kobweb-row.kobweb-arrange-space-around { justify-content: space-around; }.kobweb-row.kobweb-align-top { align-items: flex-start; }.kobweb-row.kobweb-align-center-vert { align-items: center; }.kobweb-row.kobweb-align-bottom { align-items: flex-end; }.kobweb-row > .kobweb-align-top-self { align-self: flex-start; }.kobweb-row > .kobweb-align-center-vert-self { align-self: center; }.kobweb-row > .kobweb-align-bottom-self { align-self: flex-end; }.kobweb-spacer { flex-grow: 1; }</style>
+   <style>body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; font-size: 18px; line-height: 1.5; }code.hljs { border-radius: 8px; }@keyframes silk-checkbox-enabled {   0% { opacity: 0; }  100% { opacity: 1; }}.silk-colors_light { --silk-background-color: rgb(250, 250, 250); --silk-color: rgb(0, 0, 0); --silk-border-color: rgba(0, 0, 0, 0.2); --silk-focus-outline-color: rgba(33, 150, 243, 0.4980392156862745); --silk-placeholder-color: rgb(158, 158, 158); --silk-button-background-default-color: rgb(204, 204, 204); --silk-button-background-hover-color: rgb(163, 163, 163); --silk-button-background-pressed-color: rgb(122, 122, 122); --silk-checkbox-icon-background-color: rgb(33, 150, 243); --silk-checkbox-icon-background-hover-color: rgb(30, 136, 229); --silk-checkbox-icon-color: rgb(255, 255, 255); --silk-input-border-hover-color: rgb(158, 158, 158); --silk-input-border-invalid-color: rgb(183, 28, 28); --silk-input-filled-color: rgb(238, 238, 238); --silk-input-filled-hover-color: rgb(214, 214, 214); --silk-input-filled-focus-color: rgba(0, 0, 0, 0); --silk-overlay-background-color: rgba(0, 0, 0, 0.4980392156862745); --silk-switch-thumb-color: rgb(255, 255, 255); --silk-tab-color: rgb(0, 0, 0); --silk-tab-background-color: rgb(255, 255, 255); --silk-tab-disabled-background-color: rgb(255, 255, 255); --silk-tab-hover-background-color: rgb(211, 211, 211); --silk-tab-pressed-background-color: rgb(245, 245, 245); --silk-tooltip-background-color: rgb(0, 0, 0); --silk-tooltip-color: rgb(255, 255, 255); --silk-link-default-color: rgb(0, 0, 255); --silk-link-visited-color: rgb(128, 0, 128); }.silk-colors_dark { --silk-background-color: rgb(43, 42, 51); --silk-color: rgb(255, 255, 255); --silk-border-color: rgba(255, 255, 255, 0.2); --silk-focus-outline-color: rgba(33, 150, 243, 0.4980392156862745); --silk-placeholder-color: rgb(158, 158, 158); --silk-button-background-default-color: rgb(51, 51, 51); --silk-button-background-hover-color: rgb(92, 92, 92); --silk-button-background-pressed-color: rgb(133, 133, 133); --silk-checkbox-icon-background-color: rgb(144, 202, 249); --silk-checkbox-icon-background-hover-color: rgb(100, 181, 246); --silk-checkbox-icon-color: rgb(0, 0, 0); --silk-input-border-hover-color: rgb(117, 117, 117); --silk-input-border-invalid-color: rgb(229, 115, 115); --silk-input-filled-color: rgb(33, 33, 33); --silk-input-filled-hover-color: rgb(56, 56, 56); --silk-input-filled-focus-color: rgba(0, 0, 0, 0); --silk-overlay-background-color: rgba(255, 255, 255, 0.4980392156862745); --silk-switch-thumb-color: rgb(255, 255, 255); --silk-tab-color: rgb(255, 255, 255); --silk-tab-background-color: rgb(0, 0, 0); --silk-tab-disabled-background-color: rgb(0, 0, 0); --silk-tab-hover-background-color: rgb(47, 79, 79); --silk-tab-pressed-background-color: rgb(169, 169, 169); --silk-tooltip-background-color: rgb(255, 255, 255); --silk-tooltip-color: rgb(0, 0, 0); --silk-link-default-color: rgb(0, 255, 255); --silk-link-visited-color: rgb(238, 130, 238); }.silk-disabled { opacity: 0.5; cursor: not-allowed; }.silk-smooth-color { transition: background-color var(--silk-smooth-color-transition-duration, var(--silk-transition-duration-normal, 200ms)); }.silk-button { color: var(--silk-button-color, var(--silk-color)); background-color: var(--silk-button-background-default-color); line-height: 1.2; height: var(--silk-button-height); min-width: var(--silk-button-height); font-size: var(--silk-button-font-size); font-weight: 600; white-space: nowrap; padding: 0px var(--silk-button-padding-horizontal); vertical-align: middle; border-radius: 0.375rem; border-width: 0px; user-select: none; transition: background-color var(--silk-button-color-transition-duration, var(--silk-transition-duration-normal, 200ms)); }.silk-button:hover:not([aria-disabled="true"]) { background-color: var(--silk-button-background-hover-color); cursor: pointer; }.silk-button:focus-visible:not([aria-disabled="true"]) { outline: rgba(0, 0, 0, 0) solid 2px; box-shadow: 0px 0px 0 0.1875rem var(--silk-button-background-focus-color, var(--silk-focus-outline-color)); }.silk-button:active:not([aria-disabled="true"]) { background-color: var(--silk-button-background-pressed-color); }.silk-checkbox { gap: var(--silk-checkbox-spacing, 0.5rem); user-select: none; font-size: var(--silk-checkbox-font-size); cursor: pointer; }.silk-checkbox-icon-container { font-size: var(--silk-checkbox-icon-size); width: var(--silk-checkbox-size); height: var(--silk-checkbox-size); border: var(--silk-checkbox-border-width, 0.125rem) solid var(--silk-checkbox-border-color, var(--silk-border-color)); border-radius: var(--silk-checkbox-border-radius, 0.125rem); transition: background-color var(--silk-checkbox-transition-duration, var(--silk-transition-duration-very-fast, 100ms)), border-color var(--silk-checkbox-transition-duration, var(--silk-transition-duration-very-fast, 100ms)); }.silk-checkbox-icon { width: var(--silk-checkbox-size); height: var(--silk-checkbox-size); color: var(--silk-checkbox-icon-color); }.silk-overlay { background-color: var(--silk-overlay-background-color); }.silk-popup { transition: opacity var(--silk-popup-transition-duration, var(--silk-transition-duration-fast, 150ms)); }.silk-simple-grid { display: grid; }@media (min-width: 0px) {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-zero), 1fr); }}@media (min-width: 30rem) {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-sm), 1fr); }}@media (min-width: 48rem) {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-md), 1fr); }}@media (min-width: 62rem) {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-lg), 1fr); }}@media (min-width: 80rem) {  .silk-simple-grid { grid-template-columns: repeat(var(--silk-simple-grid-col-count-xl), 1fr); }}.silk-surface { background-color: var(--silk-surface-background-color, var(--silk-background-color)); color: var(--silk-surface-color, var(--silk-color)); }.silk-horizontal-divider { border-top: 1px solid var(--silk-divider-color, var(--silk-border-color)); width: 100%; }.silk-vertical-divider { border-left: 1px solid var(--silk-divider-color, var(--silk-border-color)); height: var(--silk-divider-length, 90%); }.silk-switch-track { position: relative; width: var(--silk-switch-track-width); min-width: var(--silk-switch-track-width); height: var(--silk-switch-track-height); min-height: var(--silk-switch-track-height); padding: var(--silk-switch-track-padding); border-radius: var(--silk-switch-border-radius, 9999px); background-color: var(--silk-switch-track-background-color); transition: background-color var(--silk-switch-transition-duration, var(--silk-transition-duration-fast, 150ms)); box-sizing: content-box; }.silk-switch-track:hover:not([aria-disabled="true"]) { cursor: pointer; }.silk-switch-thumb { width: var(--silk-switch-track-height); height: var(--silk-switch-track-height); border-radius: var(--silk-switch-border-radius, 9999px); background-color: var(--silk-switch-thumb-color); translate: var(--silk-switch-thumb-offset); transition: translate var(--silk-switch-transition-duration, var(--silk-transition-duration-fast, 150ms)); }.silk-tabs-tab-row { width: 100%; border-bottom: var(--silk-tab-border-thickness, 2px) solid var(--silk-tab-border-color, var(--silk-border-color)); }.silk-tabs-tab { cursor: pointer; transition: background-color var(--silk-tab-color-transition-duration, var(--silk-transition-duration-normal, 200ms)), color var(--silk-tab-color-transition-duration, var(--silk-transition-duration-normal, 200ms)), border-color var(--silk-tab-color-transition-duration, var(--silk-transition-duration-normal, 200ms)); background-color: var(--silk-tab-background-color); color: var(--silk-tab-color); user-select: none; padding: 0.5rem; margin: 0px 0px calc(-1 * var(--silk-tab-border-thickness, 2px)); border-bottom: var(--silk-tab-border-thickness, 2px) solid var(--silk-tab-border-color, var(--silk-border-color)); }.silk-tabs-tab[aria-disabled="true"] { background-color: var(--silk-tab-disabled-background-color); cursor: not-allowed; }.silk-tabs-tab:hover:not([aria-disabled="true"]) { background-color: var(--silk-tab-hover-background-color); }.silk-tabs-tab:active:not([aria-disabled="true"]) { background-color: var(--silk-tab-pressed-background-color); }.silk-tabs-panel { padding: 1rem; width: 100%; flex-grow: 1; overflow-y: auto; }.silk-input { appearance: none; color: var(--silk-color); height: var(--silk-input-height); font-size: var(--silk-input-font-size); background-color: rgba(0, 0, 0, 0); outline: rgba(0, 0, 0, 0) solid 0px; border: 0px solid rgba(0, 0, 0, 0); transition: border-color var(--silk-input-color-transition-duration, var(--silk-transition-duration-normal, 200ms)), box-shadow var(--silk-input-color-transition-duration, var(--silk-transition-duration-normal, 200ms)), background-color var(--silk-input-color-transition-duration, var(--silk-transition-duration-normal, 200ms)); }.silk-input::placeholder { opacity: var(--silk-input-placeholder-opacity, var(--silk-placeholder-opacity, 1)); color: var(--silk-input-placeholder-color, var(--silk-placeholder-color)); }.silk-input-group { outline: rgba(0, 0, 0, 0) solid 0px; border: 0px solid rgba(0, 0, 0, 0); border-radius: var(--silk-input-border-radius); font-size: var(--silk-input-font-size); }.silk-tooltip-arrow { position: absolute; border-width: 5px; border-style: solid; }.silk-tooltip { position: relative; background-color: var(--silk-tooltip-background-color); color: var(--silk-tooltip-color); border-radius: 6px; }.tooltip-text { padding: 5px; }.silk-link { text-decoration-line: none; }.silk-link:link { color: var(--silk-link-default-color); }.silk-link:visited { color: var(--silk-link-visited-color); }.silk-link:hover { text-decoration-line: underline; }.silk-toc { list-style-type: none; text-align: start; padding: 0rem; }.headline-text { font-size: 2rem; text-align: start; margin: 0px 0px 5px; line-height: 1.2; }.p-text { font-size: 1rem; margin: 0px; line-height: 1.2; }.subheadline-text_light { font-size: 1rem; text-align: start; color: rgba(0, 0, 0, 0.8); }.subheadline-text_dark { font-size: 1rem; text-align: start; color: rgba(255, 255, 255, 0.8); }.markdown h1 { font-size: 2rem; font-weight: 300; margin: 0px 0px 1.5rem; line-height: 1.2; }.markdown h2 { font-size: 2rem; font-weight: 300; margin: 1rem 0px; }.markdown h3 { font-size: 1.4rem; font-weight: 300; margin: 1.5rem 0px; }.markdown h4 { font-size: 1.2rem; font-weight: bolder; margin: 1rem 0px 0.5rem; }.markdown p { margin: 0px 0px 0.8rem; }.markdown ul { width: 100%; overflow-wrap: break-word; }.markdown li, ol, ul { margin: 0px 0px 0.25rem; }.markdown_light code { color: rgba(0, 0, 0, 0.8); font-weight: bolder; }.markdown_dark code { color: rgba(255, 255, 255, 0.8); font-weight: bolder; }.markdown pre { margin: 0.5rem 0px 2rem; width: 100%; }.markdown pre > code { display: block; width: 100%; background-color: rgb(55, 54, 65); border-radius: 0.25rem; padding: 0.5rem; font-size: 1rem; overflow-x: auto; }.markdown img { display: block; width: 100%; border-radius: 0.25rem; padding: 0.5rem; font-size: 1rem; }.page-content { width: 100%; height: 100%; }@media (min-width: 48rem) {  .page-content { max-width: 40rem; }}.fa-icon { color: rgb(108, 117, 125); }.fa-icon:hover { color: rgb(255, 255, 255); }.footer_light { margin: 2rem 0px 0px; border-top: 1px solid rgba(0, 0, 0, 0.2); padding: 1rem 4rem; font-size: 0.8rem; font-family: monospace; }.footer_dark { margin: 2rem 0px 0px; border-top: 1px solid rgba(255, 255, 255, 0.2); padding: 1rem 4rem; font-size: 0.8rem; font-family: monospace; }.bs-copyright { opacity: 0.6; font-size: 0.8rem; }.bs-code-block { max-width: 90vw; width: 100%; }@media (min-width: 48rem) {  .bs-code-block { max-width: 100%; }}.bs-code_light { color: rgb(51, 51, 51); overflow-wrap: break-word; }.bs-code_dark { color: rgb(204, 204, 204); overflow-wrap: break-word; }.round-border-image { clip-path: circle(50% at 50% 50%); align-content: center; object-fit: cover; border: 5px solid rgb(66, 65, 77); border-radius: 50%; }.round-border-image:hover { border: 5px solid rgb(108, 117, 125); }.blog-post-entry { font-size: 1rem; margin: 0px; line-height: 1.2; width: 100%; padding: 0px 15px 0px 0px; text-align: right; }@media not all and (min-width: 0px) {  .silk-display-if-at-least-zero { display: none !important; }}@media not all and (min-width: 30rem) {  .silk-display-if-at-least-sm { display: none !important; }}@media not all and (min-width: 48rem) {  .silk-display-if-at-least-md { display: none !important; }}@media not all and (min-width: 62rem) {  .silk-display-if-at-least-lg { display: none !important; }}@media not all and (min-width: 80rem) {  .silk-display-if-at-least-xl { display: none !important; }}@media (min-width: 0px) {  .silk-display-until-zero { display: none !important; }}@media (min-width: 30rem) {  .silk-display-until-sm { display: none !important; }}@media (min-width: 48rem) {  .silk-display-until-md { display: none !important; }}@media (min-width: 62rem) {  .silk-display-until-lg { display: none !important; }}@media (min-width: 80rem) {  .silk-display-until-xl { display: none !important; }}.silk-input.silk-input-checkbox { border: 0px; width: 1px; height: 1px; margin: -1px; padding: 0px; clip-path: inset(50%); overflow: hidden; white-space: nowrap; position: absolute; }.silk-input.silk-input-checkbox:focus-visible + * { box-shadow: 0px 0px 0 var(--silk-checkbox-focus-outline-spread, 0.1875rem) var(--silk-checkbox-focus-outline-color, var(--silk-focus-outline-color)); }.silk-input.silk-input-checkbox:not([aria-disabled]):hover + * { --silk-checkbox-icon-background-color: var(--silk-checkbox-icon-background-hover-color); }.silk-checkbox-icon-container.silk-checkbox-icon-container-checked { background-color: var(--silk-checkbox-icon-background-color); border-color: var(--silk-checkbox-icon-background-color); }.silk-checkbox-icon-container.silk-checkbox-icon-container-unchecked { background-color: var(--silk-checkbox-unchecked-background-color); }.silk-input.silk-input-switch { border: 0px; width: 1px; height: 1px; margin: -1px; padding: 0px; clip-path: inset(50%); overflow: hidden; white-space: nowrap; position: absolute; }.silk-input.silk-input-switch:focus-visible + * { box-shadow: 0px 0px 0 0.1875rem var(--silk-switch-focus-color, var(--silk-focus-outline-color)); }.silk-input.silk-input-outlined { padding-inline: var(--silk-input-padding) var(--silk-input-padding); border-radius: var(--silk-input-border-radius); border: 1px solid var(--silk-input-border-color, var(--silk-border-color)); }.silk-input.silk-input-outlined[aria-invalid="true"] { border: 1px solid var(--silk-input-border-invalid-color); box-shadow: 0px 0px 0 1px var(--silk-input-border-invalid-color); }.silk-input.silk-input-outlined:hover:not(:disabled) { border-color: var(--silk-input-border-hover-color); }.silk-input.silk-input-outlined:focus-visible:not(:disabled) { border: 1px solid var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); box-shadow: 0px 0px 0 1px var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); }.silk-input.silk-input-filled { padding-inline: var(--silk-input-padding) var(--silk-input-padding); background-color: var(--silk-input-filled-color); border-radius: var(--silk-input-border-radius); border: 1px solid rgba(0, 0, 0, 0); }.silk-input.silk-input-filled:hover:not(:disabled) { background-color: var(--silk-input-filled-hover-color); }.silk-input.silk-input-filled[aria-invalid="true"] { border-color: var(--silk-input-border-invalid-color); box-shadow: 0px 0px 0 1px var(--silk-input-border-invalid-color); }.silk-input.silk-input-filled:focus-visible:not(:disabled) { background-color: var(--silk-input-filled-focus-color); border-color: var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); box-shadow: 0px 0px 0 1px var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); }.silk-input.silk-input-flushed { border-bottom: 1px solid var(--silk-input-border-color, var(--silk-border-color)); }.silk-input.silk-input-flushed[aria-invalid="true"] { border-color: var(--silk-input-border-invalid-color); box-shadow: 0px 1px var(--silk-input-border-invalid-color); }.silk-input.silk-input-flushed:hover:not(:disabled) { border-color: var(--silk-input-border-hover-color); }.silk-input.silk-input-flushed:focus-visible:not(:disabled) { border-color: var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); box-shadow: 0px 1px var(--silk-input-border-focus-color, var(--silk-focus-outline-color)); }.silk-tooltip-arrow.silk-tooltip-arrow-top-left { margin: -9px 0px 0px 9px; top: 0px; border-color: transparent transparent var(--silk-tooltip-background-color) transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-top { margin: -9px 0px 0px -5px; left: 50%; top: 0px; border-color: transparent transparent var(--silk-tooltip-background-color) transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-top-right { margin: -9px 9px 0px 0px; right: 0px; top: 0px; border-color: transparent transparent var(--silk-tooltip-background-color) transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-left-top { margin: 9px 0px 0px -9px; left: 0px; top: 0px; border-color: transparent var(--silk-tooltip-background-color) transparent transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-left { margin: -5px 0px 0px -9px; left: 0px; top: 50%; border-color: transparent var(--silk-tooltip-background-color) transparent transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-left-bottom { margin: 0px 0px 9px -9px; left: 0px; bottom: 0px; border-color: transparent var(--silk-tooltip-background-color) transparent transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-right-top { margin: 9px -9px 0px 0px; right: 0px; top: 0px; border-color: transparent transparent transparent var(--silk-tooltip-background-color); }.silk-tooltip-arrow.silk-tooltip-arrow-right { margin: -5px -9px 0px 0px; right: 0px; top: 50%; border-color: transparent transparent transparent var(--silk-tooltip-background-color); }.silk-tooltip-arrow.silk-tooltip-arrow-right-bottom { margin: 0px -9px 9px 0px; right: 0px; bottom: 0px; border-color: transparent transparent transparent var(--silk-tooltip-background-color); }.silk-tooltip-arrow.silk-tooltip-arrow-bottom-left { margin: 0px 0px -9px 9px; left: 0px; bottom: 0px; border-color: var(--silk-tooltip-background-color) transparent transparent transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-bottom { margin: 0px 0px -9px -5px; left: 50%; bottom: 0px; border-color: var(--silk-tooltip-background-color) transparent transparent transparent; }.silk-tooltip-arrow.silk-tooltip-arrow-bottom-right { margin: 0px 9px -9px 0px; right: 0px; bottom: 0px; border-color: var(--silk-tooltip-background-color) transparent transparent transparent; }.silk-image.silk-image-fit-width { width: 100%; object-fit: scale-down; }.silk-link.silk-link-uncolored:link { color: var(--silk-color); }.silk-link.silk-link-uncolored:visited { color: var(--silk-color); }.silk-link.silk-link-undecorated:hover { text-decoration-line: none; }.silk-link.silk-link-always-underlined { text-decoration-line: underline; }.silk-toc.silk-toc-bordered { border-radius: 5px; border: 1px solid var(--silk-toc-border-color, var(--silk-border-color)); padding: 1rem; }.silk-button.silk-button-circle { padding: 0px; border-radius: 50%; }.silk-button.silk-button-uncolored { --silk-button-background-default-color: rgba(0, 0, 0, 0); }</style>
+   <div class="silk-surface silk-smooth-color kobweb-box kobweb-align-top-start" style="min-height: 100vh; scroll-behavior: smooth;">
+    <div class="kobweb-box kobweb-align-center" style="width: 100%; min-height: 100%; grid-template-rows: 1fr min-content;">
+     <div class="kobweb-col kobweb-arrange-top kobweb-align-center-horiz" style="width: 100%; height: 100%; grid-row: 1 / 2;">
+      <div class="kobweb-col kobweb-arrange-top kobweb-align-center-horiz">
+       <div class="kobweb-row kobweb-arrange-start kobweb-align-center-vert" style="padding: 50px;">
+        <a href="/"><img class="silk-image round-border-image" style="width: 120px; height: 120px;" src="/profile.png" alt=""></a>
+        <div class="kobweb-col kobweb-arrange-top kobweb-align-start" style="margin: 0px; padding: 20px;">
+         <h1 class="headline-text">Kalle Strålman ☢️</h1>
+         <p class="p-text" style="color: rgb(108, 117, 125);">A tech hobbyist's guide to the galaxy.</p>
+         <div class="kobweb-row kobweb-arrange-start kobweb-align-top" style="padding: 20px 0px 15px;">
+          <a class="silk-link p-text" style="padding: 0px 20px 0px 0px; text-decoration-line: underline;" href="/about/">About</a><a class="silk-link p-text" style="padding: 0px 20px 0px 0px; text-decoration-line: underline;" href="/tags/">Tags</a>
+         </div>
+         <div class="kobweb-row kobweb-arrange-space-between kobweb-align-top" style="width: 100px;">
+          <a href="https://github.com/kjeller"><span class="fa-icon fab fa-github"></span></a><a href="https://www.linkedin.com/in/karl-str%C3%A5lman-422b6b173/"><span class="fa-icon fab fa-linkedin"></span></a><a href="index.xml/"><span class="fa-icon fas fa-rss"></span></a>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="page-content kobweb-col kobweb-arrange-top kobweb-align-center-horiz">
+       <div class="markdown markdown_dark kobweb-col kobweb-arrange-top kobweb-align-start" style="max-width: 40rem;">
+        <div class="kobweb-col kobweb-arrange-top kobweb-align-start">
+         <span style="margin: 0px 15px 0px 0px; border-radius: 0.25rem; padding: 2px; background-color: white;">
+          <p style="font-size: 0.7rem; color: rgb(43, 42, 51); font-weight: bold; width: 80px; margin: 0px; padding: 0px; text-align: center;">2022-10-09</p></span>
+        </div>
+        <h2 id="introduction">Introduction</h2>
+        <p>This is the second entry of a series that cover solutions to the <a class="silk-link" href="https://protohackers.com/">Protohackers</a> challenges. I choose to solve the first problem (Smoke test/TCP echo server) using x86_64 assembly. For my sanity I won't solve this one that way.. and you'll soon realise why (Hint: Because it requires JSON string parsing).</p>
+        <p>Onwards to the problem itself! This post will cover "Problem 1: Prime time". A full description of this problem can be found <a class="silk-link" href="https://protohackers.com/problem/1">here</a>. The task is to write a simple JSON Web API backend that handles one very specific request. Checking if a number is prime or not. Example of a correctly formatted request: <code class="bs-code bs-code_dark">{"method":"isPrime","number":123}</code> which should yield the response <code class="bs-code bs-code_dark">{"method":"isPrime","prime":false}</code>. More details about what a correctly formatted request is and how to handle malformed requests in the next section. The same rule applies from the previous problem; The server should be able to handle multiple TCP clients simultaneously and can be written in whatever language you see fit. Now you might understand why I prefer not to do this in assembly. If you're still not 100% convinced please feel free to solve it that way yourself. Anyways, I choose to solve this problem using Rust since I've promised myself to do learn Rust for a while now. It also seemed like a good idea to me now <a class="silk-link" href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=8aebac82933ff1a7c8eede18cab11e1115e2062b">when even the Linux kernel has started to get a little rusty</a>.</p>
+        <p>In summary, this blog post will cover the following topics:</p>
+        <ul>
+         <li>TCP server in Rust handling multiple clients simultaneously</li>
+         <li>JSON parsing in Rust (I "cheated" and used a lib)</li>
+        </ul>
+        <p>Hopefully you will get a better understanding of these topics after reading this blog post or at least found some of the content interesting!</p>
+        <p>Resource links:</p>
+        <ul>
+         <li>Got my whole TCP server structure from here: <a class="silk-link" href="https://doc.rust-lang.org/book/ch20-00-final-project-a-web-server.html">https://doc.rust-lang.org/book/ch20-00-final-project-a-web-server.html</a></li>
+        </ul>
+        <p>The full source code can be found on github - <a class="silk-link" href="https://github.com/kjeller/protohackers/tree/main/problem_1">here</a>.</p>
+        <p>Note: My solution does not fully implement error handling and things as "gRaCEfuLLy eXiTinG tHreAds".</p>
+        <p><b>JSON request/response protocol</b></p>
+        <p>The problem description states: <em>A conforming request object has the required field method, which must always contain the string " isPrime", and the required field number, which must contain a number. Any JSON number is a valid number, including floating-point values. [...] Extraneous fields are to be ignored.</em></p>
+        <p>From the explanation above we can conclude that these are valid:</p>
+        <pre class="bs-code-block"><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"method"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"isPrime"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"number"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
+<span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"number"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"method"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"isPrime"</span>
+<span class="hljs-punctuation">}</span> <span class="hljs-comment">// ordering does not matter</span>
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"method"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"isPrime"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"number"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123.123</span>
+<span class="hljs-punctuation">}</span> <span class="hljs-comment">// floats are valid numbers</span>
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"method"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"isPrime"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"number"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"ignore"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"me"</span>
+<span class="hljs-punctuation">}</span> <span class="hljs-comment">// extra fields are ignored</span>
+</code></pre>
+        <p>But prime numbers are <b>whole numbers</b> so how do we handle floats? This should have been stated in the problem description but is not mentioned anywhere. There are a number of different ways of handling the decimals in the float:</p>
+        <ul>
+         <li>Respond with <code class="bs-code bs-code_dark">"prime":false</code> for all floats</li>
+         <li>Round down/up and handle the resulting whole number</li>
+         <li>Truncate and handle the resulting whole number</li>
+        </ul>
+        <p>This line in the description is also important to consider: <em>Each request is a single line containing a JSON object, terminated by a newline character (' ', or ASCII 10).</em></p>
+        <p>Then we also have to consider what a malformed request is and obviously a malformed request is a request that does not fulfill all the requirements to be a well-formed valid request:</p>
+        <pre class="bs-code-block"><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"method"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"isPrime"</span>
+<span class="hljs-punctuation">}</span> <span class="hljs-comment">// a required field is missing</span>
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"method"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"isPrime"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"number"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"123"</span>
+<span class="hljs-punctuation">}</span> <span class="hljs-comment">// number is a string</span>
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"method"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"isPrime"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"number"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span> <span class="hljs-comment">// missing end braces</span>
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"mEtHoD"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"isPrime"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"nUmBer"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
+<span class="hljs-punctuation">}</span> <span class="hljs-comment">// ..you get it</span>
+<span class="hljs-comment">//... and so on</span>
+</code></pre>
+        <p><em>Whenever you receive a malformed request, send back a single malformed response, and disconnect the client.</em> I chose to respond with <code class="bs-code bs-code_dark">{}</code> which is a malformed response since it does not contain the required response fields <code class="bs-code bs-code_dark">"method":"isPrime"</code> and <code class="bs-code bs-code_dark">"prime":true/false</code>.</p>
+        <p>Three examples of sessions with request/response:</p>
+        <pre class="bs-code-block"><code class="language-json hljs" data-highlighted="yes"><span class="hljs-comment">// [x:y]</span>
+<span class="hljs-comment">// x is the session number</span>
+<span class="hljs-comment">// y is the message number</span>
+
+<span class="hljs-comment">// [1:1] request from client</span>
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"method"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"isPrime"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"number"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">123</span>
+<span class="hljs-punctuation">}</span>
+
+<span class="hljs-comment">// [1:2] response from server</span>
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"method"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"isPrime"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"prime"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span>
+<span class="hljs-punctuation">}</span>
+
+<span class="hljs-comment">// [2:1] request from client</span>
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"method"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"isPrime"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"number"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">2</span>
+<span class="hljs-punctuation">}</span>
+
+<span class="hljs-comment">// [2:2] response from server</span>
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"method"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"isPrime"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"prime"</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span>
+<span class="hljs-punctuation">}</span>
+
+<span class="hljs-comment">// [3:1] malformed request from client</span>
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"method"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"isPrime"</span>
+<span class="hljs-punctuation">}</span>
+
+<span class="hljs-comment">// [3:2] response from server</span>
+<span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span>
+</code></pre>
+        <p><b>Handle JSON request/response</b></p>
+        <p>Now the JSON protocol is defined and eager to be parsed. So for this I started writing a rudimentory JSON parser and quickly gave up... Then I found a JSON parsing crate for Rust that relieved me from the pain of implementing one myself (<a class="silk-link" href="https://docs.rs/json/latest/json/">this one</a>). For those non-rusty folks out there ( including me) a crate is a library that can be imported either from disk or from a crate registry.</p>
+        <p>Here's the function that I wrote to parse a JSON request. I added some extra comments for clarity.</p>
+        <pre class="bs-code-block"><code class="language-rust hljs" data-highlighted="yes"><span class="hljs-keyword">enum</span> <span class="hljs-title class_">Method</span> {
+    <span class="hljs-title function_ invoke__">IsPrime</span>(<span class="hljs-type">i64</span>),
+}
+
+<span class="hljs-comment">// empty struct for error handling</span>
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">ProtocolMalformed</span>;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">parse_json</span>(json: &amp;<span class="hljs-type">str</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">Result</span>&lt;Method, ProtocolMalformed&gt; {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">parse</span> = json::<span class="hljs-title function_ invoke__">parse</span>(&amp;json);
+    
+    <span class="hljs-comment">// json::parse is very convenient where every field gets assigned</span>
+    <span class="hljs-comment">// its own key in an object.</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">Ok</span>(data) = parse {
+        <span class="hljs-comment">// check if any of the required fields are missing</span>
+        <span class="hljs-keyword">if</span> data[<span class="hljs-string">"method"</span>].<span class="hljs-title function_ invoke__">is_null</span>() || data[<span class="hljs-string">"number"</span>].<span class="hljs-title function_ invoke__">is_null</span>() {
+            <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Err</span>(ProtocolMalformed);
+        }
+
+        <span class="hljs-comment">// make sure that the method is set to a valid string, in this case "isPrime"</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">Some</span>(x) = data[<span class="hljs-string">"method"</span>].<span class="hljs-title function_ invoke__">as_str</span>() {
+            <span class="hljs-keyword">match</span> x {
+                <span class="hljs-string">"isPrime"</span> =&gt; {}, <span class="hljs-comment">// allowed</span>
+                _ =&gt; <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Err</span>(ProtocolMalformed),
+            }
+        }
+        
+        <span class="hljs-comment">// always handle JSON value for the number field as a float..</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-variable">Some</span>(x) = data[<span class="hljs-string">"number"</span>].<span class="hljs-title function_ invoke__">as_f64</span>() {
+            <span class="hljs-comment">// ..and cast it to an integer.</span>
+            <span class="hljs-comment">// in other words: the solution to json floats is to truncate!</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">Ok</span>(Method::<span class="hljs-title function_ invoke__">IsPrime</span>(x <span class="hljs-keyword">as</span> <span class="hljs-type">i64</span>))
+        } 
+    }
+
+    <span class="hljs-title function_ invoke__">Err</span>(ProtocolMalformed)
+}
+</code></pre>
+        <p>Now we can test the parse_json function without including any external lib because Rust includes it right out of its cargo tool (cargo test).</p>
+        <pre class="bs-code-block"><code class="language-rust hljs" data-highlighted="yes"><span class="hljs-meta">#[test]</span>
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">test_parse_json</span>() {
+        <span class="hljs-keyword">let</span> <span class="hljs-variable">requests</span> = <span class="hljs-built_in">vec!</span>[
+            <span class="hljs-string">"{\"method\":\"isPrime\",\"number\":123}"</span>.<span class="hljs-title function_ invoke__">to_string</span>(),
+            <span class="hljs-string">"{\"method\":\"isPrime\",\"number\":1}"</span>.<span class="hljs-title function_ invoke__">to_string</span>(),
+            <span class="hljs-string">"{\"method\":\"isPrime\",\"number\":7119040.0}"</span>.<span class="hljs-title function_ invoke__">to_string</span>(),
+			
+            <span class="hljs-comment">// how should we handle this?</span>
+            <span class="hljs-string">"{\"method\":\"isPrime\",\"number\":7119040.123}"</span>.<span class="hljs-title function_ invoke__">to_string</span>(), 
+            <span class="hljs-string">"{}"</span>.<span class="hljs-title function_ invoke__">to_string</span>(),
+        ];
+
+        <span class="hljs-keyword">let</span> <span class="hljs-variable">expected</span> = <span class="hljs-built_in">vec!</span>[
+            <span class="hljs-title function_ invoke__">Ok</span>(Method::<span class="hljs-title function_ invoke__">IsPrime</span>(<span class="hljs-number">123</span>)),
+            <span class="hljs-title function_ invoke__">Ok</span>(Method::<span class="hljs-title function_ invoke__">IsPrime</span>(<span class="hljs-number">1</span>)),
+            <span class="hljs-title function_ invoke__">Ok</span>(Method::<span class="hljs-title function_ invoke__">IsPrime</span>(<span class="hljs-number">7119040</span>)),
+            <span class="hljs-title function_ invoke__">Ok</span>(Method::<span class="hljs-title function_ invoke__">IsPrime</span>(<span class="hljs-number">7119040</span>)), <span class="hljs-comment">// oh right</span>
+            <span class="hljs-title function_ invoke__">Err</span>(ProtocolMalformed),
+        ];
+
+        <span class="hljs-keyword">for</span> (i, r) <span class="hljs-keyword">in</span> requests.<span class="hljs-title function_ invoke__">iter</span>().<span class="hljs-title function_ invoke__">enumerate</span>() {
+            <span class="hljs-keyword">let</span> <span class="hljs-variable">method</span> = <span class="hljs-title function_ invoke__">parse_json</span>(r);
+            <span class="hljs-built_in">assert!</span>(method == expected[i]);
+        }
+    }
+</code></pre>
+        <p>That is all for parsing JSON requests, what is left to handle in the JSON protocol is to form a response. The result from <code class="bs-code bs-code_dark">fn parse_json(json: &amp;str) -&gt; Result&lt;Method, ProtocolMalformed&gt;</code> is handled:</p>
+        <pre class="bs-code-block"><code class="language-rust hljs" data-highlighted="yes"><span class="hljs-keyword">let</span> <span class="hljs-variable">method</span> = <span class="hljs-title function_ invoke__">parse_json</span>(&amp;request_line);
+
+<span class="hljs-keyword">match</span> method {
+  <span class="hljs-comment">// the return value from parse_json is Result&lt;Method, ProtocolMalformed&gt;</span>
+  <span class="hljs-comment">// either it is Ok -&gt; Method or Err -&gt; ProtocalMalformed</span>
+	<span class="hljs-title function_ invoke__">Ok</span>(m) =&gt; {
+		<span class="hljs-keyword">let</span> <span class="hljs-variable">response</span> = <span class="hljs-title function_ invoke__">handle_response</span>(&amp;m);
+		<span class="hljs-comment">// TODO send successful response</span>
+	},
+	<span class="hljs-title function_ invoke__">Err</span>(_) =&gt; {
+		<span class="hljs-comment">// TODO send malformed response</span>
+	},
+}
+</code></pre>
+        <p>The response message is created in the function <code class="bs-code bs-code_dark">fn handle_response(method: &amp;Method) -&gt; String</code> and the return value is the finalized JSON string.</p>
+        <pre class="bs-code-block"><code class="language-rust hljs" data-highlighted="yes"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">ResponseMessage</span> {
+    method_id: <span class="hljs-type">String</span>, <span class="hljs-comment">// method field value</span>
+    method_response: <span class="hljs-type">String</span>, <span class="hljs-comment">// response field value, for isPrime this is "prime"</span>
+    result: <span class="hljs-type">bool</span>,
+}
+
+<span class="hljs-keyword">impl</span> <span class="hljs-title class_">ResponseMessage</span> {
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">new</span>() <span class="hljs-punctuation">-&gt;</span> ResponseMessage {
+        ResponseMessage {
+            method_id: <span class="hljs-string">""</span>.<span class="hljs-title function_ invoke__">to_string</span>(),
+            method_response: <span class="hljs-string">""</span>.<span class="hljs-title function_ invoke__">to_string</span>(),
+            result: <span class="hljs-literal">false</span>,
+        }
+    }
+
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">process</span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, method: &amp;Method) {
+        <span class="hljs-keyword">match</span> method {
+            Method::<span class="hljs-title function_ invoke__">IsPrime</span>(x) =&gt; {
+                <span class="hljs-keyword">if</span> *x &lt; <span class="hljs-number">0</span> {
+                    <span class="hljs-keyword">self</span>.result = <span class="hljs-literal">false</span>;
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-comment">// here we use to externa primes crate</span>
+                    <span class="hljs-keyword">self</span>.result = primes::<span class="hljs-title function_ invoke__">is_prime</span>(*x <span class="hljs-keyword">as</span> <span class="hljs-type">u64</span>);
+                }
+                <span class="hljs-keyword">self</span>.method_id = <span class="hljs-string">"isPrime"</span>.<span class="hljs-title function_ invoke__">into</span>();
+                <span class="hljs-keyword">self</span>.method_response = <span class="hljs-string">"prime"</span>.<span class="hljs-title function_ invoke__">into</span>();
+            }
+        }
+    }
+    
+    <span class="hljs-comment">// the actual json response is constructed here</span>
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">to_json_string</span>(&amp;<span class="hljs-keyword">self</span>) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">String</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">format!</span>(<span class="hljs-string">"{{\"method\":\"{}\",\"{}\":{}}}\n"</span>,
+            <span class="hljs-keyword">self</span>.method_id.<span class="hljs-title function_ invoke__">as_str</span>(), <span class="hljs-keyword">self</span>.method_response.<span class="hljs-title function_ invoke__">as_str</span>(), <span class="hljs-keyword">self</span>.result);
+    }
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">handle_response</span>(method: &amp;Method) <span class="hljs-punctuation">-&gt;</span> <span class="hljs-type">String</span> {
+    <span class="hljs-comment">// create response message</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">result</span> = Message::<span class="hljs-title function_ invoke__">new</span>();
+
+    result.<span class="hljs-title function_ invoke__">process</span>(&amp;method);
+    
+    <span class="hljs-comment">// without ';' this value is returned from its scope</span>
+    <span class="hljs-comment">//which is the return call of the function</span>
+    result.<span class="hljs-title function_ invoke__">to_string</span>()
+}
+</code></pre>
+        <p><b>TCP Server in Rust</b></p>
+        <p>What is left to do is the TCP server stuff which can be summarized into:</p>
+        <ul>
+         <li>Create and bind to a socket</li>
+         <li>Listen for clients to connect, spawn a thread for each client that connects (very prone to DDOS attacks do not do this)</li>
+         <li>Assign each thread a task</li>
+         <li>Gracefully exit threads when done (I skip this)</li>
+        </ul>
+        <pre class="bs-code-block"><code class="language-rust hljs" data-highlighted="yes"><span class="hljs-keyword">const</span> BIND_ADDR: &amp;<span class="hljs-type">str</span> = <span class="hljs-string">"0.0.0.0:48879"</span>;
+<span class="hljs-keyword">const</span> DEF_ERROR_RESP: &amp;<span class="hljs-type">str</span> = <span class="hljs-string">"{}"</span>;
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">main</span>() {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">listener</span> = TcpListener::<span class="hljs-title function_ invoke__">bind</span>(BIND_ADDR).<span class="hljs-title function_ invoke__">unwrap</span>();
+
+    <span class="hljs-keyword">for</span> <span class="hljs-variable">stream</span> <span class="hljs-keyword">in</span> listener.<span class="hljs-title function_ invoke__">incoming</span>() {
+        <span class="hljs-keyword">let</span> <span class="hljs-variable">stream</span> = stream.<span class="hljs-title function_ invoke__">unwrap</span>();
+        
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Connection established!"</span>);
+        thread::<span class="hljs-title function_ invoke__">spawn</span>(|| {
+            <span class="hljs-title function_ invoke__">handle_connection</span>(stream);
+        });
+    }
+}
+</code></pre>
+        <p>handle_connection reads and parses bytes from clients and responds accordingly to the JSON protocol. Above I intentionally left out some TODOs that is implemented here, the actual reading and writing from/to TCP clients.</p>
+        <pre class="bs-code-block"><code class="language-rust hljs" data-highlighted="yes"><span class="hljs-keyword">fn</span> <span class="hljs-title function_">handle_connection</span>(<span class="hljs-keyword">mut</span> stream: TcpStream) {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">buf_reader</span> = BufReader::<span class="hljs-title function_ invoke__">new</span>(stream.<span class="hljs-title function_ invoke__">try_clone</span>().<span class="hljs-title function_ invoke__">unwrap</span>());
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">buf_writer</span> = BufWriter::<span class="hljs-title function_ invoke__">new</span>(&amp;<span class="hljs-keyword">mut</span> stream);
+
+    <span class="hljs-keyword">loop</span> {
+        
+        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">request_line</span> = <span class="hljs-type">String</span>::<span class="hljs-title function_ invoke__">new</span>();
+        <span class="hljs-keyword">let</span> <span class="hljs-variable">num_bytes</span> = buf_reader.<span class="hljs-title function_ invoke__">read_line</span>(&amp;<span class="hljs-keyword">mut</span> request_line).<span class="hljs-title function_ invoke__">unwrap</span>();
+        <span class="hljs-keyword">let</span> <span class="hljs-variable">method</span> = <span class="hljs-title function_ invoke__">parse_json</span>(&amp;request_line);
+    
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Read {} bytes: {} "</span>, num_bytes, request_line);
+
+        <span class="hljs-keyword">if</span> num_bytes == <span class="hljs-number">0</span> {
+            <span class="hljs-keyword">break</span>;
+        }
+        
+        <span class="hljs-keyword">match</span> method {
+            <span class="hljs-title function_ invoke__">Ok</span>(m) =&gt; {
+                <span class="hljs-keyword">let</span> <span class="hljs-variable">response</span> = <span class="hljs-title function_ invoke__">handle_response</span>(&amp;m);
+                buf_writer.<span class="hljs-title function_ invoke__">write_all</span>({
+                    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Valid json: Sending response {}"</span>, &amp;response);
+                    response.<span class="hljs-title function_ invoke__">as_bytes</span>()
+                }).<span class="hljs-title function_ invoke__">unwrap</span>();
+                buf_writer.<span class="hljs-title function_ invoke__">flush</span>().<span class="hljs-title function_ invoke__">unwrap</span>();
+            },
+            <span class="hljs-title function_ invoke__">Err</span>(_) =&gt; {
+                <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Malformed json '{}': responding with err"</span>, request_line);
+                buf_writer.<span class="hljs-title function_ invoke__">write_all</span>({
+                    DEF_ERROR_RESP.<span class="hljs-title function_ invoke__">as_bytes</span>()
+                }).<span class="hljs-title function_ invoke__">unwrap</span>();
+                buf_writer.<span class="hljs-title function_ invoke__">flush</span>().<span class="hljs-title function_ invoke__">unwrap</span>();
+                <span class="hljs-keyword">break</span>;
+            },
+        }
+    }
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">"Disconnect client!"</span>);
+}
+</code></pre>
+        <p>...and that is all for this post, thanks for reading!</p>
+       </div>
+      </div>
+     </div>
+     <div class="footer footer_dark kobweb-box kobweb-align-center" style="grid-row: 2 / 3;">
+      <span style="text-align: center;">
+       <div class="kobweb-col kobweb-arrange-top kobweb-align-start">
+        <div class="kobweb-row kobweb-arrange-start kobweb-align-top">
+         <span style="white-space: pre-wrap; text-align: center;"><span class="silk-span-text" style="white-space: pre-wrap;">Powered by </span><a class="silk-link silk-link-uncolored" style="--silk-color: rgb(60, 131, 239);" href="https://github.com/varabyte/kobweb">Kobweb</a><span class="silk-span-text" style="white-space: pre-wrap;">, site source </span><a class="silk-link silk-link-uncolored" style="--silk-color: rgb(60, 131, 239); white-space: nowrap; font-family: monospace;" href="https://github.com/kjeller/stralman.dev">here</a></span>
+        </div>
+        <div class="kobweb-row kobweb-arrange-center kobweb-align-top" style="font-size: 0.7rem; width: 100%;">
+         <span class="silk-span-text" style="white-space: pre-wrap;">Inspired by Hugo theme </span><a class="silk-link silk-link-uncolored" style="--silk-color: rgb(60, 131, 239);" href="https://github.com/austingebauer/devise"> Devise</a>
+        </div>
+       </div>
+       <div class="kobweb-row kobweb-arrange-center kobweb-align-top">
+        <span class="silk-span-text bs-copyright">© 2023, Karl Strålman</span>
+       </div></span>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script src="/stralman.js"></script>
+ </body>
+</html>
