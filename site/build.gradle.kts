@@ -86,8 +86,8 @@ data class FrontMatterKeys(
 data class MarkdownData(
     val file: File,
     val date: String?,
-    val title: String? = null,
-    val author: String? = null,
+    val title: String?,
+    val author: String?,
     val tags: List<String>? = emptyList()
 )
 
@@ -97,6 +97,55 @@ data class RssData(
     val author: String,
     val description: String,
     val language: String,
+    val lastBuildDate: String,
+    val copyright: String,
+    val generator: String = "Kobweb -- kobweb.varabyte.com",
+    val items: List<RssItem> = emptyList(),
+) {
+    fun toRssString(): String {
+        return buildString {
+            appendLine(
+                """<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+                |<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+                |<channel>
+                |   <title>${title}</title>
+                |   <link>${baseUrl}</link>
+                |   <description>${description}</description>
+                |   <generator>${generator}</generator>
+                |   <language>${language}</language>
+                |   <copyright>${copyright}</copyright>
+                |   <lastBuildDate>${lastBuildDate}</lastBuildDate>
+                |   <atom:link href="${baseUrl}/index.xml" rel="self" type="application/rss+xml"/>
+                """.trimMargin()
+            )
+            items.forEach {
+                appendLine(
+                    """<item>
+                    |   <title>${it.title}</title>
+                    |   <link>${it.link}</link>
+                    |   <guid>${it.guid}</guid>
+                    |   <pubDate>${it.pubDate}</pubDate>
+                    |   <description>${it.description}</description>
+                    |</item>
+                    """.trimMargin()
+                )
+            }
+            appendLine(
+                """
+                |</channel>
+                |</rss> 
+                """.trimMargin()
+            )
+        }
+    }
+}
+
+data class RssItem(
+    val title: String,
+    val link: String,
+    val pubDate: String,
+    val guid: String,
+    val description: String,
 )
 
 fun getUrlFromFilePath(file: File) =
@@ -148,6 +197,7 @@ val markdownEntries: List<MarkdownData> =
             .parse(it.readText())
             .accept(visitor)
         val fm = visitor.frontMatter
+
         MarkdownData(
             file = it,
             title = fm[fmk.title]?.firstOrNull(),
@@ -207,7 +257,8 @@ val generateMarkdownEntriesTask = task("generateMarkdownEntries") {
                         markdownResourceDir
                             .toString()
                             .substringAfterLast(layout.projectDirectory.asFile.name)
-                            .replace("\\", "/")}"
+                            .replace("\\", "/")
+                    }"
                     |
                     |val markdownEntries = listOf${if (markdownEntries.isEmpty()) "<MarkdownEntry>" else ""}(
                     """.trimMargin()
@@ -233,12 +284,47 @@ val generateMarkdownEntriesTask = task("generateMarkdownEntries") {
 val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") {
     val group = "dev/stralman"
     val genDir = layout.buildDirectory.dir("processedResources/js/main/public").get()
+    val buildDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
+    val author = "Karl Strålman"
+    val baseUrl = "https://stralman.dev"
     val rssData = RssData(
         title = "stralman.dev",
-        baseUrl = "https://stralman.dev",
-        author = "Karl Strålman",
+        baseUrl = baseUrl,
+        author = author,
         description = kobweb.app.index.description.get(),
         language = "en-us",
+        lastBuildDate = "${localDateTimeToRfc1123String(buildDate)}",
+        copyright = "© ${buildDate.year}, ${author}",
+        items = markdownEntries.map {
+            // TODO make this more general
+            val url = "${baseUrl}/posts${getUrlFromFilePath(it.file)}"
+            var fmCount = 0
+            RssItem(
+                title = it.title!!,
+                link = url,
+                guid = url,
+                pubDate = localDateToRfc1123String(it.date!!.toLocalDate()),
+                description = it.file
+                    .readLines()
+                    .asSequence()
+                    .dropWhile { line ->
+                        if (line == "---") {
+                            fmCount++
+                        }
+                        fmCount < 2
+                    }
+                    .drop(1)
+                    .filter { line ->
+                        line.isNotEmpty() &&
+                                line.isNotBlank() &&
+                                line.first() != '#'
+                    }
+                    .joinToString(". ")
+                    .split(Regex("(?<=[.!?])\\s+"))
+                    .take(5)
+                    .joinToString(". ")
+            )
+        }
     )
     inputs.dir(markdownResourceDir)
         .withPropertyName("markdownEntries")
@@ -247,70 +333,11 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
         .withPropertyName("rssEntrydata")
 
     doLast {
-        val buildDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
-
         genDir.file("index.xml").asFile.apply {
             parentFile.mkdirs()
-            writeText(buildString {
-                appendLine(
-                    """<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-                    |<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-                    |<channel>
-                    |   <title>${rssData.title}</title>
-                    |   <link>${rssData.baseUrl}</link>
-                    |   <description>${rssData.description}</description>
-                    |   <generator>Kobweb -- kobweb.varabyte.com</generator>
-                    |   <language>${rssData.language}</language>
-                    |   <copyright>© ${buildDate.year}, ${rssData.author}</copyright>
-                    |   <lastBuildDate>${localDateTimeToRfc1123String(buildDate)}</lastBuildDate>
-                    |   <atom:link href="${rssData.baseUrl}/index.xml" rel="self" type="application/rss+xml"/>
-                    """.trimMargin()
-                )
-                markdownEntries.forEach {
-                    val url = "${rssData.baseUrl}/posts${getUrlFromFilePath(it.file)}"
-                    var fmCount = 0
-                    appendLine(
-                        """<item>
-                        |   <title>${it.title}</title>
-                        |   <link>${url}</link>
-                        |   <guid>${url}</guid>
-                        |   <pubDate>${
-                            localDateToRfc1123String(
-                                it.date!!.toLocalDate()
-                            )
-                        }</pubDate>
-                        |   <description>${
-                            it.file
-                                .readLines()
-                                .asSequence()
-                                .dropWhile { line ->
-                                    if (line == "---") {
-                                        fmCount++
-                                    }
-                                    fmCount < 2
-                                }
-                                .drop(1)
-                                .filter { line ->
-                                    line.isNotEmpty() &&
-                                            line.isNotBlank() &&
-                                            line.first() != '#'
-                                }
-                                .joinToString(". ")
-                                .split(Regex("(?<=[.!?])\\s+"))
-                                .take(5)
-                                .joinToString(". ")
-                        }</description>
-                        |</item>
-                        """.trimMargin()
-                    )
-                }
-                appendLine(
-                    """
-                    |</channel>
-                    |</rss> 
-                    """.trimMargin()
-                )
-            })
+            writeText(
+                rssData.toRssString()
+            )
             println("Generated $absolutePath")
         }
     }
