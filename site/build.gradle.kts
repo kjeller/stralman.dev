@@ -282,8 +282,9 @@ val generateMarkdownEntriesTask = task("generateMarkdownEntries") {
     }
 }
 val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") {
+    dependsOn(":site:kobwebGenSiteIndex")
     val group = "dev/stralman"
-    val genDir = layout.buildDirectory.dir("processedResources/js/main/public").get()
+    val genDir = layout.buildDirectory.dir("generated/resources/rss").get()
     val buildDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
     val author = "Karl Strålman"
     val baseUrl = "https://stralman.dev"
@@ -296,7 +297,7 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
         lastBuildDate = "${localDateTimeToRfc1123String(buildDate)}",
         copyright = "© ${buildDate.year}, ${author}",
         items = markdownEntries.map {
-            // TODO make this more general
+            // TODO make this more generic
             val url = "${baseUrl}/posts${getUrlFromFilePath(it.file)}"
             var fmCount = 0
             RssItem(
@@ -333,7 +334,7 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
         .withPropertyName("rssEntrydata")
 
     doLast {
-        genDir.file("index.xml").asFile.apply {
+        genDir.file("public/index.xml").asFile.apply {
             parentFile.mkdirs()
             writeText(
                 rssData.toRssString()
