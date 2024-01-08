@@ -282,7 +282,6 @@ val generateMarkdownEntriesTask = task("generateMarkdownEntries") {
     }
 }
 val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") {
-    dependsOn(":site:kobwebGenSiteIndex")
     val group = "dev/stralman"
     val genDir = layout.buildDirectory.dir("generated/resources/rss").get()
     val buildDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
