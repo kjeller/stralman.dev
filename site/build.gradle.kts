@@ -203,6 +203,12 @@ val generateMarkdownEntriesTask = task("generateMarkdownEntries") {
                     |import dev.stralman.data.MarkdownEntry
                     |import kotlinx.datetime.toLocalDate
                     |
+                    |val markdownResourceDir = "${layout.projectDirectory.asFile.name}${
+                        markdownResourceDir
+                            .toString()
+                            .substringAfterLast(layout.projectDirectory.asFile.name)
+                            .replace("\\", "/")}"
+                    |
                     |val markdownEntries = listOf${if (markdownEntries.isEmpty()) "<MarkdownEntry>" else ""}(
                     """.trimMargin()
                 )

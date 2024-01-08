@@ -11,6 +11,8 @@ import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.fontSize
 import com.varabyte.kobweb.compose.ui.modifiers.fontWeight
 import com.varabyte.kobweb.compose.ui.modifiers.margin
+import com.varabyte.kobweb.compose.ui.modifiers.maxWidth
+import com.varabyte.kobweb.compose.ui.modifiers.minWidth
 import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.compose.ui.modifiers.textAlign
 import com.varabyte.kobweb.compose.ui.modifiers.width
@@ -23,7 +25,7 @@ import org.jetbrains.compose.web.dom.Span
 import org.jetbrains.compose.web.dom.Text
 
 @Composable
-fun Badge(
+fun BadgeSpan(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
@@ -39,11 +41,11 @@ fun Badge(
 }
 
 @Composable
-fun BadgeText(
-    text: String,
+fun BadgeContent(
     modifier: Modifier = Modifier,
+    content: @Composable () -> Unit,
 ) {
-    Badge(
+    BadgeSpan(
         modifier = modifier.margin(right = 15.px)
     ) {
         P(
@@ -52,13 +54,14 @@ fun BadgeText(
                 .color(Color("#2b2a33"))
                 .fontWeight(FontWeight.Bold)
                 .fillMaxWidth()
-                .width(80.px)
+                .maxWidth(400.px)
+                .minWidth(80.px)
                 .margin(0.px)
                 .padding(0.px)
                 .textAlign(TextAlign.Center)
                 .toAttrs()
         ) {
-            Text(text)
+            content()
         }
     }
 }

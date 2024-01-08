@@ -7,6 +7,7 @@ import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.css.OverflowWrap
 import com.varabyte.kobweb.compose.foundation.layout.Column
+import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.backgroundColor
 import com.varabyte.kobweb.compose.ui.modifiers.borderRadius
@@ -22,7 +23,9 @@ import com.varabyte.kobweb.compose.ui.modifiers.overflow
 import com.varabyte.kobweb.compose.ui.modifiers.overflowWrap
 import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.core.rememberPageContext
+import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
+import com.varabyte.kobweb.silk.components.style.hover
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.init.InitSilk
 import com.varabyte.kobweb.silk.init.InitSilkContext
@@ -31,19 +34,33 @@ import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import com.varabyte.kobweb.silk.theme.colors.palette.color
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import com.varabyte.kobwebx.markdown.markdown
-import dev.stralman.components.widgets.badge.BadgeText
+import dev.stralman.articles.markdownResourceDir
+import dev.stralman.components.widgets.badge.BadgeContent
 import kotlinx.browser.document
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.cssRem
-import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.vw
+import org.jetbrains.compose.web.dom.A
+import org.jetbrains.compose.web.dom.Text
 
 @InitSilk
 fun initHighlightJs(ctx: InitSilkContext) {
     // Tweaks to make output from highlight.js look softer / better
     ctx.stylesheet.registerStyleBase("code.hljs") { Modifier.borderRadius(8.px) }
+}
+
+
+val LinkStyleMarkdown by ComponentStyle {
+    base {
+        Modifier
+            .backgroundColor(Color("#6c757d"))
+    }
+    hover {
+        Modifier
+            .backgroundColor(Color("#ffffff"))
+    }
 }
 
 val MarkdownStyle by ComponentStyle {
@@ -155,9 +172,26 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
             val author = ctx.markdown!!.frontMatter.getValue("author").single()
             val updated = ctx.markdown!!.frontMatter["updated"]?.singleOrNull()
             Column {
-                BadgeText("$date")
-                if (updated != null) {
-                    BadgeText("Updated: $updated")
+                Row {
+                    BadgeContent {
+                        Text(date)
+                    }
+                    if (updated != null) {
+                        BadgeContent {
+                            Text("Updated: $updated")
+                        }
+                    }
+                    BadgeContent(
+                        // TODO not working but something like this is what I want
+                       // modifier = LinkStyleMarkdown.toModifier()
+                    ) {
+                        Link(
+                            // Crude temporary way of showing edit link
+                            // TODO add link from profile for this
+                            "https://github.com/kjeller/stralman.dev//tree/kobweb-wip/${markdownResourceDir.substringBeforeLast("/")}/${ctx.markdown!!.path}",
+                            "Edit on Github",
+                        )
+                    }
                 }
             }
             content()

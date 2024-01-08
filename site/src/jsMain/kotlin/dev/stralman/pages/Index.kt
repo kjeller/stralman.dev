@@ -17,7 +17,6 @@ import com.varabyte.kobweb.compose.ui.modifiers.maxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.compose.ui.modifiers.textAlign
 import com.varabyte.kobweb.compose.ui.modifiers.verticalAlign
-import com.varabyte.kobweb.compose.ui.modifiers.width
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.silk.components.navigation.Link
@@ -26,7 +25,7 @@ import com.varabyte.kobweb.silk.components.style.base
 import com.varabyte.kobweb.silk.components.style.toModifier
 import dev.stralman.articles.markdownEntries
 import dev.stralman.components.layouts.PageLayout
-import dev.stralman.components.widgets.badge.BadgeText
+import dev.stralman.components.widgets.badge.BadgeContent
 import dev.stralman.util.getShortMonth
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.cssRem
@@ -59,11 +58,11 @@ fun BlogPostList(
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    BadgeText(
-                        "${getShortMonth(it.date.month)} ${
+                    BadgeContent {
+                        Text("${getShortMonth(it.date.month)} ${
                             it.date.dayOfMonth.toString().padStart(2, '0')
-                        } ${it.date.year}"
-                    )
+                        } ${it.date.year}")
+                    }
                     Column {
                         Link(
                             text = it.title,
