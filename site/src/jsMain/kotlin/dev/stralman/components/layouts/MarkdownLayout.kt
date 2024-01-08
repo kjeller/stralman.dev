@@ -42,7 +42,6 @@ import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.vw
-import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.Text
 
 @InitSilk
@@ -181,15 +180,18 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
                             Text("Updated: $updated")
                         }
                     }
-                    BadgeContent(
-                        // TODO not working but something like this is what I want
-                       // modifier = LinkStyleMarkdown.toModifier()
-                    ) {
+                    BadgeContent {
                         Link(
                             // Crude temporary way of showing edit link
                             // TODO add link from profile for this
-                            "https://github.com/kjeller/stralman.dev//tree/kobweb-wip/${markdownResourceDir.substringBeforeLast("/")}/${ctx.markdown!!.path}",
+                            "https://github.com/kjeller/stralman.dev//tree/kobweb-wip/${
+                                markdownResourceDir.substringBeforeLast(
+                                    "/"
+                                )
+                            }/${ctx.markdown!!.path}",
                             "Edit on Github",
+                            modifier = Modifier
+                                .color(Color("#2B2A33"))
                         )
                     }
                 }
