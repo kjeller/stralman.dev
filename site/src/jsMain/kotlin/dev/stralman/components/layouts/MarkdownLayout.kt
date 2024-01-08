@@ -36,7 +36,9 @@ import kotlinx.browser.document
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.cssRem
+import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.css.vw
 
 @InitSilk
 fun initHighlightJs(ctx: InitSilkContext) {
@@ -147,7 +149,7 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
         Column(
             MarkdownStyle
                 .toModifier()
-                .maxWidth(40.cssRem)
+                .maxWidth(65.vw)
         ) {
             val date = ctx.markdown!!.frontMatter.getValue("date").single()
             val author = ctx.markdown!!.frontMatter.getValue("author").single()
