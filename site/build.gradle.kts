@@ -207,10 +207,8 @@ val markdownEntries: List<MarkdownData> =
         )
     }
 
-// This works when running normally but is not included when runnin kobweb export --static
-/*val copyMarkdownResourcesTask = task("copyMarkdownResources") {
-    val group = "dev/stralman"
-    val genDir = layout.buildDirectory.dir("processedResources/js/main/public").get()
+val copyMarkdownResourcesTask = task("copyMarkdownResources") {
+    val genDir = layout.buildDirectory.dir("generated/resources/markdown").get()
 
     inputs.dir(markdownResourceDir)
         .withPropertyName("markdownEntries")
@@ -223,12 +221,12 @@ val markdownEntries: List<MarkdownData> =
             println("Copying ${it.file.parentFile} to $genDir")
             copy {
                 from("${it.file.parentFile}")
-                into("$genDir")
+                into("${genDir}/public")
                 exclude("*.md")
             }
         }
     }
-}*/
+}
 val generateMarkdownEntriesTask = task("generateMarkdownEntries") {
     //dependsOn(copyMarkdownResourcesTask.name)
     val group = "dev/stralman"
@@ -282,7 +280,6 @@ val generateMarkdownEntriesTask = task("generateMarkdownEntries") {
     }
 }
 val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") {
-    val group = "dev/stralman"
     val genDir = layout.buildDirectory.dir("generated/resources/rss").get()
     val buildDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
     val author = "Karl Strålman"
@@ -293,7 +290,7 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
         author = author,
         description = kobweb.app.index.description.get(),
         language = "en-us",
-        lastBuildDate = "${localDateTimeToRfc1123String(buildDate)}",
+        lastBuildDate = localDateTimeToRfc1123String(buildDate),
         copyright = "© ${buildDate.year}, ${author}",
         items = markdownEntries.map {
             // TODO make this more generic
@@ -367,6 +364,7 @@ kotlin {
 
             kotlin.srcDir(generateMarkdownEntriesTask)
             resources.srcDir(generateRssFromMarkdownEntriesTask)
+            resources.srcDir(copyMarkdownResourcesTask)
         }
 
         // Uncomment the following if you pass `includeServer = true` into the `configAsKobwebApplication` call.
@@ -377,4 +375,3 @@ kotlin {
 //        }
     }
 }
-
