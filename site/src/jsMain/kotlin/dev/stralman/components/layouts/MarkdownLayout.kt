@@ -174,7 +174,7 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
             Column {
                 Row {
                     BadgeContent {
-                        Text(date)
+                        Text("Created: $date")
                     }
                     if (updated != null) {
                         BadgeContent {
