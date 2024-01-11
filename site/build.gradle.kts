@@ -283,7 +283,7 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
     val genDir = layout.buildDirectory.dir("generated/resources/rss").get()
     val buildDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
     val author = "Karl Strålman"
-    val baseUrl = "https://stralman.dev"
+    val baseUrl = "https://compose.stralman.dev"
     val rssData = RssData(
         title = "stralman.dev",
         baseUrl = baseUrl,
@@ -291,7 +291,7 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
         description = kobweb.app.index.description.get(),
         language = "en-us",
         lastBuildDate = localDateTimeToRfc1123String(buildDate),
-        copyright = "© ${buildDate.year}, ${author}",
+        copyright = "© ${buildDate.year}, $author",
         items = markdownEntries.map {
             // TODO make this more generic
             val url = "${baseUrl}/posts${getUrlFromFilePath(it.file)}"
