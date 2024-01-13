@@ -5,11 +5,10 @@ import androidx.compose.runtime.Composable
 data class Profile(
     val name: String,
     val shortDescription: String,
-    val secondaryTextColor: String,
     val imageResource: String,
-    val imageBorderColor: String,
     val linkList: List<RouteLink> = emptyList(),
     val socialLinkList: List<FaIconLink> = emptyList(),
+    val pageSourceUrl: String
 )
 
 data class RouteLink(

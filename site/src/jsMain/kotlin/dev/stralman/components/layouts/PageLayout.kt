@@ -6,27 +6,19 @@ import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.ColumnScope
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.modifiers.color
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.gridRow
 import com.varabyte.kobweb.compose.ui.modifiers.gridTemplateRows
 import com.varabyte.kobweb.compose.ui.modifiers.maxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.minHeight
-import com.varabyte.kobweb.silk.components.icons.fa.FaGithub
-import com.varabyte.kobweb.silk.components.icons.fa.FaLinkedin
-import com.varabyte.kobweb.silk.components.icons.fa.FaRss
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
-import com.varabyte.kobweb.silk.components.style.hover
 import com.varabyte.kobweb.silk.components.style.toModifier
 import dev.stralman.components.sections.Footer
 import dev.stralman.components.sections.ProfileHeader
-import dev.stralman.data.FaIconLink
-import dev.stralman.data.Profile
-import dev.stralman.data.RouteLink
+import dev.stralman.profile
 import kotlinx.browser.document
-import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.fr
 import org.jetbrains.compose.web.css.percent
@@ -38,7 +30,7 @@ val PageContentStyle by ComponentStyle {
     Breakpoint.MD { Modifier.maxWidth(40.cssRem) }
 }
 
-val FaIconStyle by ComponentStyle {
+/*val FaIconStyle by ComponentStyle {
     base {
         Modifier
             .color(Color("#6c757d"))
@@ -47,39 +39,11 @@ val FaIconStyle by ComponentStyle {
         Modifier
             .color(Color("#ffffff"))
     }
-}
+}*/
 
 @Composable
 fun PageLayout(content: @Composable ColumnScope.() -> Unit) {
-    document.title = "Karl Strålman"
-    val profile = Profile(
-        "Kalle Strålman ☢\uFE0F",
-        "A tech hobbyist's guide to the galaxy.",
-        secondaryTextColor = "#6c757d",
-        "/profile.png",
-        imageBorderColor = "#42414d",
-        linkList = listOf(
-            RouteLink(
-                "About",
-                "/about/",
-            ),
-            RouteLink(
-                "Tags",
-                "/tags/"
-            )
-        ),
-        socialLinkList = listOf(
-            FaIconLink(
-                "https://github.com/kjeller"
-            ) { FaGithub(FaIconStyle.toModifier()) },
-            FaIconLink(
-                "https://www.linkedin.com/in/karl-str%C3%A5lman-422b6b173/"
-            ) { FaLinkedin(FaIconStyle.toModifier()) },
-            FaIconLink(
-                "index.xml"
-            ) { FaRss(FaIconStyle.toModifier()) }
-        )
-    )
+    document.title = profile.name
 
     Box(
         Modifier

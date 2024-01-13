@@ -25,12 +25,12 @@ import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
-import com.varabyte.kobweb.silk.components.style.hover
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.init.InitSilk
 import com.varabyte.kobweb.silk.init.InitSilkContext
 import com.varabyte.kobweb.silk.init.registerStyleBase
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import com.varabyte.kobweb.silk.theme.colors.palette.background
 import com.varabyte.kobweb.silk.theme.colors.palette.color
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import com.varabyte.kobwebx.markdown.markdown
@@ -48,18 +48,6 @@ import org.jetbrains.compose.web.dom.Text
 fun initHighlightJs(ctx: InitSilkContext) {
     // Tweaks to make output from highlight.js look softer / better
     ctx.stylesheet.registerStyleBase("code.hljs") { Modifier.borderRadius(8.px) }
-}
-
-
-val LinkStyleMarkdown by ComponentStyle {
-    base {
-        Modifier
-            .backgroundColor(Color("#6c757d"))
-    }
-    hover {
-        Modifier
-            .backgroundColor(Color("#ffffff"))
-    }
 }
 
 val MarkdownStyle by ComponentStyle {
@@ -191,7 +179,7 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
                             }/${ctx.markdown!!.path}",
                             "Edit on Github",
                             modifier = Modifier
-                                .color(Color("#2B2A33"))
+                                .color(colorMode.toPalette().background)
                         )
                     }
                 }

@@ -1,6 +1,7 @@
 package dev.stralman.pages
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.css.VerticalAlign
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
@@ -26,11 +27,15 @@ import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.base
 import com.varabyte.kobweb.silk.components.style.hover
 import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import com.varabyte.kobweb.silk.theme.colors.palette.background
+import com.varabyte.kobweb.silk.theme.colors.palette.border
+import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import dev.stralman.articles.markdownEntries
 import dev.stralman.components.layouts.PageLayout
 import dev.stralman.components.widgets.badge.BadgeContent
+import dev.stralman.secondary
 import dev.stralman.util.getShortMonth
-import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.P
@@ -49,14 +54,14 @@ val BlogPostEntry by ComponentStyle.base {
 val BlogPostRow by ComponentStyle {
     base {
         Modifier
-            .backgroundColor(Color("#2b2a33"))
+            .backgroundColor(colorMode.toPalette().background)
             .borderRadius(0.25.cssRem)
             .fillMaxWidth()
             .padding(5.px)
     }
     hover {
         Modifier
-            .backgroundColor(Color("#42414d"))
+            .backgroundColor(colorMode.toPalette().border)
     }
 }
 
@@ -64,15 +69,9 @@ val BlogPostRow by ComponentStyle {
 fun BlogPostList(
     modifier: Modifier = Modifier
 ) {
+    val colorMode by ColorMode.currentState
     Column {
         markdownEntries.forEach {
-            /*Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = modifier
-                    .maxWidth(65.vw)
-                    .minWidth(35.vw)
-                    .margin(bottom = 15.px),
-            ) {*/
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Start,
@@ -103,7 +102,7 @@ fun BlogPostList(
                                 modifier
                                     .fontSize(0.7.cssRem)
                                     .textAlign(TextAlign.Left)
-                                    .color(Color("#6c757d"))
+                                    .color(colorMode.toPalette().secondary)
                             )
                             .toAttrs()
                     ) {

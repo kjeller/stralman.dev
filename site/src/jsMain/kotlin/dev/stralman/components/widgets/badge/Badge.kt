@@ -15,14 +15,30 @@ import com.varabyte.kobweb.compose.ui.modifiers.maxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.minWidth
 import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.compose.ui.modifiers.textAlign
-import com.varabyte.kobweb.compose.ui.modifiers.width
 import com.varabyte.kobweb.compose.ui.toAttrs
+import com.varabyte.kobweb.silk.components.style.ComponentStyle
+import com.varabyte.kobweb.silk.components.style.base
+import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.theme.colors.palette.background
+import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Span
-import org.jetbrains.compose.web.dom.Text
+
+val BadgeP by ComponentStyle.base {
+    Modifier
+        .fontSize(0.7.cssRem)
+        .color(colorMode.toPalette().background)
+        .fontWeight(FontWeight.Bold)
+        .fillMaxWidth()
+        .maxWidth(400.px)
+        .minWidth(80.px)
+        .margin(0.px)
+        .padding(0.px)
+        .textAlign(TextAlign.Center)
+}
 
 @Composable
 fun BadgeSpan(
@@ -49,16 +65,8 @@ fun BadgeContent(
         modifier = modifier.margin(right = 15.px)
     ) {
         P(
-            modifier
-                .fontSize(0.7.cssRem)
-                .color(Color("#2b2a33"))
-                .fontWeight(FontWeight.Bold)
-                .fillMaxWidth()
-                .maxWidth(400.px)
-                .minWidth(80.px)
-                .margin(0.px)
-                .padding(0.px)
-                .textAlign(TextAlign.Center)
+            BadgeP
+                .toModifier()
                 .toAttrs()
         ) {
             content()
