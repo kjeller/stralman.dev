@@ -14,6 +14,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.compose.ui.modifiers.size
 import com.varabyte.kobweb.compose.ui.modifiers.width
+import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.navigation.Anchor
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
@@ -23,7 +24,7 @@ import com.varabyte.kobweb.silk.components.style.toAttrs
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import dev.stralman.components.widgets.image.RoundBorderImage
-import dev.stralman.data.Profile
+import dev.stralman.profile
 import dev.stralman.secondary
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.Div
@@ -51,33 +52,29 @@ val FaIconStyle by ComponentStyle {
 
 @Composable
 fun ProfileHeader(
-    profile: Profile,
     profileImageHref: String = "/",
     modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = modifier.padding(20.px),
-        verticalArrangement = Arrangement.Center,
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier.padding(20.px)
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = modifier.padding(bottom = 0.px)
+        Anchor(
+            href = profileImageHref
         ) {
-            Div {
-                Anchor(
-                    href = profileImageHref
-                ) {
-                    RoundBorderImage(
-                        src = profile.imageResource,
-                        modifier = modifier.size(120.px)
-                    )
-                }
-            }
+            RoundBorderImage(
+                src = profile.imageResource,
+                modifier = modifier.size(120.px)
+            )
+        }
+        Div {
             Column(
                 modifier = modifier
-                    .padding(10.px),
+                    .padding(left = 10.px),
             ) {
-                H1 {
+                H1(
+                    attrs = modifier.margin(0.px).padding(0.px).toAttrs()
+                ) {
                     Text(profile.name)
                 }
                 P(PSecondaryStyle.toAttrs()) {

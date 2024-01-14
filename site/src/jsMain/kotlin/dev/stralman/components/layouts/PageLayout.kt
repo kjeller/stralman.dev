@@ -59,7 +59,9 @@ fun PageLayout(content: @Composable ColumnScope.() -> Unit) {
             Modifier.fillMaxSize().gridRow(1),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            ProfileHeader(profile)
+            ProfileHeader(
+                modifier = Modifier,
+            )
             Column(
                 PageContentStyle.toModifier(),
                 horizontalAlignment = Alignment.CenterHorizontally
