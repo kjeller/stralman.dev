@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.css.ObjectFit
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.graphics.lightened
-import com.varabyte.kobweb.compose.ui.modifiers.alignContent
 import com.varabyte.kobweb.compose.ui.modifiers.border
 import com.varabyte.kobweb.compose.ui.modifiers.borderRadius
 import com.varabyte.kobweb.compose.ui.modifiers.objectFit
@@ -16,7 +15,6 @@ import com.varabyte.kobweb.silk.theme.colors.palette.border
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import com.varabyte.kobweb.silk.theme.shapes.Circle
 import com.varabyte.kobweb.silk.theme.shapes.clip
-import org.jetbrains.compose.web.css.AlignContent
 import org.jetbrains.compose.web.css.LineStyle
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
@@ -25,7 +23,6 @@ val RoundBorderImageStyle by ComponentStyle {
     base {
         Modifier
             .clip(Circle())
-            .alignContent(AlignContent.Center)
             .objectFit(ObjectFit.Cover)
             .border(5.px, LineStyle.Solid, colorMode.toPalette().border)
             .borderRadius(50.percent)
@@ -47,8 +44,7 @@ fun RoundBorderImage(
 ) {
     Image(
         src,
-        modifier = RoundBorderImageStyle
-            .toModifier()
-            .then(modifier)
+        modifier = modifier
+            .then(RoundBorderImageStyle.toModifier())
     )
 }

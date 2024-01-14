@@ -1,6 +1,7 @@
 package dev.stralman.data
 
 import androidx.compose.runtime.Composable
+import com.varabyte.kobweb.compose.ui.Modifier
 
 data class Profile(
     val name: String,
@@ -18,5 +19,5 @@ data class RouteLink(
 
 data class FaIconLink(
     val url: String,
-    val faIcon: @Composable () -> Unit,
+    val faIcon: @Composable (modifier: Modifier) -> Unit,
 )

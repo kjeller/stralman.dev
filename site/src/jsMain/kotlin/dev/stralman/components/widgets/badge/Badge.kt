@@ -33,7 +33,7 @@ val BadgeP by ComponentStyle.base {
         .color(colorMode.toPalette().background)
         .fontWeight(FontWeight.Bold)
         .fillMaxWidth()
-        .maxWidth(400.px)
+        .maxWidth(450.px)
         .minWidth(80.px)
         .margin(0.px)
         .padding(0.px)

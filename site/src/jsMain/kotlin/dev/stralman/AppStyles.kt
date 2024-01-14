@@ -5,7 +5,6 @@ import com.varabyte.kobweb.compose.css.ScrollBehavior
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.graphics.Color
 import com.varabyte.kobweb.compose.ui.graphics.Colors
-import com.varabyte.kobweb.compose.ui.modifiers.color
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.fontFamily
 import com.varabyte.kobweb.compose.ui.modifiers.fontSize
@@ -15,8 +14,6 @@ import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.compose.ui.modifiers.overflow
 import com.varabyte.kobweb.compose.ui.modifiers.scrollBehavior
 import com.varabyte.kobweb.silk.components.layout.HorizontalDividerStyle
-import com.varabyte.kobweb.silk.components.style.ComponentStyle
-import com.varabyte.kobweb.silk.components.style.hover
 import com.varabyte.kobweb.silk.init.InitSilk
 import com.varabyte.kobweb.silk.init.InitSilkContext
 import com.varabyte.kobweb.silk.init.registerStyleBase
@@ -36,16 +33,6 @@ const val COLOR_MODE_KEY = "stralman:colorMode"
 
 private val BLOCK_MARGIN = Modifier.margin(top = 1.cssRem)
 private val HEADER_MARGIN = Modifier.margin(top = 2.cssRem)
-val FaIconStyle by ComponentStyle {
-    base {
-        Modifier
-            .color(Color.rgb(0x6c757d))
-    }
-    hover {
-        Modifier
-            .color(Color.rgb(0xffffff))
-    }
-}
 
 @InitSilk
 fun initSiteStyles(ctx: InitSilkContext) {
@@ -88,17 +75,6 @@ fun initSiteStyles(ctx: InitSilkContext) {
             registerStyleBase("h2") { HEADER_MARGIN.fontSize(2.cssRem) }
             registerStyleBase("h3") { HEADER_MARGIN.fontSize(1.5.cssRem) }
             registerStyleBase("h4") { HEADER_MARGIN.fontSize(1.25.cssRem) }
-
-            /*base {
-                Modifier
-                    .color(Color("#6c757d"))
-            }
-            hover {
-                Modifier
-                    .color(Color("#ffffff"))
-            }
-
-             */
         }
         theme.apply {
             modifyComponentStyleBase(HorizontalDividerStyle) {

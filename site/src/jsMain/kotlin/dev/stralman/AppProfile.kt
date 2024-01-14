@@ -3,6 +3,8 @@ package dev.stralman
 import com.varabyte.kobweb.silk.components.icons.fa.FaGithub
 import com.varabyte.kobweb.silk.components.icons.fa.FaLinkedin
 import com.varabyte.kobweb.silk.components.icons.fa.FaRss
+import com.varabyte.kobweb.silk.components.style.toModifier
+import dev.stralman.components.sections.FaIconStyle
 import dev.stralman.data.FaIconLink
 import dev.stralman.data.Profile
 import dev.stralman.data.RouteLink
@@ -24,13 +26,13 @@ val profile = Profile(
     socialLinkList = listOf(
         FaIconLink(
             "https://github.com/kjeller"
-        ) { FaGithub() },
+        ) { FaGithub(FaIconStyle.toModifier()) },
         FaIconLink(
             "https://www.linkedin.com/in/karl-str%C3%A5lman-422b6b173/"
-        ) { FaLinkedin() },
+        ) { FaLinkedin(FaIconStyle.toModifier()) },
         FaIconLink(
             "index.xml"
-        ) { FaRss() }
+        ) { FaRss(FaIconStyle.toModifier()) }
     ),
     pageSourceUrl = "https://github.com/kjeller/stralman.dev/tree/kobweb-wip/"
 )

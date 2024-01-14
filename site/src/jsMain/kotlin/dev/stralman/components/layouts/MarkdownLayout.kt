@@ -50,6 +50,14 @@ fun initHighlightJs(ctx: InitSilkContext) {
     ctx.stylesheet.registerStyleBase("code.hljs") { Modifier.borderRadius(8.px) }
 }
 
+val BadgeText by ComponentStyle {
+    Modifier
+        .margin(0.px, 0.px, 0.px, 0.px)
+        .padding(5.px)
+        .color(colorMode.toPalette().background)
+
+}
+
 val MarkdownStyle by ComponentStyle {
     // The following rules apply to all descendant elements, indicated by the leading space.
     // When you use `cssRule`, the name of this style is prefixed in front of it.
@@ -82,10 +90,6 @@ val MarkdownStyle by ComponentStyle {
             .fontSize(1.2.cssRem)
             .fontWeight(FontWeight.Bolder)
             .margin(top = 1.cssRem, bottom = 0.5.cssRem)
-    }
-
-    cssRule(" p") {
-        Modifier.margin(bottom = 0.8.cssRem)
     }
 
     cssRule(" ul") {
@@ -153,7 +157,7 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
         Column(
             MarkdownStyle
                 .toModifier()
-                .maxWidth(65.vw)
+                .maxWidth(40.vw)
         ) {
             val date = ctx.markdown!!.frontMatter.getValue("date").single()
             val author = ctx.markdown!!.frontMatter.getValue("author").single()
@@ -178,8 +182,7 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
                                 )
                             }/${ctx.markdown!!.path}",
                             "Edit on Github",
-                            modifier = Modifier
-                                .color(colorMode.toPalette().background)
+                            modifier = BadgeText.toModifier()
                         )
                     }
                 }
