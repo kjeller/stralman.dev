@@ -25,6 +25,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
+import com.varabyte.kobweb.silk.components.style.base
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.init.InitSilk
 import com.varabyte.kobweb.silk.init.InitSilkContext
@@ -36,6 +37,7 @@ import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import com.varabyte.kobwebx.markdown.markdown
 import dev.stralman.articles.markdownResourceDir
 import dev.stralman.components.widgets.badge.BadgeContent
+import dev.stralman.profile
 import kotlinx.browser.document
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.DisplayStyle
@@ -50,12 +52,10 @@ fun initHighlightJs(ctx: InitSilkContext) {
     ctx.stylesheet.registerStyleBase("code.hljs") { Modifier.borderRadius(8.px) }
 }
 
-val BadgeText by ComponentStyle {
+val BadgeText by ComponentStyle.base {
     Modifier
         .margin(0.px, 0.px, 0.px, 0.px)
         .padding(5.px)
-        .color(colorMode.toPalette().background)
-
 }
 
 val MarkdownStyle by ComponentStyle {
@@ -174,15 +174,14 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
                     }
                     BadgeContent {
                         Link(
-                            // Crude temporary way of showing edit link
-                            // TODO add link from profile for this
-                            "https://github.com/kjeller/stralman.dev//tree/kobweb-wip/${
+                            "${profile.pageSourceUrl}${
                                 markdownResourceDir.substringBeforeLast(
                                     "/"
                                 )
                             }/${ctx.markdown!!.path}",
                             "Edit on Github",
                             modifier = BadgeText.toModifier()
+                                .then(Modifier.color(colorMode.toPalette().background))
                         )
                     }
                 }

@@ -50,15 +50,17 @@ fun initSiteStyles(ctx: InitSilkContext) {
             registerStyleBase("body") {
                 Modifier
                     .fontFamily(
-                        "Ubuntu", "Roboto", "Arial", "Helvetica", "sans-serif"
-                    )
-                    .fontSize(18.px)
-                    .lineHeight(1.5)
-            }
-            registerStyleBase("code") {
-                Modifier
-                    .fontFamily(
-                        "Ubuntu Mono", "Roboto Mono", "Lucida Console", "Courier New", "monospace"
+                        "-apple-system",
+                        "BlinkMacSystemFont",
+                        "Segoe UI",
+                        "Roboto",
+                        "Oxygen",
+                        "Ubuntu",
+                        "Cantarell",
+                        "Fira Sans",
+                        "Droid Sans",
+                        "Helvetica Neue",
+                        "sans-serif"
                     )
                     .fontSize(18.px)
                     .lineHeight(1.5)

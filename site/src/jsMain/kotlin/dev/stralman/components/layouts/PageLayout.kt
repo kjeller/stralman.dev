@@ -30,17 +30,6 @@ val PageContentStyle by ComponentStyle {
     Breakpoint.MD { Modifier.maxWidth(40.cssRem) }
 }
 
-/*val FaIconStyle by ComponentStyle {
-    base {
-        Modifier
-            .color(Color("#6c757d"))
-    }
-    hover {
-        Modifier
-            .color(Color("#ffffff"))
-    }
-}*/
-
 @Composable
 fun PageLayout(content: @Composable ColumnScope.() -> Unit) {
     document.title = profile.name
