@@ -27,6 +27,7 @@ import dev.stralman.components.widgets.image.RoundBorderImage
 import dev.stralman.profile
 import dev.stralman.secondary
 import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.dom.A
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.H1
 import org.jetbrains.compose.web.dom.P
@@ -100,7 +101,7 @@ fun ProfileHeader(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     profile.socialLinkList.forEach {
-                        Anchor(
+                        A(
                             href = it.url
                         ) {
                             it.faIcon(FaIconStyle.toModifier())
