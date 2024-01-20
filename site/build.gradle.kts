@@ -140,6 +140,8 @@ data class RssData(
     }
 }
 
+val markdownResourceDir = layout.projectDirectory.dir("src/jsMain/resources/markdown/posts")
+
 data class RssItem(
     val title: String,
     val link: String,
@@ -151,7 +153,8 @@ data class RssItem(
 fun getUrlFromFilePath(file: File) =
     file
         .path
-        .substringAfterLast("posts")
+        .substringAfterLast(markdownResourceDir.toString().substringAfterLast("\\")) // Windows
+        .substringAfterLast(markdownResourceDir.toString().substringAfterLast("/")) // Unix
         .substringBefore("\\index.md") // Windows
         .substringBefore("/index.md") // Unix
         .substringBefore(".md")
@@ -187,7 +190,6 @@ fun localDateToRfc1123String(date: LocalDate): String =
         date.dayOfMonth.toString().padStart(2, '0')
     } ${months[date.month.value - 1]} ${date.year} 00:00:00 +0000"
 
-val markdownResourceDir = layout.projectDirectory.dir("src/jsMain/resources/markdown/posts")
 val fmk = FrontMatterKeys()
 val parser = kobweb.markdown.features.createParser()
 val markdownEntries: List<MarkdownData> =
@@ -228,7 +230,6 @@ val copyMarkdownResourcesTask = task("copyMarkdownResources") {
     }
 }
 val generateMarkdownEntriesTask = task("generateMarkdownEntries") {
-    //dependsOn(copyMarkdownResourcesTask.name)
     val group = "dev/stralman"
     val genDir = layout.buildDirectory.dir("generated/$group/src/jsMain/kotlin").get()
 
@@ -264,7 +265,11 @@ val generateMarkdownEntriesTask = task("generateMarkdownEntries") {
                 markdownEntries.sortedByDescending { it.date }.forEach { entry ->
                     appendLine(
                         """ MarkdownEntry(
-                            |       path = "/posts${getUrlFromFilePath(entry.file)}",
+                            |       path = "/${
+                            markdownResourceDir.toString()
+                                .substringAfterLast("\\") // Windows
+                                .substringAfterLast('/') // Unix
+                        }${getUrlFromFilePath(entry.file)}",
                             |       date = "${entry.date?.ifEmpty { "1970-01-01" }}".toLocalDate(),
                             |       title = "${entry.title}",
                             |       author = "${entry.author}",
@@ -293,8 +298,11 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
         lastBuildDate = localDateTimeToRfc1123String(buildDate),
         copyright = "© ${buildDate.year}, $author",
         items = markdownEntries.map {
-            // TODO make this more generic
-            val url = "${baseUrl}/posts${getUrlFromFilePath(it.file)}"
+            val url = "${baseUrl}/${
+                markdownResourceDir.toString()
+                    .substringAfterLast("\\") // Windows
+                    .substringAfterLast('/') // Unix
+            }${getUrlFromFilePath(it.file)}"
             var fmCount = 0
             RssItem(
                 title = it.title!!,
