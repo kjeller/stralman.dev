@@ -31,7 +31,7 @@ import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import com.varabyte.kobweb.silk.theme.colors.palette.background
 import com.varabyte.kobweb.silk.theme.colors.palette.border
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
-import dev.stralman.articles.markdownEntries
+import dev.stralman.markdown.listing.markdownEntries
 import dev.stralman.components.layouts.PageLayout
 import dev.stralman.components.widgets.badge.BadgeContent
 import dev.stralman.secondary

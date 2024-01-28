@@ -35,8 +35,8 @@ import com.varabyte.kobweb.silk.theme.colors.palette.background
 import com.varabyte.kobweb.silk.theme.colors.palette.color
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import com.varabyte.kobwebx.markdown.markdown
-import dev.stralman.articles.markdownResourceDir
 import dev.stralman.components.widgets.badge.BadgeContent
+import dev.stralman.markdown.listing.markdownResourceDir
 import dev.stralman.profile
 import kotlinx.browser.document
 import org.jetbrains.compose.web.css.Color

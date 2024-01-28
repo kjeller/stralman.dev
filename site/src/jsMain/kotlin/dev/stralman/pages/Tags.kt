@@ -6,8 +6,8 @@ import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.silk.components.navigation.Link
-import dev.stralman.articles.markdownEntries
 import dev.stralman.components.layouts.PageLayout
+import dev.stralman.markdown.listing.markdownEntries
 
 @Page
 @Composable

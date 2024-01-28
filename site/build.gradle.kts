@@ -1,6 +1,6 @@
 import com.varabyte.kobweb.common.path.invariantSeparatorsPath
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
-import com.varabyte.kobwebx.gradle.markdown.yamlStringToKotlinString
+import com.varabyte.kobwebx.gradle.markdown.MarkdownData
 import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
@@ -9,16 +9,12 @@ import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDate
 import kotlinx.datetime.toLocalDateTime
 import kotlinx.html.script
-import org.commonmark.ext.front.matter.YamlFrontMatterBlock
-import org.commonmark.ext.front.matter.YamlFrontMatterVisitor
-import org.commonmark.node.AbstractVisitor
-import org.commonmark.node.CustomBlock
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.jetbrains.compose)
-    alias(libs.plugins.kobweb.application)
-    alias(libs.plugins.kobwebx.markdown)
+    id("com.varabyte.kobweb.application")
+    id("com.varabyte.kobwebx.markdown")
 }
 
 buildscript {
@@ -29,6 +25,7 @@ buildscript {
 
 group = "dev.stralman"
 version = "1.0-SNAPSHOT"
+val markdownResourceDir = layout.projectDirectory.dir("src/jsMain/resources/markdown/posts")
 
 kobweb {
     app {
@@ -43,6 +40,63 @@ kobweb {
         }
     }
     markdown {
+        markdownPath.set(markdownResourceDir.toString())
+        generateMarkdownListingFile("dev.stralman.markdown.listing")
+        process.set { markdownDataList: List<MarkdownData> ->
+            val blogpostMarkdownData = markdownDataList.map{ markdownData ->
+                val fm = markdownData.frontMatter
+                BlogpostMarkdownData(
+                    file = File(markdownData.filePath),
+                    title = fm[fmk.title]?.firstOrNull(),
+                    author = fm[fmk.author]?.firstOrNull(),
+                    tags = fm[fmk.tags],
+                    date = fm[fmk.date]?.firstOrNull()
+                )
+            }
+            buildString {
+                appendLine(
+                    """
+                    |import kotlinx.datetime.toLocalDate
+                    |import kotlinx.datetime.LocalDate
+                    |
+                    |data class MarkdownEntry(
+                    |   val path: String,
+                    |   val title: String,
+                    |   val author: String,
+                    |   val date: LocalDate,
+                    |   val tags: List<String> = emptyList()
+                    |)
+                    |
+                    |val markdownResourceDir = "${layout.projectDirectory.asFile.name}${
+                        markdownResourceDir
+                            .toString()
+                            .substringAfterLast(layout.projectDirectory.asFile.name)
+                            .replace("\\", "/")
+                    }"
+                    |
+                    |val markdownEntries = listOf${if (blogpostMarkdownData.isEmpty()) "<MarkdownEntry>" else ""}(
+                    """.trimMargin()
+                )
+                blogpostMarkdownData.sortedByDescending { it.date}.forEach { entry ->
+                    appendLine(
+                        """
+                            |MarkdownEntry(
+                            |       path = "${
+                            markdownResourceDir.toString()
+                                .substringAfterLast("\\") // Windows
+                                .substringAfterLast('/') // Unix
+                        }${getUrlFromFilePath(entry.file)}",
+                            |       date = "${entry.date?.ifEmpty { "1970-01-01" }}".toLocalDate(),
+                            |       title = "${entry.title}",
+                            |       author = "${entry.author}",
+                            |       tags = ${if (entry.tags.isNullOrEmpty()) "emptyList()" else "listOf<String>(${entry.tags.joinToString { "\"$it\"" }})"}
+							|   ),
+						""".trimMargin()
+                    )
+                }
+                appendLine(")")
+            }
+        }
         handlers {
             val BS_WGT = "dev.stralman.components.widgets"
 
@@ -58,23 +112,6 @@ kobweb {
         }
     }
 }
-class MarkdownVisitor : AbstractVisitor() {
-    private val _frontMatter = mutableMapOf<String, List<String>>()
-    val frontMatter: Map<String, List<String>> = _frontMatter
-
-    override fun visit(customBlock: CustomBlock) {
-        if (customBlock is YamlFrontMatterBlock) {
-            val yamlVisitor = YamlFrontMatterVisitor()
-            customBlock.accept(yamlVisitor)
-            _frontMatter.putAll(
-                yamlVisitor.data
-                    .mapValues { (_, values) ->
-                        values.map { it.yamlStringToKotlinString() }
-                    }
-            )
-        }
-    }
-}
 
 data class FrontMatterKeys(
     val author: String = "author",
@@ -83,7 +120,7 @@ data class FrontMatterKeys(
     val tags: String = "tags",
 )
 
-data class MarkdownData(
+data class BlogpostMarkdownData(
     val file: File,
     val date: String?,
     val title: String?,
@@ -140,8 +177,6 @@ data class RssData(
     }
 }
 
-val markdownResourceDir = layout.projectDirectory.dir("src/jsMain/resources/markdown/posts")
-
 data class RssItem(
     val title: String,
     val link: String,
@@ -191,25 +226,8 @@ fun localDateToRfc1123String(date: LocalDate): String =
     } ${months[date.month.value - 1]} ${date.year} 00:00:00 +0000"
 
 val fmk = FrontMatterKeys()
-val parser = kobweb.markdown.features.createParser()
-val markdownEntries: List<MarkdownData> =
-    markdownResourceDir.asFileTree.filter { it.extension == "md" }.map {
-        val visitor = MarkdownVisitor()
-        parser
-            .parse(it.readText())
-            .accept(visitor)
-        val fm = visitor.frontMatter
 
-        MarkdownData(
-            file = it,
-            title = fm[fmk.title]?.firstOrNull(),
-            author = fm[fmk.author]?.firstOrNull(),
-            tags = fm[fmk.tags],
-            date = fm[fmk.date]?.firstOrNull()
-        )
-    }
-
-val copyMarkdownResourcesTask = task("copyMarkdownResources") {
+/*val copyMarkdownResourcesTask = task("copyMarkdownResources") {
     val genDir = layout.buildDirectory.dir("generated/resources/markdown").get()
 
     inputs.dir(markdownResourceDir)
@@ -219,7 +237,7 @@ val copyMarkdownResourcesTask = task("copyMarkdownResources") {
         .withPropertyName("markdownResources")
 
     doLast {
-        markdownEntries.forEach {
+        blogpostMarkdownData.forEach {
             println("Copying ${it.file.parentFile} to $genDir")
             copy {
                 from("${it.file.parentFile}")
@@ -228,62 +246,8 @@ val copyMarkdownResourcesTask = task("copyMarkdownResources") {
             }
         }
     }
-}
-val generateMarkdownEntriesTask = task("generateMarkdownEntries") {
-    val group = "dev/stralman"
-    val genDir = layout.buildDirectory.dir("generated/$group/src/jsMain/kotlin").get()
-
-    inputs.dir(markdownResourceDir)
-        .withPropertyName("markdownEntries")
-        .withPathSensitivity(PathSensitivity.RELATIVE)
-    outputs.dir(genDir)
-        .withPropertyName("generatedMarkdownEntryData")
-
-    doLast {
-        genDir.file("articles.kt").asFile.apply {
-            parentFile.mkdirs()
-            writeText(buildString {
-                appendLine(
-                    """
-                    |// This file is generated. Modify the build script if you need to change it.
-                    |
-                    |package dev.stralman.articles
-                    |
-                    |import dev.stralman.data.MarkdownEntry
-                    |import kotlinx.datetime.toLocalDate
-                    |
-                    |val markdownResourceDir = "${layout.projectDirectory.asFile.name}${
-                        markdownResourceDir
-                            .toString()
-                            .substringAfterLast(layout.projectDirectory.asFile.name)
-                            .replace("\\", "/")
-                    }"
-                    |
-                    |val markdownEntries = listOf${if (markdownEntries.isEmpty()) "<MarkdownEntry>" else ""}(
-                    """.trimMargin()
-                )
-                markdownEntries.sortedByDescending { it.date }.forEach { entry ->
-                    appendLine(
-                        """ MarkdownEntry(
-                            |       path = "/${
-                            markdownResourceDir.toString()
-                                .substringAfterLast("\\") // Windows
-                                .substringAfterLast('/') // Unix
-                        }${getUrlFromFilePath(entry.file)}",
-                            |       date = "${entry.date?.ifEmpty { "1970-01-01" }}".toLocalDate(),
-                            |       title = "${entry.title}",
-                            |       author = "${entry.author}",
-                            |       tags = ${if (entry.tags.isNullOrEmpty()) "emptyList()" else "listOf<String>(${entry.tags.joinToString { "\"$it\"" }})"}
-							|   ),
-						""".trimMargin()
-                    )
-                }
-                appendLine(")")
-            })
-            println("Generated $absolutePath")
-        }
-    }
-}
+}*/
+/*
 val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") {
     val genDir = layout.buildDirectory.dir("generated/resources/rss").get()
     val buildDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
@@ -297,7 +261,7 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
         language = "en-us",
         lastBuildDate = localDateTimeToRfc1123String(buildDate),
         copyright = "© ${buildDate.year}, $author",
-        items = markdownEntries.map {
+        items = blogpostMarkdownData.map {
             val url = "${baseUrl}/${
                 markdownResourceDir.toString()
                     .substringAfterLast("\\") // Windows
@@ -346,13 +310,13 @@ val generateRssFromMarkdownEntriesTask = task("generateRssFromMarkdownEntries") 
             println("Generated $absolutePath")
         }
     }
-}
+}*/
 
 kotlin {
     // This example is frontend only. However, for a fullstack app, you can uncomment the includeServer parameter
     // and the `jvmMain` source set below.
     configAsKobwebApplication("stralman" /*, includeServer = true*/)
-    generateRssFromMarkdownEntriesTask
+    //generateRssFromMarkdownEntriesTask
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -370,9 +334,9 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
             }
 
-            kotlin.srcDir(generateMarkdownEntriesTask)
+            /*kotlin.srcDir(generateMarkdownEntriesTask)
             resources.srcDir(generateRssFromMarkdownEntriesTask)
-            resources.srcDir(copyMarkdownResourcesTask)
+            resources.srcDir(copyMarkdownResourcesTask)*/
         }
 
         // Uncomment the following if you pass `includeServer = true` into the `configAsKobwebApplication` call.
