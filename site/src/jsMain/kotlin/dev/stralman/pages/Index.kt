@@ -87,7 +87,7 @@ fun BlogPostList(
                 Column {
                     Link(
                         text = it.title,
-                        path = it.path,
+                        path = it.route,
                         modifier = BlogPostEntry
                             .toModifier()
                             .then(
