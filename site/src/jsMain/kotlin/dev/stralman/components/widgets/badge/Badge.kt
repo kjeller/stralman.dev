@@ -33,7 +33,6 @@ val BadgeP by ComponentStyle.base {
         .color(colorMode.toPalette().background)
         .fontWeight(FontWeight.Bold)
         .fillMaxWidth()
-        .maxWidth(450.px)
         .minWidth(80.px)
         .margin(0.px)
         .padding(0.px)
@@ -45,13 +44,7 @@ fun BadgeSpan(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
-    Span(
-        modifier
-            .borderRadius(0.25.cssRem)
-            .padding(2.px)
-            .backgroundColor(Color.white)
-            .toAttrs()
-    ) {
+    Span(modifier.toAttrs()) {
         content()
     }
 }
@@ -62,11 +55,16 @@ fun BadgeContent(
     content: @Composable () -> Unit,
 ) {
     BadgeSpan(
-        modifier = modifier.margin(right = 15.px)
+        modifier = Modifier
+            .margin(right = 15.px)
+            .borderRadius(0.25.cssRem)
+            .padding(2.px)
+            .backgroundColor(Color.white)
+            .then(modifier)
     ) {
         P(
-            BadgeP
-                .toModifier()
+            BadgeP.toModifier()
+                .then(modifier)
                 .toAttrs()
         ) {
             content()
