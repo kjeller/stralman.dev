@@ -7,8 +7,8 @@ import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.css.OverflowWrap
 import com.varabyte.kobweb.compose.foundation.layout.Column
-import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Modifier
+import com.varabyte.kobweb.compose.ui.modifiers.alignContent
 import com.varabyte.kobweb.compose.ui.modifiers.backgroundColor
 import com.varabyte.kobweb.compose.ui.modifiers.borderRadius
 import com.varabyte.kobweb.compose.ui.modifiers.color
@@ -23,28 +23,26 @@ import com.varabyte.kobweb.compose.ui.modifiers.overflow
 import com.varabyte.kobweb.compose.ui.modifiers.overflowWrap
 import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.core.rememberPageContext
-import com.varabyte.kobweb.silk.components.navigation.Link
+import com.varabyte.kobweb.silk.components.document.Toc
+import com.varabyte.kobweb.silk.components.document.TocBorderedVariant
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.base
+import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.init.InitSilk
 import com.varabyte.kobweb.silk.init.InitSilkContext
 import com.varabyte.kobweb.silk.init.registerStyleBase
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
-import com.varabyte.kobweb.silk.theme.colors.palette.background
 import com.varabyte.kobweb.silk.theme.colors.palette.color
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
-import com.varabyte.kobwebx.markdown.markdown
-import dev.stralman.blogposts.markdownResourceDir
-import dev.stralman.components.widgets.badge.BadgeContent
-import dev.stralman.profile
+import dev.stralman.components.widgets.article.ArticleMetadata
 import kotlinx.browser.document
+import org.jetbrains.compose.web.css.AlignContent
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.vw
-import org.jetbrains.compose.web.dom.Text
 
 @InitSilk
 fun initHighlightJs(ctx: InitSilkContext) {
@@ -62,33 +60,42 @@ val MarkdownStyle by ComponentStyle {
     // The following rules apply to all descendant elements, indicated by the leading space.
     // When you use `cssRule`, the name of this style is prefixed in front of it.
     // See also: https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_combinator
+    base {
+        Modifier.maxWidth(90.vw)
+    }
+    Breakpoint.MD {
+        Modifier.maxWidth(60.vw)
+    }
+    Breakpoint.LG {
+        Modifier.maxWidth(40.vw)
+    }
 
     cssRule(" h1") {
         Modifier
             .fontSize(2.cssRem)
-            .fontWeight(300)
-            .margin(bottom = 1.5.cssRem)
+            .fontWeight(700)
+            .margin(bottom = 1.5.cssRem, top = 1.5.cssRem)
             .lineHeight(1.2) //1.5x doesn't look as good on very large text
     }
 
     cssRule(" h2") {
         Modifier
             .fontSize(2.cssRem)
-            .fontWeight(300)
+            .fontWeight(700)
             .margin(topBottom = 1.cssRem)
     }
 
     cssRule(" h3") {
         Modifier
             .fontSize(1.4.cssRem)
-            .fontWeight(300)
+            .fontWeight(700)
             .margin(topBottom = 1.5.cssRem)
     }
 
     cssRule(" h4") {
         Modifier
             .fontSize(1.2.cssRem)
-            .fontWeight(FontWeight.Bolder)
+            .fontWeight(700)
             .margin(top = 1.cssRem, bottom = 0.5.cssRem)
     }
 
@@ -104,6 +111,7 @@ val MarkdownStyle by ComponentStyle {
         Modifier
             .color(colorMode.toPalette().color.toRgb().copyf(alpha = 0.8f))
             .fontWeight(FontWeight.Bolder)
+            .alignContent(AlignContent.Center)
     }
 
     cssRule(" pre") {
@@ -155,37 +163,17 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
             )
         }
         Column(
-            MarkdownStyle
+            //horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = MarkdownStyle
                 .toModifier()
-                .maxWidth(40.vw)
         ) {
-            val date = ctx.markdown!!.frontMatter.getValue("date").single()
-            val author = ctx.markdown!!.frontMatter.getValue("author").single()
-            val updated = ctx.markdown!!.frontMatter["updated"]?.singleOrNull()
-            Column {
-                Row {
-                    BadgeContent {
-                        Text("Created: $date")
-                    }
-                    if (updated != null) {
-                        BadgeContent {
-                            Text("Updated: $updated")
-                        }
-                    }
-                    BadgeContent {
-                        Link(
-                            "${profile.pageSourceUrl}${
-                                markdownResourceDir.substringBeforeLast(
-                                    "/"
-                                )
-                            }/${ctx.markdown!!.path}",
-                            "Edit on Github",
-                            modifier = BadgeText.toModifier()
-                                .then(Modifier.color(colorMode.toPalette().background))
-                        )
-                    }
-                }
-            }
+            ArticleMetadata(ctx, colorMode)
+            Toc(
+                Modifier
+                    .fillMaxWidth()
+                    .margin(top = 1.cssRem),
+                variant = TocBorderedVariant,
+            )
             content()
         }
     }

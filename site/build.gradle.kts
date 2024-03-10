@@ -1,6 +1,8 @@
 import com.varabyte.kobweb.common.path.invariantSeparatorsPath
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
 import com.varabyte.kobwebx.gradle.markdown.KobwebxMarkdownPlugin
+import com.varabyte.kobwebx.gradle.markdown.MarkdownHandlers.Companion.HeadingIdsKey
+import com.varabyte.kobwebx.gradle.markdown.ext.kobwebcall.KobwebCall
 import com.varabyte.kobwebx.gradle.markdown.tasks.ProcessMarkdownTask
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
@@ -111,6 +113,21 @@ kobweb {
 
             inlineCode.set { code ->
                 "$BS_WGT.code.InlineCode(\"\"\"${code.literal.escapeTripleQuotedText()}\"\"\")"
+            }
+
+            val baseHeadingHandler = heading.get()
+            heading.set { heading ->
+                // Convert a heading to include its ID
+                // e.g. <h2>My Heading</h2> becomes <h2 id="my-heading">My Heading</h2>
+                val result = baseHeadingHandler.invoke(this, heading)
+                // ID guaranteed to be created as side effect of base handler
+                val id = data.getValue(HeadingIdsKey).getValue(heading)
+
+                // HoverLink is a widget that will show a link icon (linking back to the header) on hover
+                // This is a useful way to let people share a link to a specific header
+                heading.appendChild(KobwebCall(".components.widgets.navigation.HoverLink(\"#$id\")"))
+
+                result
             }
         }
     }
