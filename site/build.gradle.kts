@@ -1,4 +1,5 @@
 import com.varabyte.kobweb.common.path.invariantSeparatorsPath
+import com.varabyte.kobweb.gradle.application.extensions.AppBlock
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
 import com.varabyte.kobwebx.gradle.markdown.KobwebxMarkdownPlugin
 import com.varabyte.kobwebx.gradle.markdown.MarkdownHandlers.Companion.HeadingIdsKey
@@ -43,6 +44,7 @@ kobweb {
                     src = "/highlight.js/highlight.min.js"
                 }
             }
+            legacyRouteRedirectStrategy.set(AppBlock.LegacyRouteRedirectStrategy.DISALLOW)
         }
     }
     markdown {

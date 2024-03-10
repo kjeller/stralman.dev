@@ -7,8 +7,6 @@ tags:
   - "dev_challenges"
 ---
 
-## Introduction
-
 This is the first entry of a series that will cover solutions to the
 [Protohackers](https://protohackers.com/) challenges. Hopefully this will not be the first and only
 entry to this series, but we'll see.
@@ -43,7 +41,7 @@ Resource links:
 The full source code can be found on
 github - [here](https://github.com/kjeller/protohackers/tree/main/problem_0).
 
-**Lessen the pain of writing in "pure" x86**
+# Lessen the pain of writing in "pure" x86
 
 Netwide Assembler (NASM) is one of the most popular x86 assembler out there and according
 to https://www.nasm.us it is portable to nearly every modern platform. For me there were mainly two
@@ -82,7 +80,7 @@ track of the syscall constants:
 In hindsight I didn't use the preprocessor at its full, powerful and almighty extent but even as
 little as having defines helped a lot.
 
-**Using syscalls in x86**
+## Using syscalls in x86
 
 A quick recap of what syscalls are. Syscalls or system calls are part of the Linux library that
 allows user space applications request access to services in the kernel. In my case I for example
@@ -136,7 +134,7 @@ int main() {
 .. which can also be achieved by just using the `fork()`  wrapper function like a sane person.
 Wrapper functions are useful if you want to write more readable and probably less-crash prone code.
 
-**Comparing C to assembly**
+## Comparing C to assembly
 
 First the server needs create and bind to a socket to be able to listen to clients at all. This is
 done using the `socket()` and `bind()` calls. But since there is not much logic involved there I
@@ -145,7 +143,7 @@ won't cover those parts in the code examples below.
 To serve multiple clients simultaneously I have to either think about multithreading och
 multiprocessing in the application.
 
-**Accepting TCP clients**
+## Accepting TCP clients
 
 The server polls for clients to connect with the `accept()` syscall. When a client connects a file
 descriptor (fd) is returned and a client handling process is spawned with the `fork()` syscall. I

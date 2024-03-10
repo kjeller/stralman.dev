@@ -173,6 +173,7 @@ fun MarkdownLayout(content: @Composable () -> Unit) {
                     .fillMaxWidth()
                     .margin(top = 1.cssRem),
                 variant = TocBorderedVariant,
+                maxHeaderLevel = 4,
             )
             content()
         }

@@ -38,7 +38,7 @@ val HoverLinkStyle by ComponentStyle(prefix = "bs") {
         Modifier
             .opacity(0.percent)
             .transition(CSSTransition("opacity", 0.15.s))
-            .fontSize(0.8.em)
+            .fontSize(0.7.em)
             .margin(left = 0.7.em)
     }
     link { Modifier.color(colorMode.toPalette().color) }

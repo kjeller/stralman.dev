@@ -22,7 +22,7 @@ advanced.
 - [Configure a rclone remote - dropbox remote example](#configure-a-rclone-remote)
 - [Configure remote to mount on boot](#mount-a-remote-at-every-boot)
 
-# Configure a rclone remote
+## Configure a rclone remote
 
 **Prerequisite:** [install rclone](https://rclone.org/install/)
 
@@ -86,7 +86,7 @@ y/n>y
 
 Now I was able to list my dropbox directions using `rclone lsd dropbox-remote:`
 
-# Mount a remote at every boot
+## Mount a remote at every boot
 
 **Prerequisite:** [install rclone](https://rclone.org/install/) & configure a remote
 e.g. [dropbox](#configure-a-rclone-remote)
@@ -234,7 +234,7 @@ e.g. for my dropbox this was:
 
 Now your remote should mount for every reboot.
 
-# Checking out VFS cache modes
+## Checking out VFS cache modes
 
 *Edit: Jan 8, 2022*
 
