@@ -14,3 +14,5 @@ and hacking.
 Oh I also do ham radio stuff!
 
 73 de SA6KST
+
+![Image alt](/about.jpg)
