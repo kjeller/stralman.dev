@@ -7,21 +7,28 @@
    <generator>Kobweb -- kobweb.varabyte.com</generator>
    <language>en-us</language>
    <copyright>© 2024, Karl Strålman</copyright>
-   <lastBuildDate>Sat, 17 Feb 2024 20:02:46 GMT</lastBuildDate>
+   <lastBuildDate>Sun, 10 Mar 2024 15:21:23 GMT</lastBuildDate>
    <atom:link href="https://www.compose.stralman.dev/index.xml" rel="self" type="application/rss+xml"/>
 <item>
    <title>Analog camera despair: OM-10 needs repair</title>
-   <link>posts/om-10_repair</link>
-   <guid>posts/om-10_repair</guid>
+   <link>posts/om_10_repair</link>
+   <guid>posts/om_10_repair</guid>
    <pubDate>Tue, 23 Aug 2022 00:00:00 +0000</pubDate>
    <description>This year a friend of mine got me into analog cameras.. I won't go into much detail but it was during.. a bachelor party,.. I was under the influence of alcohol and open to vacation activity ideas... all of which led to me.</description>
 </item>
 <item>
-   <title>Yet another smart mirror</title>
-   <link>posts/smart_mirror</link>
-   <guid>posts/smart_mirror</guid>
-   <pubDate>Sun, 22 Jan 2023 00:00:00 +0000</pubDate>
-   <description>A smart mirror is essentially just a mirror with a display, electronics stuffed behind it and some.. software sprinkled on top.. The main purpose is to display information in a condensed (hands-free).. way while getting ready for the day.. Mine is placed in the hallway to easily check the weather and.</description>
+   <title>Hacking my LG webOS TV (again)</title>
+   <link>posts/hacking_my_lg_tv_again</link>
+   <guid>posts/hacking_my_lg_tv_again</guid>
+   <pubDate>Sat, 27 May 2023 00:00:00 +0000</pubDate>
+   <description>I have an LG smart TV at home which I bought around 2018 that has survived 3-4 apartment moves (.. which in itself feels like an achievement).. Though it still receives webOS updates fairly often,.. there is some support from third-party apps that have started to drop.. For example, HBO Max stopped.</description>
+</item>
+<item>
+   <title>Mount your cloud storage with rclone</title>
+   <link>posts/mount_with_rclone</link>
+   <guid>posts/mount_with_rclone</guid>
+   <pubDate>Sat, 07 Jan 2023 00:00:00 +0000</pubDate>
+   <description>So I recently came across an awesome tool called rclone.. rclone is a command-line tool with many.. features for managing cloud storage - even so that people refer to it.. as [the swiss army knife of cloud storage](https://rclone.org/)... This post will focus on how to configure remotes and how to mount them..</description>
 </item>
 <item>
    <title>Protohackers - 1: Prime Time</title>
@@ -38,18 +45,11 @@
    <description>This is the first entry of a series that will cover solutions to the.. [Protohackers](https://protohackers.com/) challenges.. Hopefully this will not be the first and only.. entry to this series, but we'll see... To be more specific about the contents of this post, I will cover my solution to "Problem 0: Smoke.</description>
 </item>
 <item>
-   <title>Mount your cloud storage with rclone</title>
-   <link>posts/mount_with_rclone</link>
-   <guid>posts/mount_with_rclone</guid>
-   <pubDate>Sat, 07 Jan 2023 00:00:00 +0000</pubDate>
-   <description>So I recently came across an awesome tool called rclone.. rclone is a command-line tool with many.. features for managing cloud storage - even so that people refer to it.. as [the swiss army knife of cloud storage](https://rclone.org/)... This post will focus on how to configure remotes and how to mount them..</description>
-</item>
-<item>
-   <title>Hacking my LG webOS TV (again)</title>
-   <link>posts/hacking_my_lg_tv_again</link>
-   <guid>posts/hacking_my_lg_tv_again</guid>
-   <pubDate>Sat, 27 May 2023 00:00:00 +0000</pubDate>
-   <description>I have an LG smart TV at home which I bought around 2018 that has survived 3-4 apartment moves (.. which in itself feels like an achievement).. Though it still receives webOS updates fairly often,.. there is some support from third-party apps that have started to drop.. For example, HBO Max stopped.</description>
+   <title>Yet another smart mirror</title>
+   <link>posts/smart_mirror</link>
+   <guid>posts/smart_mirror</guid>
+   <pubDate>Sun, 22 Jan 2023 00:00:00 +0000</pubDate>
+   <description>A smart mirror is essentially just a mirror with a display, electronics stuffed behind it and some.. software sprinkled on top.. The main purpose is to display information in a condensed (hands-free).. way while getting ready for the day.. Mine is placed in the hallway to easily check the weather and.</description>
 </item>
 </channel>
 </rss> 

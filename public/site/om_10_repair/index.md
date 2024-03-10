@@ -20,7 +20,7 @@ Now I am not really a "camera guy" but I though "Hey let's give it a shot. It mi
 I am now an owner of four analog cameras, all of which are from before I was even born.
 Older cameras tends to not always operate and on a whim they can be inoperatable.
 
-**The problem**
+## The problem
 
 One of my cameras, the Olympus OM-10, can not trigger its shutter mechanism correctly when pressing
 the shutter button.
@@ -34,7 +34,7 @@ Sidenote: Now ignore that I bought this broken camera way before the previously 
 party and
 that it was as inoperatable then as now.
 
-**The solution**
+## The solution
 
 By opening the bottom cover of the camera and exposing the beautiful mechanical insides, I could
 trial-and-error

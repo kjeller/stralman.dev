@@ -7,8 +7,6 @@ tags:
   - "dev_challenges"
 ---
 
-## Introduction
-
 This is the second entry of a series that cover solutions to the
 [Protohackers](https://protohackers.com/) challenges. I choose to solve the first problem (Smoke
 test/TCP echo server) using x86_64 assembly. For my sanity I won't solve this one that way.. and
@@ -151,7 +149,7 @@ Three examples of sessions with request/response:
 {}
 ```
 
-**Handle JSON request/response**
+## Handle JSON request/response
 
 Now the JSON protocol is defined and eager to be parsed.
 So for this I started writing a rudimentory JSON parser and quickly gave up... Then I found a JSON
@@ -304,7 +302,7 @@ fn handle_response(method: &Method) -> String {
 }
 ```
 
-**TCP Server in Rust**
+## TCP Server in Rust
 
 What is left to do is the TCP server stuff which can be summarized into:
 
