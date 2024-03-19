@@ -21,6 +21,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.fontWeight
 import com.varabyte.kobweb.compose.ui.modifiers.lineHeight
 import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.compose.ui.modifiers.maxWidth
+import com.varabyte.kobweb.compose.ui.modifiers.minWidth
 import com.varabyte.kobweb.compose.ui.modifiers.overflow
 import com.varabyte.kobweb.compose.ui.modifiers.overflowWrap
 import com.varabyte.kobweb.compose.ui.modifiers.padding
@@ -75,13 +76,13 @@ val MarkdownStyle by ComponentStyle {
     // When you use `cssRule`, the name of this style is prefixed in front of it.
     // See also: https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_combinator
     base {
-        Modifier.maxWidth(90.vw)
+        Modifier.maxWidth(90.vw).minWidth(60.vw)
     }
     Breakpoint.MD {
-        Modifier.maxWidth(60.vw)
+        Modifier.maxWidth(60.vw).minWidth(60.vw)
     }
     Breakpoint.LG {
-        Modifier.maxWidth(40.vw)
+        Modifier.maxWidth(40.vw).minWidth(40.vw)
     }
 
     cssRule(" h1") {
