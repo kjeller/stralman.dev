@@ -83,7 +83,7 @@ fun ProfileHeader(
                 }
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    modifier = modifier.width(75.px)
+                    modifier = modifier.width(85.px)
                 ) {
                     profile.linkList.forEach {
                         Link(

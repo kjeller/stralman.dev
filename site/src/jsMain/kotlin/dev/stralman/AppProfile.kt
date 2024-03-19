@@ -15,13 +15,13 @@ val profile = Profile(
     "/profile.png",
     linkList = listOf(
         RouteLink(
+            "Posts",
+            "/",
+        ),
+        RouteLink(
             "About",
             "/about/",
         ),
-        RouteLink(
-            "Tags",
-            "/tags/"
-        )
     ),
     socialLinkList = listOf(
         FaIconLink(
