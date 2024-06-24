@@ -34,5 +34,5 @@ val profile = Profile(
             "index.xml"
         ) { FaRss(FaIconStyle.toModifier()) }
     ),
-    pageSourceUrl = "https://github.com/kjeller/stralman.dev/tree/kobweb-wip/"
+    pageSourceUrl = "https://github.com/kjeller/stralman.dev/"
 )
