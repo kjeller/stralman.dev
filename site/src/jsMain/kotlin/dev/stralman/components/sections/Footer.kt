@@ -22,10 +22,11 @@ import com.varabyte.kobweb.compose.ui.modifiers.textAlign
 import com.varabyte.kobweb.compose.ui.modifiers.whiteSpace
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.navigation.Link
-import com.varabyte.kobweb.silk.components.style.ComponentStyle
-import com.varabyte.kobweb.silk.components.style.base
-import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.components.text.SpanText
+import com.varabyte.kobweb.silk.style.CssName
+import com.varabyte.kobweb.silk.style.CssStyle
+import com.varabyte.kobweb.silk.style.base
+import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import com.varabyte.kobweb.silk.theme.colors.palette.border
 import com.varabyte.kobweb.silk.theme.colors.palette.link
@@ -36,7 +37,7 @@ import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.Span
 
-val FooterStyle by ComponentStyle.base {
+val FooterStyle = CssStyle.base {
     Modifier
         .margin(top = 2.cssRem)
         .borderTop(1.px, LineStyle.Solid, colorMode.toPalette().border)
@@ -45,7 +46,8 @@ val FooterStyle by ComponentStyle.base {
         .fontFamily("monospace")
 }
 
-val CopyrightStyle = ComponentStyle.base("bs-copyright") {
+@CssName(name = "bs-copyright")
+val CopyrightStyle = CssStyle.base {
     Modifier.opacity(0.6).fontSize(0.8.cssRem)
 }
 

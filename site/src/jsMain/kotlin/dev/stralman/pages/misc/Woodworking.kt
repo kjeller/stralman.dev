@@ -61,14 +61,14 @@ fun CircleSegmentCalculation(
         Text("$heightText:")
     }
     TextInput(
-        height, onTextChanged = { height = it },
+        height, onTextChange = { height = it },
         modifier.fillMaxWidth()
     )
     P {
         Text("$lengthText:")
     }
     TextInput(
-        length, onTextChanged = { length = it },
+        length, onTextChange = { length = it },
         modifier.fillMaxWidth()
     )
     Button(

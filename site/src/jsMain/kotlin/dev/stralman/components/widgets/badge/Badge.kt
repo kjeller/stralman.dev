@@ -11,31 +11,31 @@ import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.fontSize
 import com.varabyte.kobweb.compose.ui.modifiers.fontWeight
 import com.varabyte.kobweb.compose.ui.modifiers.margin
-import com.varabyte.kobweb.compose.ui.modifiers.maxWidth
-import com.varabyte.kobweb.compose.ui.modifiers.minWidth
 import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.compose.ui.modifiers.textAlign
+import com.varabyte.kobweb.compose.ui.modifiers.width
 import com.varabyte.kobweb.compose.ui.toAttrs
-import com.varabyte.kobweb.silk.components.style.ComponentStyle
-import com.varabyte.kobweb.silk.components.style.base
-import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.style.CssStyle
+import com.varabyte.kobweb.silk.style.base
+import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.palette.background
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.cssRem
+import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Span
 
-val BadgeP by ComponentStyle.base {
+val BadgeP = CssStyle.base {
     Modifier
         .fontSize(0.7.cssRem)
         .color(colorMode.toPalette().background)
         .fontWeight(FontWeight.Bold)
         .fillMaxWidth()
-        .minWidth(80.px)
-        .margin(0.px)
+        .margin(0.px, 0.px, 0.px, 0.px)
         .padding(0.px)
+        .width(100.percent)
         .textAlign(TextAlign.Center)
 }
 
@@ -63,9 +63,7 @@ fun BadgeContent(
             .then(modifier)
     ) {
         P(
-            BadgeP.toModifier()
-                .then(modifier)
-                .toAttrs()
+            Modifier.then(BadgeP.toModifier()).toAttrs()
         ) {
             content()
         }

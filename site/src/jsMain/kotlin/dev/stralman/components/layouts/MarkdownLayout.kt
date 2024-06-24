@@ -6,8 +6,6 @@ import androidx.compose.runtime.getValue
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.css.OverflowWrap
-import com.varabyte.kobweb.compose.dom.refScope
-import com.varabyte.kobweb.compose.dom.registerRefScope
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.alignContent
@@ -28,14 +26,13 @@ import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.components.document.Toc
 import com.varabyte.kobweb.silk.components.document.TocBorderedVariant
-import com.varabyte.kobweb.silk.components.style.ComponentStyle
-import com.varabyte.kobweb.silk.components.style.base
-import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
-import com.varabyte.kobweb.silk.components.style.cssRules
-import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.init.InitSilk
 import com.varabyte.kobweb.silk.init.InitSilkContext
 import com.varabyte.kobweb.silk.init.registerStyleBase
+import com.varabyte.kobweb.silk.style.CssStyle
+import com.varabyte.kobweb.silk.style.base
+import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
+import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
 import com.varabyte.kobweb.silk.theme.colors.palette.color
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
@@ -54,13 +51,13 @@ fun initHighlightJs(ctx: InitSilkContext) {
     ctx.stylesheet.registerStyleBase("code.hljs") { Modifier.borderRadius(8.px) }
 }
 
-val BadgeText by ComponentStyle.base {
+val BadgeText = CssStyle.base {
     Modifier
         .margin(0.px, 0.px, 0.px, 0.px)
         .padding(5.px)
 }
 
-val TocStyle by ComponentStyle {
+val TocStyle = CssStyle {
     base {
         Modifier
             .fillMaxWidth()
@@ -71,7 +68,7 @@ val TocStyle by ComponentStyle {
     }
 }
 
-val MarkdownStyle by ComponentStyle {
+val MarkdownStyle = CssStyle {
     // The following rules apply to all descendant elements, indicated by the leading space.
     // When you use `cssRule`, the name of this style is prefixed in front of it.
     // See also: https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_combinator

@@ -24,7 +24,7 @@ import com.varabyte.kobweb.silk.theme.colors.palette.background
 import com.varabyte.kobweb.silk.theme.colors.palette.border
 import com.varabyte.kobweb.silk.theme.colors.palette.color
 import com.varabyte.kobweb.silk.theme.colors.palette.link
-import com.varabyte.kobweb.silk.theme.modifyComponentStyleBase
+import com.varabyte.kobweb.silk.theme.modifyStyleBase
 import kotlinx.browser.localStorage
 import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
@@ -66,7 +66,6 @@ fun initSiteStyles(ctx: InitSilkContext) {
                     .lineHeight(1.5)
             }
             registerStyleBase("canvas") { BLOCK_MARGIN }
-            registerStyleBase("p") { BLOCK_MARGIN }
             registerStyleBase("pre") { BLOCK_MARGIN }
             registerStyleBase("h1") {
                 HEADER_MARGIN
@@ -79,7 +78,7 @@ fun initSiteStyles(ctx: InitSilkContext) {
             registerStyleBase("h4") { HEADER_MARGIN.fontSize(1.25.cssRem) }
         }
         theme.apply {
-            modifyComponentStyleBase(HorizontalDividerStyle) {
+            modifyStyleBase(HorizontalDividerStyle) {
                 Modifier.fillMaxWidth()
             }
             palettes.apply {

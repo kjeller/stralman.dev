@@ -17,11 +17,11 @@ import com.varabyte.kobweb.compose.ui.modifiers.width
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.navigation.Anchor
 import com.varabyte.kobweb.silk.components.navigation.Link
-import com.varabyte.kobweb.silk.components.style.ComponentStyle
-import com.varabyte.kobweb.silk.components.style.base
-import com.varabyte.kobweb.silk.components.style.hover
-import com.varabyte.kobweb.silk.components.style.toAttrs
-import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.style.CssStyle
+import com.varabyte.kobweb.silk.style.base
+import com.varabyte.kobweb.silk.style.selectors.hover
+import com.varabyte.kobweb.silk.style.toAttrs
+import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
 import dev.stralman.components.widgets.image.RoundBorderImage
 import dev.stralman.profile
@@ -33,13 +33,13 @@ import org.jetbrains.compose.web.dom.H1
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
 
-val PSecondaryStyle by ComponentStyle.base {
+val PSecondaryStyle = CssStyle.base {
     Modifier
         .margin(0.px, 0.px, 0.px, 0.px)
         .fontSize(14.px)
         .color(colorMode.toPalette().secondary)
 }
-val FaIconStyle by ComponentStyle {
+val FaIconStyle = CssStyle {
     base {
         Modifier
             .color(Color.rgb(0x6c757d))

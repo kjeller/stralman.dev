@@ -3,7 +3,7 @@ package dev.stralman
 import com.varabyte.kobweb.silk.components.icons.fa.FaGithub
 import com.varabyte.kobweb.silk.components.icons.fa.FaLinkedin
 import com.varabyte.kobweb.silk.components.icons.fa.FaRss
-import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.style.toModifier
 import dev.stralman.components.sections.FaIconStyle
 import dev.stralman.data.FaIconLink
 import dev.stralman.data.Profile
