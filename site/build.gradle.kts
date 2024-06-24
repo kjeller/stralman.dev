@@ -1,17 +1,16 @@
+
 import com.varabyte.kobweb.common.path.invariantSeparatorsPath
 import com.varabyte.kobweb.gradle.application.extensions.AppBlock
 import com.varabyte.kobweb.gradle.application.util.configAsKobwebApplication
-import com.varabyte.kobwebx.gradle.markdown.KobwebxMarkdownPlugin
 import com.varabyte.kobwebx.gradle.markdown.MarkdownHandlers.Companion.HeadingIdsKey
 import com.varabyte.kobwebx.gradle.markdown.ext.kobwebcall.KobwebCall
-import com.varabyte.kobwebx.gradle.markdown.tasks.ProcessMarkdownTask
+import kotlinx.datetime.Clock
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
-import kotlinx.datetime.toLocalDateTime
 import kotlinx.datetime.toLocalDate
-import kotlinx.datetime.Clock
+import kotlinx.datetime.toLocalDateTime
 import kotlinx.html.script
 
 plugins {
@@ -273,7 +272,7 @@ fun copyMarkdownResources(blogpostMarkdownData: List<BlogpostMarkdownData>) {
 fun generateRssFromBlogpostMarkdown(blogpostMarkdownData: List<BlogpostMarkdownData>) {
     val buildDate = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
     val author = "Karl Strålman"
-    val baseUrl = "https://www.compose.stralman.dev"
+    val baseUrl = "https://www.stralman.dev"
     val rssData = RssData(
         title = "stralman.dev",
         baseUrl = baseUrl,
