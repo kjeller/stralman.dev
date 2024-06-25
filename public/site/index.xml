@@ -2,19 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
    <title>stralman.dev</title>
-   <link>https://www.compose.stralman.dev</link>
+   <link>https://www.stralman.dev</link>
    <description>A tech hobbyist's guide to the galaxy.</description>
    <generator>Kobweb -- kobweb.varabyte.com</generator>
    <language>en-us</language>
    <copyright>© 2024, Karl Strålman</copyright>
-   <lastBuildDate>Tue, 25 Jun 2024 21:01:47 GMT</lastBuildDate>
-   <atom:link href="https://www.compose.stralman.dev/index.xml" rel="self" type="application/rss+xml"/>
+   <lastBuildDate>Tue, 25 Jun 2024 21:15:28 GMT</lastBuildDate>
+   <atom:link href="https://www.stralman.dev/index.xml" rel="self" type="application/rss+xml"/>
 <item>
    <title>Mount your cloud storage with rclone</title>
    <link>posts/mount_with_rclone</link>
    <guid>posts/mount_with_rclone</guid>
    <pubDate>Sat, 07 Jan 2023 00:00:00 +0000</pubDate>
    <description>So I recently came across an awesome tool called rclone.. rclone is a command-line tool with many.. features for managing cloud storage - even so that people refer to it.. as [the swiss army knife of cloud storage](https://rclone.org/)... This post will focus on how to configure remotes and how to mount them..</description>
+</item>
+<item>
+   <title>Edge cut and copper zone from CAD sketch</title>
+   <link>posts/kicad/dxf_edge_cut_and_zone</link>
+   <guid>posts/kicad/dxf_edge_cut_and_zone</guid>
+   <pubDate>Mon, 24 Jun 2024 00:00:00 +0000</pubDate>
+   <description>..or why weirdly shaped PCBs exists... When creating edge cuts for my PCBs I find that the built-in KiCad PCB editor tools to be limited... Sure you can draw lines, arcs, rectangles and circles, which is fine for most simple PCB shapes.. but for more complicated shapes it's not something I would rely on entirely.. Even if I manage to create.</description>
 </item>
 <item>
    <title>Protohackers - 1: Prime Time</title>

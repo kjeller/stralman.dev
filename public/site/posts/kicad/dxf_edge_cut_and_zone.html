@@ -36,222 +36,44 @@
       <div class="page-content kobweb-col kobweb-arrange-top kobweb-align-center-horiz">
        <div class="markdown markdown_dark kobweb-col kobweb-arrange-top kobweb-align-start">
         <div class="kobweb-col kobweb-arrange-top kobweb-align-start">
-         <h1>Mount your cloud storage with rclone</h1>
+         <h1>Edge cut and copper zone from CAD sketch</h1>
          <div class="kobweb-row kobweb-arrange-start kobweb-align-top">
           <span style="margin: 0px 15px 0px 0px; border-radius: 0.25rem; padding: 2px; background-color: white;">
-           <p class="badge-p badge-p_dark">Created: 2023-01-07</p></span><span style="margin: 0px 15px 0px 0px; border-radius: 0.25rem; padding: 2px; background-color: white;">
-           <p class="badge-p badge-p_dark"><a class="silk-link badge-text" style="color: rgb(43, 42, 51);" href="https://github.com/kjeller/stralman.dev/site/src/jsMain/resources/markdown/posts/mount_with_rclone.md">Edit on Github</a></p></span>
+           <p class="badge-p badge-p_dark">Created: 2024-06-24</p></span><span style="margin: 0px 15px 0px 0px; border-radius: 0.25rem; padding: 2px; background-color: white;">
+           <p class="badge-p badge-p_dark"><a class="silk-link badge-text" style="color: rgb(43, 42, 51);" href="https://github.com/kjeller/stralman.dev/site/src/jsMain/resources/markdown/posts/kicad/dxf_edge_cut_and_zone.md">Edit on Github</a></p></span>
          </div>
         </div>
         <ul class="silk-toc silk-toc-bordered toc">
-         <li style="padding: 0px 0px 0px calc(0rem);"><a class="silk-link" href="#configure-a-rclone-remote">Configure a rclone remote</a></li>
-         <li style="padding: 0px 0px 0px calc(0rem);"><a class="silk-link" href="#mount-a-remote-at-every-boot">Mount a remote at every boot</a></li>
-         <li style="padding: 0px 0px 0px calc(0rem);"><a class="silk-link" href="#checking-out-vfs-cache-modes">Checking out VFS cache modes</a></li>
+         <li style="padding: 0px 0px 0px calc(0rem);"><a class="silk-link" href="#limitations-in-physical-space">Limitations in physical space..</a></li>
+         <li style="padding: 0px 0px 0px calc(0rem);"><a class="silk-link" href="#dxf-and-onshape">DXF and Onshape</a></li>
+         <li style="padding: 0px 0px 0px calc(1rem);"><a class="silk-link" href="#edge-cut-from-dxf">Edge cut from DXF</a></li>
+         <li style="padding: 0px 0px 0px calc(1rem);"><a class="silk-link" href="#copper-zone-from-dxf">Copper zone from DXF</a></li>
         </ul>
-        <p>So I recently came across an awesome tool called rclone. rclone is a command-line tool with many features for managing cloud storage - even so that people refer to it as <a class="silk-link" href="https://rclone.org/">the swiss army knife of cloud storage</a>.</p>
-        <p>This post will focus on how to configure remotes and how to mount them. I wrote this mostly as a future reference for myself but also to show a fraction of rclone's capabilities and why others might find it useful.</p>
-        <p>Configuring a rclone remote is straightforward - basically, just use <code class="bs-code bs-code_dark">rclone config</code> and follow its interactive setup guide. Enabling it to mount automatically was a bit more involved but not too advanced.</p>
-        <ul>
-         <li><a class="silk-link" href="#configure-a-rclone-remote">Configure a rclone remote - dropbox remote example</a></li>
-         <li><a class="silk-link" href="#mount-a-remote-at-every-boot">Configure remote to mount on boot</a></li>
-        </ul>
-        <h2 id="configure-a-rclone-remote">Configure a rclone remote<a class="silk-link bs-hover-link bs-hover-link_dark" href="#configure-a-rclone-remote"><span class="fas fa-link"></span></a></h2>
-        <p><b>Prerequisite:</b> <a class="silk-link" href="https://rclone.org/install/">install rclone</a></p>
-        <p>My dropbox remote configuration prompts differed slightly from what was stated in <a class="silk-link" href="https://rclone.org/dropbox/">the documentation</a> which is mainly the reason why I felt like I had to include this section:</p>
-        <pre class="bs-code-block"><code class="language-bash hljs" data-highlighted="yes">$ rclone config
-No remotes found - make a new one
-n) New remote
-s) Set configuration password
-q) Quit config
-
-<span class="hljs-comment"># 'n' for new remote</span>
-n/s/q&gt;n
-
-<span class="hljs-comment"># What I chose to name my remote</span>
-name&gt;dropbox-remote
-Type of storage to configure.                          
-Enter a string value. Press Enter <span class="hljs-keyword">for</span> the default (<span class="hljs-string">""</span>).
-Choose a number from below, or <span class="hljs-built_in">type</span> <span class="hljs-keyword">in</span> your own value  
-...
- 9 / Dropbox    
-   \ <span class="hljs-string">"dropbox"</span>  
-...
-
-<span class="hljs-comment"># Select '9' for Dropbox remote backend</span>
-Storage&gt;9
-** See <span class="hljs-built_in">help</span> <span class="hljs-keyword">for</span> dropbox backend at: https://rclone.org/dropbox/ **
-
-Dropbox App Client Id
-Leave blank normally.
-Enter a string value. Press Enter <span class="hljs-keyword">for</span> the default (<span class="hljs-string">""</span>).
-
-<span class="hljs-comment"># Here I entered blank</span>
-client_id&gt;
-Dropbox App Client Secret
-Leave blank normally.
-Enter a string value. Press Enter <span class="hljs-keyword">for</span> the default (<span class="hljs-string">""</span>).
-
-<span class="hljs-comment"># Here I entered blank</span>
-client_secret&gt;
-Edit advanced config? (y/n)
-y) Yes
-n) No
-
-<span class="hljs-comment"># 'n' for no</span>
-y/n&gt;n
-Remote config
-Use auto config?
- * Say Y <span class="hljs-keyword">if</span> not sure
- * Say N <span class="hljs-keyword">if</span> you are working on a remote or headless machine
-y) Yes
-n) No
-
-<span class="hljs-comment"># 'y' for auto config</span>
-y/n&gt;y
-<span class="hljs-comment"># And then I had to authenticate using a dropbox token - and that was it!</span>
-</code></pre>
-        <p>Now I was able to list my dropbox directions using <code class="bs-code bs-code_dark">rclone lsd dropbox-remote:</code></p>
-        <h2 id="mount-a-remote-at-every-boot">Mount a remote at every boot<a class="silk-link bs-hover-link bs-hover-link_dark" href="#mount-a-remote-at-every-boot"><span class="fas fa-link"></span></a></h2>
-        <p><b>Prerequisite:</b> <a class="silk-link" href="https://rclone.org/install/">install rclone</a> &amp; configure a remote e.g. <a class="silk-link" href="#configure-a-rclone-remote">dropbox</a></p>
-        <p>One alternative to mounting a remote automatically is by using a templated user systemd service, <a class="silk-link" href="https://github.com/rclone/rclone/wiki/Systemd-rclone-mount#systemd">found here</a>. The last edit date on this wiki page is October 6 2022 at the time of writing make sure you are using the latest version.</p>
+        <h2 id="limitations-in-physical-space">Limitations in physical space..<a class="silk-link bs-hover-link bs-hover-link_dark" href="#limitations-in-physical-space"><span class="fas fa-link"></span></a></h2>
+        <p>..or why weirdly shaped PCBs exists. When creating edge cuts for my PCBs I find that the built-in KiCad PCB editor tools to be limited. Sure you can draw lines, arcs, rectangles and circles, which is fine for most simple PCB shapes but for more complicated shapes it's not something I would rely on entirely. Even if I manage to create the shape I want, I still need to find a way to incorporate it into a CAD program to design an enclosure for it. There are ways of exporting KiCad edge cuts into file formats that can then be parsed in other CAD programs. That workflow is flawed when starting with a finished enclosure or specific limitations in dimensions for the PCB. When the PCB needs to adapt to some other shape. Enter DXF graphics support in KiCad!</p>
+        <p><em>Disclaimer: I'm not sure when this feature added to KiCad but I know for sure that this works for KiCad 8+</em></p>
+        <h2 id="dxf-and-onshape">DXF and Onshape<a class="silk-link bs-hover-link bs-hover-link_dark" href="#dxf-and-onshape"><span class="fas fa-link"></span></a></h2>
+        <p>DXF (or Autocad DXF) is a file format developed by Autodesk for enabling interoperability between CAD programs. <a class="silk-link" href="https://www.onshape.com/en/">Onshape</a> is a web based 3D CAD application that I primarily use as an alternative to Autodesk Fusion. I do that simply because there is a free plan that is reasonable for non-commercial use. One of the features that Onshape supports is exporting 2D sketches of what you make e.g. for a weirdly shaped object you draw you can export the projection of the object as an exported DXF file. This file can then be imported into KiCad.</p>
+        <h3 id="edge-cut-from-dxf">Edge cut from DXF<a class="silk-link bs-hover-link bs-hover-link_dark" href="#edge-cut-from-dxf"><span class="fas fa-link"></span></a></h3>
+        <p>First a sketch needs to be made from a CAD program that supports DXF export.</p>
+        <p><img class="silk-image" src="/images/dxf_edge_cut_and_zone/1.png" alt="1.png"> This example uses Onshape. Press the green button to finish sketch. The DXF can then be exported by right-clicking the sketch and pressing "Export to DXF/DWG"</p>
+        <p><img class="silk-image" src="/images/dxf_edge_cut_and_zone/2.png" alt="2.png"> Open the PCB editor in KiCad and go to <code class="bs-code bs-code_dark">File &gt; Import &gt; Graphics</code> (or if you are a cool shortcut kiddo press <code class="bs-code bs-code_dark">Ctrl + Shift + F</code>)</p>
+        <p><img class="silk-image" src="/images/dxf_edge_cut_and_zone/3.png" alt="3.png"> A prompt will appear. Select the correct units that you used in your CAD program when exporting the DXF. I use millimeters in both Onshape and KiCad (it does not make sense to mix units.. between CAD programs). Then select "Edge.Cuts" as layer, press OK.</p>
+        <p><img class="silk-image" src="/images/dxf_edge_cut_and_zone/4.png" alt="4.png"> The results should look like this if you use the default colorscheme in the PCB editor. White lines are the color of "Edge.Cuts" layer.</p>
+        <p><img class="silk-image" src="/images/dxf_edge_cut_and_zone/5.png" alt="5.png"> ..and the 3D model should show you that the edge cut is parsed correctly. Another disclaimer is that maybe not every manufacturer is able to do very complex shapes. Make sure you check this with the manufacturer guidelines before ordering something strange.</p>
+        <h3 id="copper-zone-from-dxf">Copper zone from DXF<a class="silk-link bs-hover-link bs-hover-link_dark" href="#copper-zone-from-dxf"><span class="fas fa-link"></span></a></h3>
+        <p>In normal cases when I make a copper zone for GND or for VCC I select the <code class="bs-code bs-code_dark">Add Filled Zone</code> tool (<code class="bs-code bs-code_dark">Ctrl + Shift + Z</code>), make a big square that covers the whole PCB then press B to fill all zones and it works just fine.</p>
+        <p><img class="silk-image" src="/images/dxf_edge_cut_and_zone/6.png" alt="6.png"> It looks like this.</p>
+        <p>But what if you want the filled zone borders to look more tidy? There is a way to import DXF and then convert its shape into a filled zone. It looks cleaner but other than that there are are not many benefits of doing this.</p>
         <ol>
-         <li>Create a service file</li>
+         <li>Follow instructions on <a class="silk-link" href="#edge-cut-from-dxf">how to import DXF as an edge cut</a>.</li>
+         <li>Set active appearance layer to F.Cu.</li>
+         <li><code class="bs-code bs-code_dark">Right-click &gt; Enter group &gt; Right-click &gt; Create from selection &gt; Create zone from Selection</code>, Add Filled Zone prompt should appear</li>
+         <li>Un-tick "Delete source objects after conversion". Else edge cut needs to be re-added once ok is pressed. (If the shape is too complex the layer KiCad will not add a filled zone and nothing will happen)</li>
+         <li>Press B to fill zones.</li>
         </ol>
-        <ul>
-         <li>Save the following content to this file: <code class="bs-code bs-code_dark">/etc/systemd/user/rclone@.service</code></li>
-        </ul>
-        <pre class="bs-code-block"><code class="language-service">[Unit]
-Description=RClone mount of users remote %i using filesystem permissions
-Documentation=http://rclone.org/docs/
-After=network-online.target
-
-
-[Service]
-Type=notify
-#Set up environment
-Environment=REMOTE_NAME="%i"
-Environment=REMOTE_PATH="/"
-Environment=MOUNT_DIR="%h/%i"
-Environment=POST_MOUNT_SCRIPT=""
-Environment=RCLONE_CONF="%h/.config/rclone/rclone.conf"
-Environment=RCLONE_TEMP_DIR="/tmp/rclone/%u/%i"
-Environment=RCLONE_RC_ON="false"
-
-#Default arguments for rclone mount. Can be overridden in the environment file
-Environment=RCLONE_MOUNT_ATTR_TIMEOUT="1s"
-#TODO: figure out default for the following parameter
-Environment=RCLONE_MOUNT_DAEMON_TIMEOUT="UNKNOWN_DEFAULT"
-Environment=RCLONE_MOUNT_DIR_CACHE_TIME="60m"
-Environment=RCLONE_MOUNT_DIR_PERMS="0777"
-Environment=RCLONE_MOUNT_FILE_PERMS="0666"
-Environment=RCLONE_MOUNT_GID="%G"
-Environment=RCLONE_MOUNT_MAX_READ_AHEAD="128k"
-Environment=RCLONE_MOUNT_POLL_INTERVAL="1m0s"
-Environment=RCLONE_MOUNT_UID="%U"
-Environment=RCLONE_MOUNT_UMASK="022"
-Environment=RCLONE_MOUNT_VFS_CACHE_MAX_AGE="1h0m0s"
-Environment=RCLONE_MOUNT_VFS_CACHE_MAX_SIZE="off"
-Environment=RCLONE_MOUNT_VFS_CACHE_MODE="off"
-Environment=RCLONE_MOUNT_VFS_CACHE_POLL_INTERVAL="1m0s"
-Environment=RCLONE_MOUNT_VFS_READ_CHUNK_SIZE="128M"
-Environment=RCLONE_MOUNT_VFS_READ_CHUNK_SIZE_LIMIT="off"
-#TODO: figure out default for the following parameter
-Environment=RCLONE_MOUNT_VOLNAME="UNKNOWN_DEFAULT"
-
-#Overwrite default environment settings with settings from the file if present
-EnvironmentFile=-%h/.config/rclone/%i.env
-
-#Check that rclone is installed
-ExecStartPre=/usr/bin/test -x /usr/bin/rclone
-
-#Check the mount directory
-ExecStartPre=/usr/bin/test -d "${MOUNT_DIR}"
-ExecStartPre=/usr/bin/test -w "${MOUNT_DIR}"
-#TODO: Add test for MOUNT_DIR being empty -&gt; ExecStartPre=/usr/bin/test -z "$(ls -A "${MOUNT_DIR}")"
-
-#Check the rclone configuration file
-ExecStartPre=/usr/bin/test -f "${RCLONE_CONF}"
-ExecStartPre=/usr/bin/test -r "${RCLONE_CONF}"
-#TODO: add test that the remote is configured for the rclone configuration
-
-#Mount rclone fs
-ExecStart=/usr/bin/rclone mount \
-            --config="${RCLONE_CONF}" \
-#See additional items for access control below for information about the following 2 flags
-#            --allow-other \
-#            --default-permissions \
-            --rc="${RCLONE_RC_ON}" \
-            --cache-tmp-upload-path="${RCLONE_TEMP_DIR}/upload" \
-            --cache-chunk-path="${RCLONE_TEMP_DIR}/chunks" \
-            --cache-workers=8 \
-            --cache-writes \
-            --cache-dir="${RCLONE_TEMP_DIR}/vfs" \
-            --cache-db-path="${RCLONE_TEMP_DIR}/db" \
-            --no-modtime \
-            --drive-use-trash \
-            --stats=0 \
-            --checkers=16 \
-            --bwlimit=40M \
-            --cache-info-age=60m \
-            --attr-timeout="${RCLONE_MOUNT_ATTR_TIMEOUT}" \
-#TODO: Include this once a proper default value is determined
-#           --daemon-timeout="${RCLONE_MOUNT_DAEMON_TIMEOUT}" \
-            --dir-cache-time="${RCLONE_MOUNT_DIR_CACHE_TIME}" \
-            --dir-perms="${RCLONE_MOUNT_DIR_PERMS}" \
-            --file-perms="${RCLONE_MOUNT_FILE_PERMS}" \
-            --gid="${RCLONE_MOUNT_GID}" \
-            --max-read-ahead="${RCLONE_MOUNT_MAX_READ_AHEAD}" \
-            --poll-interval="${RCLONE_MOUNT_POLL_INTERVAL}" \
-            --uid="${RCLONE_MOUNT_UID}" \
-            --umask="${RCLONE_MOUNT_UMASK}" \
-            --vfs-cache-max-age="${RCLONE_MOUNT_VFS_CACHE_MAX_AGE}" \
-            --vfs-cache-max-size="${RCLONE_MOUNT_VFS_CACHE_MAX_SIZE}" \
-            --vfs-cache-mode="${RCLONE_MOUNT_VFS_CACHE_MODE}" \
-            --vfs-cache-poll-interval="${RCLONE_MOUNT_VFS_CACHE_POLL_INTERVAL}" \
-            --vfs-read-chunk-size="${RCLONE_MOUNT_VFS_READ_CHUNK_SIZE}" \
-            --vfs-read-chunk-size-limit="${RCLONE_MOUNT_VFS_READ_CHUNK_SIZE_LIMIT}" \
-#TODO: Include this once a proper default value is determined
-#            --volname="${RCLONE_MOUNT_VOLNAME}"
-            "${REMOTE_NAME}:${REMOTE_PATH}" "${MOUNT_DIR}"
-
-#Execute Post Mount Script if specified
-ExecStartPost=/bin/sh -c "${POST_MOUNT_SCRIPT}"
-
-#Unmount rclone fs
-ExecStop=/bin/fusermount -u "${MOUNT_DIR}"
-
-#Restart info
-Restart=always
-RestartSec=10
-
-[Install]
-WantedBy=default.target
-
-</code></pre>
-        <ol>
-         <li>
-          <p>Tell systemd to look for new files. <code class="bs-code bs-code_dark">systemctl --user daemon-reload</code></p></li>
-         <li>
-          <p>(Optional step) configure a custom mount point. The default mount directory is <code class="bs-code bs-code_dark">~/&lt;REMOTE NAME&gt;</code> if you are ok with that skip this step.</p></li>
-        </ol>
-        <ul>
-         <li>Create an env file: <code class="bs-code bs-code_dark">touch ~/.config/rclone/&lt;REMOTE NAME&gt;.env</code>. For me this file is <code class="bs-code bs-code_dark">~/.config/rclone/dropbox-remote.env</code></li>
-         <li>Set the env variable <em>MOUNT_DIR</em> to whatever mounting directory you want. This directory must exist in the filesystem. For example I want dropbox-remote to moount in /mnt so I set <code class="bs-code bs-code_dark">MOUNT_DIR=/mnt/dropbox-remote</code>. Then create that folder e.g. <code class="bs-code bs-code_dark">sudo mkdir /mnt/dropbox-remote &amp;&amp; sudo chown $USER /mnt/dropbox-remote</code></li>
-        </ul>
-        <ol>
-         <li>Start the templated systemd user service for a specific remote.</li>
-        </ol>
-        <p><code class="bs-code bs-code_dark">systemctl --user enable rclone@&lt;REMOTE NAME&gt;</code> <code class="bs-code bs-code_dark">systemctl --user start rclone@&lt;REMOTE NAME&gt;</code></p>
-        <p>e.g. for my dropbox this was: <code class="bs-code bs-code_dark">systemctl --user enable rclone@dropbox-remote</code> <code class="bs-code bs-code_dark">systemctl --user start rclone@dropbox-remote</code></p>
-        <p>Now your remote should mount for every reboot.</p>
-        <h2 id="checking-out-vfs-cache-modes">Checking out VFS cache modes<a class="silk-link bs-hover-link bs-hover-link_dark" href="#checking-out-vfs-cache-modes"><span class="fas fa-link"></span></a></h2>
-        <p><em>Edit: Jan 8, 2022</em></p>
-        <p>The default VFS cache mode <code class="bs-code bs-code_dark">Environment=RCLONE_MOUNT_VFS_CACHE_MODE="off"</code> or <code class="bs-code bs-code_dark">--vfs-cache-mode off</code> which it evaluates to prevent my password manager from opening my database file from the remote mount directory for both read and write. I get the following error log from doing this: <code class="bs-code bs-code_dark">WriteFileHandle: Can't open for write without O_TRUNC</code>.</p>
-        <p>Changing the cache mode from <code class="bs-code bs-code_dark">--vfs-cache-mode off</code> to <code class="bs-code bs-code_dark">--vfs-cache-mode writes</code> should support all normal file operations (Source <a class="silk-link" href="https://rclone.org/commands/rclone_mount/#file-caching">here</a>).</p>
-        <ol>
-         <li>Restart service: <code class="bs-code bs-code_dark">systemctl --user restart rclone@&lt;REMOTE NAME&gt;</code></li>
-         <li>Check that it was restarted correctly with correct cache mode: <code class="bs-code bs-code_dark">systemctl --user status rclone@&lt;REMOTE NAME&gt;</code></li>
-        </ol>
+        <p><img class="silk-image" src="/images/dxf_edge_cut_and_zone/7.png" alt="7.png"> .. and now the edges of the filled zone matches with the edge cut that comes from the DXF.</p>
+        <p>This DXF is actually from a keyboard PCB I'm working on where I derive the copper zone from the DXF and uses it to guide a via stitching addon to follow its edge. An upcoming post will show how that is setup.</p>
        </div>
       </div>
      </div>
