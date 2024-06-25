@@ -6,8 +6,7 @@ import androidx.compose.runtime.getValue
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.css.OverflowWrap
-import com.varabyte.kobweb.compose.dom.refScope
-import com.varabyte.kobweb.compose.dom.registerRefScope
+import com.varabyte.kobweb.compose.css.autoLength
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.alignContent
@@ -31,7 +30,6 @@ import com.varabyte.kobweb.silk.components.document.TocBorderedVariant
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.base
 import com.varabyte.kobweb.silk.components.style.breakpoint.Breakpoint
-import com.varabyte.kobweb.silk.components.style.cssRules
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.init.InitSilk
 import com.varabyte.kobweb.silk.init.InitSilkContext
@@ -45,6 +43,7 @@ import org.jetbrains.compose.web.css.AlignContent
 import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.DisplayStyle
 import org.jetbrains.compose.web.css.cssRem
+import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.vw
 
@@ -147,7 +146,8 @@ val MarkdownStyle by ComponentStyle {
     cssRule(" img") {
         Modifier
             .display(DisplayStyle.Block)
-            .fillMaxWidth()
+            .maxWidth(100.percent)
+            .margin(left = autoLength, right = autoLength)
             .borderRadius(0.25.cssRem)
             .padding(0.5.cssRem)
             .fontSize(1.cssRem)
