@@ -96,7 +96,7 @@ fun Footer(modifier: Modifier = Modifier) {
                 horizontalArrangement = Arrangement.Center,
             ) {
                 SpanText(
-                    "© 2023, Karl Strålman",
+                    "© 2024, Karl Strålman",
                     CopyrightStyle
                         .toModifier()
                 )
