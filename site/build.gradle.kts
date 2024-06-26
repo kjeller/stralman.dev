@@ -282,7 +282,7 @@ fun generateRssFromBlogpostMarkdown(blogpostMarkdownData: List<BlogpostMarkdownD
         lastBuildDate = localDateTimeToRfc1123String(buildDate),
         copyright = "© ${buildDate.year}, $author",
         items = blogpostMarkdownData.map {
-            val url = it.route
+            val url = "${baseUrl}/${it.route}"
             var fmCount = 0
             RssItem(
                 title = it.title!!,
