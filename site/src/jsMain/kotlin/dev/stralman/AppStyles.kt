@@ -13,6 +13,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.lineHeight
 import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.compose.ui.modifiers.overflow
 import com.varabyte.kobweb.compose.ui.modifiers.scrollBehavior
+import com.varabyte.kobweb.compose.ui.modifiers.width
 import com.varabyte.kobweb.silk.components.layout.HorizontalDividerStyle
 import com.varabyte.kobweb.silk.init.InitSilk
 import com.varabyte.kobweb.silk.init.InitSilkContext
@@ -27,11 +28,12 @@ import com.varabyte.kobweb.silk.theme.colors.palette.link
 import com.varabyte.kobweb.silk.theme.modifyComponentStyleBase
 import kotlinx.browser.localStorage
 import org.jetbrains.compose.web.css.cssRem
+import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 
 const val COLOR_MODE_KEY = "stralman:colorMode"
 
-private val BLOCK_MARGIN = Modifier.margin(top = 1.cssRem)
+private val BLOCK_MARGIN = Modifier.margin(top = 1.cssRem).width(100.percent)
 private val HEADER_MARGIN = Modifier.margin(top = 2.cssRem)
 
 @InitSilk
