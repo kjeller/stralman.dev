@@ -7,7 +7,7 @@
    <generator>Kobweb -- kobweb.varabyte.com</generator>
    <language>en-us</language>
    <copyright>© 2024, Karl Strålman</copyright>
-   <lastBuildDate>Thu, 10 Oct 2024 17:35:23 GMT</lastBuildDate>
+   <lastBuildDate>Thu, 24 Oct 2024 18:24:14 GMT</lastBuildDate>
    <atom:link href="https://www.stralman.dev/index.xml" rel="self" type="application/rss+xml"/>
 <item>
    <title>KiCad: Edge cut and copper zone from CAD sketch</title>
@@ -50,6 +50,13 @@
    <guid>https://www.stralman.dev/posts/smart_mirror</guid>
    <pubDate>Sun, 22 Jan 2023 00:00:00 +0000</pubDate>
    <description>A smart mirror is essentially just a mirror with a display, electronics stuffed behind it and some.. software sprinkled on top.. The main purpose is to display information in a condensed (hands-free).. way while getting ready for the day.. Mine is placed in the hallway to easily check the weather and.</description>
+</item>
+<item>
+   <title>Prusacaster: A 3D printed electric guitar</title>
+   <link>https://www.stralman.dev/posts/prusacaster</link>
+   <guid>https://www.stralman.dev/posts/prusacaster</guid>
+   <pubDate>Thu, 24 Oct 2024 00:00:00 +0000</pubDate>
+   <description>![Finished guitar](/images/0_finished_prusacaster_600x678.jpg).. A few months ago, my friend Rasmus sent me a link to a DIY electric guitar build... I can't find the link anymore, but I remember it seemed doable, with only a few parts and steps,.. so I told him "Why don't we build it ourselves!".. Many months later, we finally did build our own guitars..</description>
 </item>
 <item>
    <title>Mount your cloud storage with rclone</title>
