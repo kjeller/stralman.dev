@@ -70,6 +70,7 @@ fun initSiteStyles(ctx: InitSilkContext) {
             registerStyleBase("canvas") { BLOCK_MARGIN }
             registerStyleBase("p") { BLOCK_MARGIN }
             registerStyleBase("pre") { BLOCK_MARGIN }
+            registerStyleBase("iframe") { BLOCK_MARGIN }
             registerStyleBase("h1") {
                 HEADER_MARGIN
                     .fontSize(2.cssRem)
