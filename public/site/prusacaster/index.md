@@ -175,6 +175,6 @@ For tuning, we used an app since neither of us has perfect pitch.
 Finally, both of the guitars were complete!
 Here's a recording sample Rasmus sent me. It actually sounds like an electric guitar!
 
-<iframe width="600" height="345" src="https://www.youtube.com/watch?v=BezmNrVaM8Q"></iframe>
+<iframe width="600" height="345" src="https://www.youtube.com/embed/BezmNrVaM8Q"></iframe>
 
 (if embedded youtube link does not work for some reason [here is a link](https://www.youtube.com/watch?v=BezmNrVaM8Q))
