@@ -31,7 +31,7 @@ val profile = Profile(
             "https://www.linkedin.com/in/karl-str%C3%A5lman-422b6b173/"
         ) { FaLinkedin(FaIconStyle.toModifier()) },
         FaIconLink(
-            "index.xml"
+            "/index.xml"
         ) { FaRss(FaIconStyle.toModifier()) }
     ),
     pageSourceUrl = "https://github.com/kjeller/stralman.dev/"
